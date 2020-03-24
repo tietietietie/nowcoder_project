@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.tietietie.mavenDemo2.AppTest" time="0.054" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="10"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.class.path" value="D:\Java\nowcoder_project\workspace\mavendemo2\target\test-classes;D:\Java\nowcoder_project\workspace\mavendemo2\target\classes;C:\Users\zhang\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\zhang\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="java.vm.vendor" value="&quot;Oracle Corporation&quot;"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="java.vm.specification.version" value="10"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-10.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\zhang\AppData\Local\Temp\surefire5650367107810134126\surefirebooter8204045488346536999.jar C:\Users\zhang\AppData\Local\Temp\surefire5650367107810134126 2020-03-24T12-57-51_220-jvmRun1 surefire10732557639436238782tmp surefire_08658316854606332273tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\Java\nowcoder_project\workspace\mavendemo2\target\test-classes;D:\Java\nowcoder_project\workspace\mavendemo2\target\classes;C:\Users\zhang\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\zhang\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\zhang"/>
+    <property name="user.language" value="zh"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2018-07-17"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-10.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\Java\nowcoder_project\workspace\mavendemo2"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\zhang\AppData\Local\Temp\surefire5650367107810134126\surefirebooter8204045488346536999.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="10.0.2+13"/>
+    <property name="user.name" value="zhang"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="GBK"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="18.3"/>
+    <property name="localRepository" value="C:\Users\zhang\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\zhang\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2018.2"/>
+    <property name="java.version" value="10.0.2"/>
+    <property name="user.dir" value="D:\Java\nowcoder_project\workspace\mavendemo2"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-10.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\bin;C:\Program Files\Java\jdk-10.0.2\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\WINDOWS\System32\OpenSSH\;C:\Calibri\;C:\Qt\Qt5.11.2\5.11.2\mingw53_32\bin;C:\Qt\Qt5.11.2\Tools\mingw530_32\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;D:\Java\nowcoder_project\apache-maven-3.6.3\bin;D:\Java\nowcoder_project\apache-maven-3.6.1\bin;C:\Anaconda;C:\Anaconda\Library\mingw-w64\bin;C:\Anaconda\Library\usr\bin;C:\Anaconda\Library\bin;C:\Anaconda\Scripts;C:\Users\zhang\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\zhang\AppData\Local\Programs\Python\Python37-32\;C:\Users\zhang\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip\;C:\Microsoft VS Code\bin;C:\Users\zhang\AppData\Roaming\npm;."/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.version" value="10.0.2+13"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="54.0"/>
+  </properties>
+  <testcase name="shouldAnswerWithTrue" classname="com.tietietie.mavenDemo2.AppTest" time="0.002"/>
+</testsuite>

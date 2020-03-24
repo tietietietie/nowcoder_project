@@ -1,14 +1,12 @@
-# 项目学习笔记
+# 初识Spring Boot
 
-## 初识Spring Boot
+## 项目介绍
 
-### 项目介绍
-
-#### 功能介绍
+### 功能介绍
 
 某课网讨论区开发，包括发帖，私信，用户注册，网站流量统计，点赞，关注等功能。
 
-#### 技术介绍
+### 技术介绍
 
 Java web的主流框架：Spring（事实上的行业标准）（学习重点）
 
@@ -32,7 +30,7 @@ Elasticsearch:流行的搜索引擎
 
 Spring Security, Spring Actuator:安全和系统状态统计.
 
-#### 工具介绍
+### 工具介绍
 
 Maven:项目构建
 
@@ -44,16 +42,16 @@ Maven:项目构建
 
 版本控制:Git
 
-###  开发环境搭建
+##  开发环境搭建
 
 注意事项:
 
 1. java --version:>= 8.0
 2. 路径名全部为英文且不许有空格.
 
-#### Maven
+### Maven
 
-作用:构建项目+管理jar包
+作用:构建项目+**管理jar包**
 
 Maven仓库:
 
@@ -83,4 +81,105 @@ Darchetype..：项目版本
 
 1. 在setting.xml中设置了镜像仓库地址，但是报错不能访问，后改正直接访问中央仓库。
 2. 卡在Generating project in Batch mode这一步，参考[这里](https://www.cnblogs.com/wardensky/p/4513372.html)解决。
+3. 阅读Maven手册，[5分钟创建Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+
+编译：mvn compile：编译项目，生成在target文件夹里面的class中
+
+mvn clean：将生成的target文件夹删除。
+
+mvn test：在target中包含了test文件夹，test包含了compile。
+
+### IntelliJ IDEA
+
+#### 在IDEA中连接Maven
+
+1. 找不到build tool里面的maven选项，因为没有安装maven插件。
+2. 修改maven工作路径
+
+![image-20200324100620717](Chapter1.assets/image-20200324100620717.png)
+
+#### 遇到的问题
+
+- 创建新Maven项目时，无法导入Maven文件，查看log，发现如下错误：
+
+![image-20200324104640015](Chapter1.assets/image-20200324104640015.png)
+
+解决办法：因为Maven版本太新，IDEA版本不支持，下载Maven 3.6.1
+
+* IDEA如何清除缓存/项目：
+
+删除缓存：可以现在Maven中搜索“cache...."可以删除缓存
+
+删除项目：现在IDEA中移除项目，然后在对应的文件夹删除，注意**清空回收站**才算完全清除
+
+#### 编译项目
+
+IDEA右侧有Maven快捷命令，可以点击即可。
+
+![image-20200324124228408](Chapter1.assets/image-20200324124228408.png)
+
+还可以直接点:build-->build project
+
+也可以直接在对应的.java文件右键，点击run（右键找不到run选项）
+
+### Spring Boot
+
+帮助优化Maven管理jar包，因为maven中的包搜索相对麻烦。
+
+#### Maven搜索包
+
+www.mvnrepository.com下载，然后复制对应的语句到pom文件的dependencies位置，Maven会自动下载。
+
+#### Spring Initializer
+
+使用Spring Initializer,可以把某个功能的包一次性下载下来。在start.spring.io中设置相关名称，及添加所需工具包即可。
+
+我选择了Thymeleaf,Spring web,和Spring boot devTools三个依赖（AOP依赖没有找到）
+
+得到一个文件压缩包，解压缩到某一地址，然后用IDEA打开即可。
+
+#### 遇到的问题
+
+* 无法下载插件
+
+因为连接的是国外镜像，无法下载速度慢，需要设置为国内阿里云的镜像，但是会出现连接不上的问题，此时需要在settings-->Maven-->importing-->VM importer options处添加如下代码：
+
+```
+-Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true
+```
+
+* 没法显示外部库
+
+没有解决。。
+
+#### 启动程序
+
+Jar包里内置了tomcat，启动可以运行tomcat服务器，默认端口在8080。
+
+#### 特点（核心价值）
+
+1. 起步依赖：starter,帮我们自动添加很多依赖（dependencies）
+2. 自动配置：减少很多配置
+3. 端点监控：对服务器进行监控。
+
+#### 示例
+
+如何response浏览器发出的请求，在controller下编写对应代码，如下：
+
+![image-20200324202406159](Chapter1.assets/image-20200324202406159.png)
+
+在浏览器输入：localhost:8080/alpha/hello，即可返回sayHello()函数的返回值。
+
+#### 修改服务器端口
+
+```
+server.port = 15213
+server.servlet.context-path = /community
+```
+
+在resources的application.properties文件
+
+会发现并不能生效，因为在target文件中也会存在着配置文件，修改那里的配置文件才会生效。
+
+此时在浏览器输入：localhost:15213/community/alpha/hello可访问对应文件（or class)
 
