@@ -156,12 +156,24 @@ under the License.
       <url>http://my.repository.com/repo/path</url>
     </mirror>
      -->
-    <mirror>
+    <!-- <mirror>
       <id>alimaven-new</id>
       <mirrorOf>central</mirrorOf>
       <name>aliyun maven</name>
       <url>https://maven.aliyun.com/repository/central/</url>
-    </mirror>
+    </mirror> -->
+     <!-- <mirror>
+           <id>ibiblio.org</id>
+           <name>ibiblio Mirror of http://repo1.maven.org/maven2/</name>
+           <url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
+           <mirrorOf>central</mirrorOf>
+     </mirror> -->
+    <mirror>  
+      <id>alimaven</id>  
+      <mirrorOf>central</mirrorOf>     
+      <name>aliyun maven</name>  
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>  
+    </mirror>  
   </mirrors>
 
   <!-- profiles

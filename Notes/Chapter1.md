@@ -183,3 +183,78 @@ server.servlet.context-path = /community
 
 此时在浏览器输入：localhost:15213/community/alpha/hello可访问对应文件（or class)
 
+## Spring入门
+
+多套框架（Spring全家桶），包括：
+
+Spring+Spring Boot+Spring Cloud(将项目拆分为若干个子项目/微服务）+Spring Cloud Data Flow（多种客服端集成数据）
+
+文档手册：Spring.io
+
+### Spring Framework
+
+包括
+
+* Spring core ：IoC
+* Spring Data Access
+* Web Servlet
+* Integration
+
+详细内容点[这里](https://spring.io/projects/spring-framework#overview)
+
+#### Spring IoC
+
+* 控制反转（与常见的[对象关系](https://blog.csdn.net/jiahao1186/article/details/82634723)不同）
+* 依赖注入
+* IoC容器：一个工厂，管理各种Bean和配置文件（需要提供两种数据，bean对象以及配置文件）（对象之间不会直接产生关联，降低耦合度）
+
+More:Bean的详细解释见[这里](https://www.awaimai.com/2596.html)
+
+**遇到的问题**
+
+* 不显示external libraries
+
+搜索文件：projectView.xml，修改其中的“showLibraryContents”为true。
+
+* ctrl+鼠标右键不能进入函数源码
+
+原因：热键冲突
+
+解决办法：在settings-->keymap-->main view --> navigation中找到declaration，发现其快捷键其实是ctrl+alt+鼠标右键。
+
+* 访问目标函数时，需要进行登录
+
+原因：Spring Security在起作用
+
+解决办法：在pom文件中注释掉Security的dependency即可。参考[这里](https://blog.csdn.net/qq_36079461/article/details/96759099)
+
+More：IDEA注释快捷键：ctrl+shift+/
+
+#### 怎样才能被容器扫描
+
+在main函数中，我们传入SpringApplication的其实是一个配置文件：
+
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CommunityApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CommunityApplication.class, args);
+	}
+
+}
+```
+
+其中，SpringBootApplication下存放着配置文件，可以放入IoC容器的Bean，哪些函数（Bean)会被放入IoC文件呢，前面有四种注解的函数，会被扫描：
+
+* @Controller(处理请求)
+* @Service（提供服务）
+* @Repository(处理数据库)
+* @Conponent(通用)
+
+#### 演示IoC
+
+在Test中演示，如何获得容器

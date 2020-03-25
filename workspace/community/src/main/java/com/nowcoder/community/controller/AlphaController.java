@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/alpha")
-
 public class AlphaController {
     @RequestMapping("/hello")
     @ResponseBody
