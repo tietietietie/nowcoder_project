@@ -122,6 +122,11 @@ IDEA右侧有Maven快捷命令，可以点击即可。
 
 也可以直接在对应的.java文件右键，点击run（右键找不到run选项）
 
+#### 快捷健
+
+* 快速查找：按两次shift
+* 快速找到接口需要实现的方法：ctrl+I
+
 ### Spring Boot
 
 帮助优化Maven管理jar包，因为maven中的包搜索相对麻烦。
@@ -206,7 +211,7 @@ Spring+Spring Boot+Spring Cloud(将项目拆分为若干个子项目/微服务�
 
 * 控制反转（与常见的[对象关系](https://blog.csdn.net/jiahao1186/article/details/82634723)不同）
 * 依赖注入
-* IoC容器：一个工厂，管理各种Bean和配置文件（需要提供两种数据，bean对象以及配置文件）（对象之间不会直接产生关联，降低耦合度）
+* IoC容器：一个工厂，管理各种Bean和配置文件（需要提供两种数据，bean对象以及配置文件）（对象之间不会**直接产生关联，降低耦合度**）
 
 More:Bean的详细解释见[这里](https://www.awaimai.com/2596.html)
 
@@ -232,13 +237,13 @@ More：IDEA注释快捷键：ctrl+shift+/
 
 #### 怎样才能被容器扫描
 
-在main函数中，我们传入SpringApplication的其实是一个配置文件：
+容器会自动创建，但是哪些Bean会被扫描呢？在main函数中，我们传入SpringApplication的其实是一个配置文件：
 
 ```java
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication //这个注解标识的类，其实是一个配置文件，项目启动的时候帮我们配置
 public class CommunityApplication {
 
 	public static void main(String[] args) {
@@ -257,4 +262,25 @@ public class CommunityApplication {
 
 #### 演示IoC
 
-在Test中演示，如何获得容器
+在test中演示，如何获得容器，代码如下：
+
+```java
+@SpringBootTest
+@ContextConfiguration(classes = CommunityApplication.class)
+public class CommunityApplicationTests implements ApplicationContextAware {
+    private ApplicationContext applicationContext;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
+    @Test
+    public void testApplicationContext() {
+        System.out.println(applicationContext);
+    }
+}
+```
+
+* ApplicationContextAware接口可以帮助我们实现容器的传递，在实现了serApplicationContext方法后，我们便可以通过其参数applicationcontext访问容器的
+* 将容器的内容打印出来
