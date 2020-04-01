@@ -16,3 +16,6 @@
 
 在settings-->Maven-->importing-->VM importer options修改JVM参数为 -Xms1024m -Xmx2048m。修改了heap值。
 
+### 4.idea找不到new interface
+
+点new-->class，然后选interface

@@ -284,3 +284,76 @@ public class CommunityApplicationTests implements ApplicationContextAware {
 
 * ApplicationContextAware接口可以帮助我们实现容器的传递，在实现了serApplicationContext方法后，我们便可以通过其参数applicationcontext访问容器的
 * 将容器的内容打印出来
+
+#### 使用容器降低耦合度（生成bean）
+
+举例：在项目中实现了AlphaDao接口，并且实现了一个类叫做AlphaDaoHibernateImpl，通过注解@repository，它可以被容器扫描并管理，项目中的其他函数调用时，都是基于容器getBean方法，某一天，需要将此接口的技术升级，实现类变成AlphaDaoMyBatisImpl，此时只需要在这个类加上@Primary，即可实现此接口的升级（面向接口）,因为此时向容器中寻找AlphaBao类，默认会给你AlphaDaoMyBatisImpl。
+
+```java
+@Repository
+@Primary
+public class AlphaDaoMyBatisImpl implements AlphaDao {
+    @Override
+    public String select() {
+        return "MyBatis";
+    }
+}
+```
+
+```java
+@Test
+public void testApplicationContext() {
+    System.out.println(applicationContext);
+    AlphaDao alphaDao = applicationContext.getBean(AlphaDao.class);
+    System.out.println(alphaDao.select());
+}
+```
+
+如果想要访问特定的bean，则可以通过名字，强制返回指定bean
+
+```java
+@Repository("alphaHibernate")
+public class AlphaDaoHibernateImpl implements AlphaDao {
+    @Override
+    public String select() {
+        return "Hibernate";
+    }
+}
+```
+
+```java
+@Test
+public void testApplicationContext() {
+    System.out.println(applicationContext);
+    AlphaDao alphaDao = applicationContext.getBean(AlphaDao.class);
+    System.out.println(alphaDao.select());
+    alphaDao = applicationContext.getBean("alphaHibernate", AlphaDao.class);
+    System.out.println(alphaDao.select());
+}
+```
+
+#### 容器管理bean的方法
+
+除了自动构建bean外，还可以初始化bean,以及销毁bean，其中初始化函数是在对象构造函数调用之后，销毁函数是在对象销毁之前，具体如下所示：
+
+```java
+@Service
+public class AlphaService {
+    public AlphaService() {
+        System.out.println("实例化AlphaService");
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("初始化AlphaService");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("销毁AlphaService");
+    }
+}
+```
+
+并且默认情况，容器内的bean只会被实例一次（单例模式），如果需要每次调用bean都要实例化，则在对应bean加上注解@Scope("prototype")
+
