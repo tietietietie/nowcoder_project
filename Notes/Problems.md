@@ -19,3 +19,7 @@
 ### 4.idea找不到new interface
 
 点new-->class，然后选interface
+
+### 5.修改了代码没有生效
+
+忘记recompile直接run了，点击build--->rebuild project即可。

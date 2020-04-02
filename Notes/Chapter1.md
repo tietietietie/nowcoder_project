@@ -357,3 +357,110 @@ public class AlphaService {
 
 并且默认情况，容器内的bean只会被实例一次（单例模式），如果需要每次调用bean都要实例化，则在对应bean加上注解@Scope("prototype")
 
+#### 容器中装配第三方的bean
+
+配置类+注解（把所有的配置类都放在config包下）
+
+如何装配一个外部bean：使用@Configuration + @Bean， 代码如下所示：
+
+```java
+@Configuration  //表明这是一个配置类
+public class AlphaConfig {
+    @Bean  //这是一个需要装配的bean，bean的名称是“simpleDateFormat”
+    public SimpleDateFormat simpleDateFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    }
+
+}
+```
+
+作用：把时间格式统一规定，如果需要输出时间，则调用这个bean即可。
+
+```java
+@Test
+public void testBeanConfig() {
+    SimpleDateFormat simpleDateFormat =
+        applicationContext.getBean(SimpleDateFormat.class);
+    System.out.println(simpleDateFormat.format(new Date()));
+}
+```
+
+#### 更简单使用容器的方式
+
+依赖注入（Dependency Injection)
+
+直接声明一个bean类型，然后给他加上注解就可以使用，如果是依赖接口
+
+```java
+@Autowired
+@Qualifier("alphaHibernate")
+private AlphaDao alphaDao;
+@Autowired
+private AlphaService alphaService;
+@Autowired
+private SimpleDateFormat simpleDateFormat;
+
+@Test
+public void testDI() {
+    System.out.println(alphaDao);
+    System.out.println(alphaService);
+    System.out.println(simpleDateFormat);
+}
+```
+
+不用我们自己实例化，如果是依赖接口，还能降低耦合度。
+
+#### 综合演示依赖注入
+
+controller调用service，service调用dao，所以在controller中注入service,在service中注入dao。即可实现依赖注入。具体代码如下：
+
+在AlphaController中注入AlphaService
+
+```java
+public class AlphaController {
+
+    @Autowired
+    private AlphaService alphaService;
+
+    @RequestMapping("/hello")
+    @ResponseBody
+    public String sayHello() {
+        return "Hello, Spring Boot.";
+    }
+
+    @RequestMapping("/data")
+    @ResponseBody
+    public String getData() {
+        return alphaService.find();
+    }
+}
+```
+
+在AlphaService注入AlphaDao
+
+```java
+public class AlphaService {
+
+    @Autowired
+    private AlphaDao alphaDao;
+
+    public AlphaService() {
+        System.out.println("实例化AlphaService");
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("初始化AlphaService");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("销毁AlphaService");
+    }
+
+    public String find() {
+        return alphaDao.select();
+    }
+}
+```
+
