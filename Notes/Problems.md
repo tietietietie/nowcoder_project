@@ -23,3 +23,7 @@
 ### 5.修改了代码没有生效
 
 忘记recompile直接run了，点击build--->rebuild project即可。
+
+### 6.如何快速处理异常（快捷方式）
+
+参考[这里](https://blog.csdn.net/a200822146085/article/details/92805214)，快捷键是alt+enter

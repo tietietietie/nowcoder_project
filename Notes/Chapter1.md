@@ -464,3 +464,68 @@ public class AlphaService {
 }
 ```
 
+
+
+## Spring MVC入门
+
+HTTP的文档：在[这里](https://developer.mozilla.org/zh-CN/docs/Web/HTTP)可以查到相关信息。
+
+右键网页--->检查--->network--->刷新网页：可以发现浏览器与服务器之间有多次信息交流，第一次是请求http，获得了一个html，之后浏览器会根据这个html文件所缺失的信息继续请求内容。
+
+### 三层架构
+
+服务器的三层结构：表现层/业务层/数据层
+
+MVC的三层结构（在表现层）：控制层（controller）+模型层（Model）+视图层（View）
+
+核心组件：DispatherServlet（前端控制器/一个类）调度MVC三个层
+
+![image-20200404202235643](Chapter1.assets/image-20200404202235643.png)
+
+上图表示Spring MVC是如何处理服务器发来的请求的。
+
+### 模板引擎
+
+作用：生成动态HTML
+
+需要：模板文件+model数据
+
+特点：自然模板，以HTML文件为模板（便于交流）
+
+语法：常用表达式/判断循环/模板布局
+
+手册看[这里](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
+
+### 举例
+
+* 如何查看项目的常用配置
+
+查看[这里](https://docs.spring.io/spring-boot/docs/2.2.6.RELEASE/reference/htmlsingle/#common-application-properties)可以找到相应的配置类，配置文件通过给配置类赋值，来改变相应配置。
+
+* 使用HttpServletRequest和HttpServletResponse来获得服务器请求，以及向服务器传输数据
+
+代码：
+
+```java
+@RequestMapping("/http")
+public void http(HttpServletRequest request, HttpServletResponse response) {
+    //输出请求信息（在服务器控制台）
+    System.out.println(request.getMethod());
+    System.out.println(request.getServletPath());
+    Enumeration<String> enumeration = request.getHeaderNames();
+    while (enumeration.hasMoreElements()) {
+        String name = enumeration.nextElement();
+        String value = request.getHeader(name);
+        System.out.println(name + " : " + value);
+    }
+
+    //通过向response写数据，从而向服务器输出
+    response.setContentType("text/html;charset=utf-8");
+    try (PrintWriter writer = response.getWriter();) {
+        writer.write("<h1>ZT的牛客网<h1>");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+```
+
