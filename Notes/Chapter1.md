@@ -529,3 +529,180 @@ public void http(HttpServletRequest request, HttpServletResponse response) {
 }
 ```
 
+Spring还提供了更简单的处理方式：直接用注解，返回Responsebody下面函数的返回值
+
+### 如何获得浏览器传来的参数
+
+* @Requestmapping()可以指定请求的方法（默认get），以及路径
+* 在传入参数中添加注解，可以设置浏览器传来参数的名称，默认是否必须，默认值（处理传入参数很容易）
+
+```java
+    @RequestMapping(path = "/students", method = RequestMethod.GET)
+    @ResponseBody
+    public String getStudents(
+            @RequestParam(name = "current", required = false, defaultValue = "1") int current,
+            @RequestParam(name = "limit", required = false, defaultValue = "10") int limit) {
+        System.out.println(current);
+        System.out.println(limit);
+        return "Some Students";
+    }
+```
+
+参数也可以是路径的一部分，添加注解即可，如下所示
+
+```java
+@RequestMapping(path = "/student/{id}", method = RequestMethod.GET)
+@ResponseBody
+public String getStudent(@PathVariable("id") int id) {
+return "a student : " + id;
+}
+```
+
+### Post
+
+post是指网页向服务器发送数据，在static中创建一个静态网页,设置了action后,点击submit,即可向对应path的函数传参
+
+为什么不用get传数据呢?因为get请求会使用url传输参数,长度有限
+
+静态网页如下
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加学生</title>
+</head>
+<body>
+
+<form method="post" action="/community/alpha/student">
+    <p>
+        姓名：<input type="text" name="name">
+    </p>
+    <p>
+        年龄：<input type="text" name="age">
+    </p>
+    <p>
+        <input type="submit" name="保存">
+    </p>
+</form>
+
+</body>
+</html>
+```
+
+响应函数如下(可以加注解):
+
+```java
+//post请求
+@RequestMapping(path = "/student", method = RequestMethod.POST)
+@ResponseBody
+public String saveStudent(String name, int age) {
+    System.out.println(name);
+    System.out.println(age);
+    return "success";
+}
+```
+
+### 如何响应数据(response)
+
+#### 返回网页方法一
+
+```java
+//响应html数据
+@RequestMapping(path = "/teacher", method = RequestMethod.GET)
+public ModelAndView gerTeacher() {
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.addObject("name", "张铁");
+    modelAndView.addObject("age", "24");
+    modelAndView.setViewName("/demo/view");
+    return modelAndView;
+}
+```
+
+设置普通html为模板,以及填充传入参数的方法:(注意thymeleaf(th)的语法)
+
+```html
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher</title>
+</head>
+<body>
+<p th:text="${name}"></p>
+<p th:text="${age}"></p>
+</body>
+</html>
+```
+
+#### 返回网页方法二
+
+model和view分开,view以字符串形式返回
+
+```java
+//查询学校
+@RequestMapping(path = "/school", method = RequestMethod.GET)
+public String getSchool(Model model) {
+    model.addAttribute("name", "HUST");
+    model.addAttribute("age", 100);
+    return "/demo/view";
+}
+```
+
+#### 响应json数据
+
+在异步请求中(没有刷新页面,但是悄悄地访问了服务器一次)(所以这次服务器返回结果不是html)
+
+json数据:把java对象返回给浏览器时,由于浏览器是JS对象,所以需要使用json,起到现阶对象.
+
+Json字符串:跨语言地常用工具
+
+```java
+@RequestMapping(path = "/emp", method = RequestMethod.GET)
+@ResponseBody
+public Map<String, Object> getEmp() {
+    Map<String, Object> emp = new HashMap<>();
+    emp.put("name", "zhangtie");
+    emp.put("age", 23);
+    emp.put("salary", 20000);
+    return emp;
+}
+```
+
+返回结果如下
+
+```
+{"name":"zhangtie","salary":20000,"age":23}
+```
+
+也可以返回集合,json字符串也能表示
+
+```java
+@RequestMapping(path = "/emps", method = RequestMethod.GET)
+@ResponseBody
+public List<Map<String, Object>> getEmps() {
+    Map<String, Object> emp = new HashMap<>();
+    List<Map<String, Object>> list = new ArrayList<>();
+    emp.put("name", "zhangtie");
+    emp.put("age", 23);
+    emp.put("salary", 20000);
+    list.add(emp);
+    emp = new HashMap<>();
+    emp.put("name", "lisi");
+    emp.put("age", "22");
+    list.add(emp);
+    emp = new HashMap<>();
+    emp.put("name", "wangwu");
+    emp.put("age", "23");
+    list.add(emp);
+    return list;
+}
+```
+
+返回结果如下:
+
+```
+[{"name":"zhangtie","salary":20000,"age":23},{"name":"lisi","age":"22"},{"name":"wangwu","age":"23"}]
+```
+

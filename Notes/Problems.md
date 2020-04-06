@@ -27,3 +27,14 @@
 ### 6.如何快速处理异常（快捷方式）
 
 参考[这里](https://blog.csdn.net/a200822146085/article/details/92805214)，快捷键是alt+enter
+
+### 7.无法访问SpringMVC的静态资源
+
+添加如下配置
+
+```java
+#静态资源
+spring.mvc.static-path-pattern=/static/**
+spring.resources.static-locations=classpath:/static
+```
+
