@@ -706,3 +706,4 @@ public List<Map<String, Object>> getEmps() {
 [{"name":"zhangtie","salary":20000,"age":23},{"name":"lisi","age":"22"},{"name":"wangwu","age":"23"}]
 ```
 
+## MyBatis入门
