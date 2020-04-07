@@ -38,3 +38,13 @@ spring.mvc.static-path-pattern=/static/**
 spring.resources.static-locations=classpath:/static
 ```
 
+### 8.忘记了mysql的初始密码
+
+删掉mysql然后重装，如何删除mysql参考[这里](https://jingyan.baidu.com/article/47a29f24ba369bc0142399db.html)
+
+如何设置自己的密码(注意分号结尾)
+
+```
+alter user root@localhost identified by ‘wodemima';
+```
+

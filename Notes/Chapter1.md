@@ -707,3 +707,14 @@ public List<Map<String, Object>> getEmps() {
 ```
 
 ## MyBatis入门
+
+初始化MySQL，就算有环境变量，也要cd到bin目录下
+
+按照以下步骤初始化
+
+```
+mysqld --initialized --console
+mysqld install
+net start mysql
+```
+
