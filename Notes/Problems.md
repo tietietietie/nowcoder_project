@@ -48,3 +48,10 @@ spring.resources.static-locations=classpath:/static
 alter user root@localhost identified by ‘wodemima';
 ```
 
+### 9.generate快捷键失效
+
+修改keymap的generate快捷键为alt+f12
+
+### 10.报错Error creating bean with name 'dataSource' defined in class path resource
+
+版本我兼容,我下载的是新版的springboot,使用的是旧版的mybatis和mysql jar包,更新Jar包Bug就没了,以后一定不要新旧版本混用.

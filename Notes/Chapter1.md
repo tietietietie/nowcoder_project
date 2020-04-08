@@ -708,6 +708,8 @@ public List<Map<String, Object>> getEmps() {
 
 ## MyBatis入门
 
+### 安装MySQL
+
 初始化MySQL，就算有环境变量，也要cd到bin目录下
 
 按照以下步骤初始化
@@ -717,4 +719,28 @@ mysqld --initialized --console
 mysqld install
 net start mysql
 ```
+
+### MyBatis
+
+学习手册分别为:[这里](https://mybatis.org/mybatis-3/zh/index.html)和[这里](http://mybatis.org/spring/zh/index.html)
+
+* 核心组件
+
+SqlSessionFactory/SqlSession/XML配置文件:Spring已经整合帮我们初始化了.
+
+Mapper:DAO接口
+
+Mapper映射器:对应sql和实体类映射
+
+#### 举例
+
+对user表进行CRUD(增删改查)
+
+导入jar包,(mybatis,mysql)
+
+在application.properties中配置mysql
+
+* 在jar包entity中定义查询sql返回类型(为User)
+* 在DAO中声明接口（UserMapper）
+* 在resourses中的mapper中定义配置文件(映射文件),使得UserMapper中定义的函数与sql操作一一对应
 
