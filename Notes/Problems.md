@@ -54,4 +54,8 @@ alter user root@localhost identified by ‘wodemima';
 
 ### 10.报错Error creating bean with name 'dataSource' defined in class path resource
 
-版本我兼容,我下载的是新版的springboot,使用的是旧版的mybatis和mysql jar包,更新Jar包Bug就没了,以后一定不要新旧版本混用.
+版本我兼容,我下载的是新版的springboot,使用的是旧版的mybatis(2.1.2)和mysql(8.0.15) jar包,更新Jar包Bug就没了,以后一定不要新旧版本混用.
+
+### 11.更新数据库表项时报错：org.apache.ibatis.binding.BindingException: Parameter 'idList' not found
+
+参考[这里](https://blog.csdn.net/qq_28379809/article/details/83342196?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1)，因为参数默认是按照参数顺序从接口传到mapper的，需要添加@Param注解

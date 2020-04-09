@@ -742,5 +742,18 @@ Mapper映射器:对应sql和实体类映射
 
 * 在jar包entity中定义查询sql返回类型(为User)
 * 在DAO中声明接口（UserMapper）
-* 在resourses中的mapper中定义配置文件(映射文件),使得UserMapper中定义的函数与sql操作一一对应
+* 在resourses中的mapper中定义配置文件(映射文件),使得UserMapper中定义的接口函数与sql操作一一对应
 
+如何便于debug：
+
+在日志中打印出具体执行的sql，在设置中添加如下代码
+
+```
+#logger
+logging.level.com.nowcoder.community=debug
+```
+
+## 开发社区首页
+
+* 先开发DAO再开发Service再开发Controller
+* 功能拆解：
