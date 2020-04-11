@@ -768,3 +768,121 @@ logging.level.com.nowcoder.community=debug
 
 ### 开发业务层
 
+简单的使用数据层的bean即可。
+
+### 开发控制层
+
+需要使用模板引擎生成动态页面，显示十条数据
+
+```java
+@Controller
+public class HomeController {
+    @Autowired
+    private DiscussPostService discussPostService;
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(path = "/index", method = RequestMethod.GET)
+    public String getIndexPage(Model model) {
+        List<DiscussPost> list = discussPostService.findDiscussPosts(0, 0, 10);
+        List<Map<String, Object>> discussPosts = new ArrayList<>();
+        for (DiscussPost post : list) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("post", post);
+            User user = userService.findUserById(post.getUserId());
+            map.put("user", user);
+            discussPosts.add(map);
+        }
+        model.addAttribute("discussPosts", discussPosts);
+        return "/index";
+    }
+}
+```
+
+#### 分页
+
+客户需要传送分页数据（哪一页），服务端返回所需数据
+
+* 分页组件
+
+把分页需要的条件都封装在Page类中，代码如下：
+
+```java
+package com.nowcoder.community.entity;
+
+//封装分页相关信息
+public class Page {
+    //当前页码
+    private int current = 1;
+    //显示上限
+    private int limit = 10;
+    //数据总数(用于计算总页数）
+    private int rows;
+    //查询路径(复用分页链接）
+    private String path;
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(int current) {
+        if (current >= 1)
+            this.current = current;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        if (limit >= 1 && limit <= 100)
+            this.limit = limit;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        if (rows >= 0)
+            this.rows = rows;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    //获取当前页的起始行
+    public int getOffSet() {
+        return (current - 1) * limit;
+    }
+
+    //获得总页数
+    public int getTotal() {
+        if (rows % limit == 0)
+            return rows / limit;
+        return rows / limit + 1;
+    }
+
+    //获取起始页面
+    public int getFrom() {
+        int from = current - 2;
+        return from < 1 ? 1 : from;
+    }
+
+    //获取终止页面
+    public int getTo() {
+        int to = current + 2;
+        int total = this.getTotal();
+        return to > total ? total : to;
+    }
+}
+```
+
+* 实现分页：主要使处理动态的html模板
+
+代码略，注意如果html模板写错很难调试。。。
