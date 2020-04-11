@@ -59,3 +59,9 @@ alter user root@localhost identified by ‘wodemima';
 ### 11.更新数据库表项时报错：org.apache.ibatis.binding.BindingException: Parameter 'idList' not found
 
 参考[这里](https://blog.csdn.net/qq_28379809/article/details/83342196?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1)，因为参数默认是按照参数顺序从接口传到mapper的，需要添加@Param注解
+
+### 12.链接mysql报错：Public Key Retrieval is not allowed
+
+参考[这里](https://www.jianshu.com/p/a1d262143919)，在url加上allowPublicKeyRetrieval=true参数，
+
+但是我打开mysql workbench的相应数据库后，Bug自动消失了(+_+)?

@@ -757,3 +757,14 @@ logging.level.com.nowcoder.community=debug
 
 * 先开发DAO再开发Service再开发Controller
 * 功能拆解：
+
+按照：DAO--->Service--->Controller的顺序开发
+
+### 查询讨论帖数据
+
+和之前举例方法一样，先定义返回类型：DiscussPost，在DAO中声明接口：DiscussPostMapper，最后建立映射：discusspost_mapper.xml。
+
+代码就不列举了。。
+
+### 开发业务层
+
