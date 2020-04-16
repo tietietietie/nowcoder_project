@@ -928,3 +928,9 @@ public class Page {
 可以直接在application里面设置（简单设置），也可以在logback官网上下载.xml配置文件。
 
 logback-spring.xml文件必须放在resource下面，且名字不能变，spring会自动识别。
+
+## Git
+
+### 如何在IDEA集成git
+
+下载git插件，然后指定git/bin下面的git.exe路径，即可继承git，下面会出现version control按钮，点击绿勾可以commit。
