@@ -1,13 +1,12 @@
-2020-04-17 21:31:13,290 INFO [main] c.n.c.LoggerTests [StartupInfoLogger.java:55] Starting LoggerTests on zt with PID 27232 (started by zhang in D:\Java\nowcoder_project\workspace\community)
-2020-04-17 21:31:13,310 INFO [main] c.n.c.LoggerTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
-2020-04-17 21:31:15,655 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
-2020-04-17 21:31:15,803 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
-2020-04-17 21:31:16,939 INFO [main] c.n.c.LoggerTests [StartupInfoLogger.java:61] Started LoggerTests in 4.792 seconds (JVM running for 7.61)
-2020-04-17 21:31:17,468 INFO [main] c.n.c.LoggerTests [LoggerTests.java:19] info log
-2020-04-17 21:31:17,524 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
-2020-04-17 21:34:34,055 INFO [main] c.n.c.MailTests [StartupInfoLogger.java:55] Starting MailTests on zt with PID 4332 (started by zhang in D:\Java\nowcoder_project\workspace\community)
-2020-04-17 21:34:34,058 INFO [main] c.n.c.MailTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
-2020-04-17 21:34:36,144 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
-2020-04-17 21:34:36,266 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
-2020-04-17 21:34:37,273 INFO [main] c.n.c.MailTests [StartupInfoLogger.java:61] Started MailTests in 4.308 seconds (JVM running for 6.167)
-2020-04-17 21:34:39,422 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-04-19 20:01:54,008 INFO [main] c.n.c.MailTests [StartupInfoLogger.java:55] Starting MailTests on zt with PID 25660 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-19 20:01:54,026 INFO [main] c.n.c.MailTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-19 20:01:56,632 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-19 20:01:56,794 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-04-19 20:01:57,989 INFO [main] c.n.c.MailTests [StartupInfoLogger.java:61] Started MailTests in 5.498 seconds (JVM running for 8.656)
+2020-04-19 20:01:58,874 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-04-19 20:02:39,217 INFO [main] c.n.c.MailTests [StartupInfoLogger.java:55] Starting MailTests on zt with PID 2364 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-19 20:02:39,220 INFO [main] c.n.c.MailTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-19 20:02:42,270 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-19 20:02:42,476 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-04-19 20:02:43,918 INFO [main] c.n.c.MailTests [StartupInfoLogger.java:61] Started MailTests in 6.384 seconds (JVM running for 9.637)
+2020-04-19 20:02:46,636 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'

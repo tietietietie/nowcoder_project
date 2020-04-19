@@ -57,3 +57,20 @@ public class MailClient {
 ### 模板引擎
 
 发送的是Html格式的邮件
+
+在测试类中，需要我们主动调用模板引擎，注入相应bean即可，代码如下：
+
+```java
+    @Test
+    public void testHtmlMail() {
+        Context context = new Context();
+        context.setVariable("username", "sunday");
+        String content = templateEngine.process("/mail/demo", context);
+        System.out.println(content);
+        mailClient.sendMail("zhangtiezhangtie@outlook.com", "HTML", content);
+    }
+```
+
+其中，需要指定模板文件的地址，及模板所需要的参数，模板引擎会自动生成网页（一个字符串content），把这个字符串使用mailClient发送即可。
+
+## 开发注册功能
