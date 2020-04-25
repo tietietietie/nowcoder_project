@@ -23,3 +23,5 @@
 2020-04-25 13:48:53,122 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/activation151/839c13aa8c2a4dc3b1e192a8bad53835
 2020-04-25 13:49:07,780 WARN [http-nio-15213-exec-3] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
 2020-04-25 13:52:30,115 WARN [http-nio-15213-exec-5] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
+2020-04-25 21:21:22,585 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/alpha/cookie
+2020-04-25 21:41:45,813 WARN [http-nio-15213-exec-2] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [581] milliseconds.

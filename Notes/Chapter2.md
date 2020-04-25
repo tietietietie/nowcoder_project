@@ -208,3 +208,105 @@ public class UserService {
 * 无效的激活链接
 
 ![image-20200425135323665](Chapter2.assets/image-20200425135323665.png)
+
+
+
+## 会话管理
+
+### 定义
+
+http是无状态且有会话的。
+
+无状态：请求之间是没有联系的（无差别对待）（用户没有办法进行连续的交互）（服务器无法记住浏览器的状态）
+
+如何解决业务之间的联系：使用cookies来解决无状态，形成整体。
+
+所以有会话是指：使得服务器和浏览器之间能有连续的交互。使得服务器能够**记住**浏览器。
+
+cookies：由服务器发送给浏览器（在响应头），表明其身份，浏览器保存到本地，下次浏览器携带着cookies再次访问服务器时（在请求头），服务器能够**认识**这个浏览器。所以cookies是一个特殊的数据.(很小的数据，只有一对key:value)（能够得到浏览器的一些特征数据）
+
+
+
+### 演示cookies
+
+为访问此路径的浏览器生成cookie并放在response中，代码如下：
+
+```java
+    //cookies演示
+    @RequestMapping(path = "cookie/set", method = RequestMethod.GET)
+    @ResponseBody
+    public String setCookie(HttpServletResponse response) {
+        //创建cookie
+        Cookie cookie = new Cookie("code", CommunityUtil.generateUUID());
+        //设置cookie的生效范围（只有在哪些路径有效）
+        cookie.setPath("/community/alpha");
+        //设置cookie的生存时间（因为默认是存在内存里的，关掉浏览器就没了）(单位是秒）
+        cookie.setMaxAge(60 * 10);
+        response.addCookie(cookie);
+        return "set cookie";
+    }
+```
+
+如何使用浏览器发来的cookie，如下：
+
+```java
+    @RequestMapping(path = "cookie/get", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCookie(@CookieValue("code") String code) {
+        System.out.println(code);
+        return "get cookie";
+    }
+```
+
+优点：弥补http的无状态
+
+缺点：
+
+* 不安全，因为不知道浏览器所在系统的安全性
+* 对流量/性能有影响
+
+### 演示Session
+
+另一种解决办法：session
+
+* 用于在服务端的存储在客服端信息，优点是安全，缺点是造成了服务器的压力。
+* 与cookie是有关系的
+
+1，浏览器访问服务器，服务器创建一个对应的session对象，session依赖于cookie，自动创建了sessionID放在cookie中，发送给服务器
+
+2，浏览器把存的cookie的sessionID，在下次请求中发送给服务器，从而服务器可以通过这个sessionID，找到与此浏览器对应的session对象
+
+演示如何创建session，传入数据
+
+```java
+    //session示例
+    @RequestMapping(path = "session/set", method = RequestMethod.GET)
+    @ResponseBody
+    public String setSession(HttpSession session) {
+        //SpringMVC会自动地注入，只需要声明即可
+        session.setAttribute("id", 1);
+        session.setAttribute("name", "test");
+        return "set session";
+    }
+```
+
+
+
+![image-20200425214211535](Chapter2.assets/image-20200425214211535.png)
+
+
+
+服务端获得对应地seesion参数值以及sessionID
+
+```java
+    @RequestMapping(path = "session/get", method = RequestMethod.GET)
+    @ResponseBody
+    public String getSession(HttpSession session) {
+        System.out.println(session.getId());
+        System.out.println(session.getAttribute("name"));
+        return "get session";
+    }
+```
+
+所以session也能解决会话问题。
+
