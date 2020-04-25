@@ -191,3 +191,20 @@ public class UserService {
 
 写一个controller类，来进行前后端交互
 
+* 注册工程后，页面跳转到首页（第三方页面：operate-result.html，显示页面在多少秒后跳转（转到首页））
+* 在修改html时，需要给表单中的每一个获得的变量（账号名/邮箱等），指定参数名，和user中的参数名一一对应，这样spring mvc可以自动的创建user
+* 回到错误页面，需要把这些错误信息还在register中显示，使用th:value = "@{//判断user是否为null}"
+
+终于收到了激活邮箱。。
+
+![image-20200425135341323](Chapter2.assets/image-20200425135341323.png)
+
+### 激活账号
+
+有多种情况：
+
+* 成功激活（第一次）
+* 重复激活
+* 无效的激活链接
+
+![image-20200425135323665](Chapter2.assets/image-20200425135323665.png)
