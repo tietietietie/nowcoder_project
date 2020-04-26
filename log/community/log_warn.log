@@ -1,27 +1,2 @@
-2020-04-25 10:26:01,016 WARN [http-nio-15213-exec-6] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/css/global.css
-2020-04-25 10:26:01,016 WARN [http-nio-15213-exec-7] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/css/login.css
-2020-04-25 10:26:01,241 WARN [http-nio-15213-exec-9] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/js/register.js
-2020-04-25 10:26:01,242 WARN [http-nio-15213-exec-8] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/js/global.js
-2020-04-25 10:26:07,649 WARN [http-nio-15213-exec-10] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/js/global.js
-2020-04-25 10:26:07,686 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/js/register.js
-2020-04-25 10:26:30,699 WARN [http-nio-15213-exec-3] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/css/global.css
-2020-04-25 10:27:07,762 WARN [http-nio-15213-exec-5] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/target
-2020-04-25 10:27:24,475 WARN [http-nio-15213-exec-7] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/activation151/839c13aa8c2a4dc3b1e192a8bad53835
-2020-04-25 10:48:59,246 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/target
-2020-04-25 11:27:21,275 WARN [http-nio-15213-exec-3] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/activation151/839c13aa8c2a4dc3b1e192a8bad53835
-2020-04-25 11:29:01,948 WARN [http-nio-15213-exec-6] o.s.w.s.m.s.DefaultHandlerExceptionResolver [AbstractHandlerExceptionResolver.java:199] Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "activation151"]
-2020-04-25 13:15:04,954 WARN [http-nio-15213-exec-7] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/site/letter.html
-2020-04-25 13:15:20,140 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/site/letter.html
-2020-04-25 13:16:23,594 WARN [restartedMain] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext [AbstractApplicationContext.java:558] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userService': Unsatisfied dependency expressed through field 'mailClient'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.nowcoder.community.util.MailClient' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
-2020-04-25 13:17:19,718 WARN [http-nio-15213-exec-9] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
-2020-04-25 13:17:21,624 WARN [http-nio-15213-exec-10] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/login.html
-2020-04-25 13:17:26,052 WARN [http-nio-15213-exec-5] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/letter.html
-2020-04-25 13:18:27,923 WARN [http-nio-15213-exec-6] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
-2020-04-25 13:18:30,119 WARN [http-nio-15213-exec-9] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
-2020-04-25 13:18:34,605 WARN [http-nio-15213-exec-4] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
-2020-04-25 13:45:19,767 WARN [http-nio-15213-exec-9] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
-2020-04-25 13:48:53,122 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/activation151/839c13aa8c2a4dc3b1e192a8bad53835
-2020-04-25 13:49:07,780 WARN [http-nio-15213-exec-3] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
-2020-04-25 13:52:30,115 WARN [http-nio-15213-exec-5] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/kaptcha
-2020-04-25 21:21:22,585 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/alpha/cookie
-2020-04-25 21:41:45,813 WARN [http-nio-15213-exec-2] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [581] milliseconds.
+2020-04-26 09:48:47,957 WARN [http-nio-15213-exec-1] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [622] milliseconds.
+2020-04-26 10:07:08,820 WARN [http-nio-15213-exec-5] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/forget.html

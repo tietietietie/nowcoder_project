@@ -310,3 +310,88 @@ cookies：由服务器发送给浏览器（在响应头），表明其身份，�
 
 所以session也能解决会话问题。
 
+Q&A
+
+* 在分布式部署中，为什么不使用session呢？
+
+因为服务器是分布式部署的（承载大流量），浏览器访问的是服务器代替nginx，nginx按照负载均衡的原则分配请求。在多次请求的过程中，可能会有多台服务器处理同一个浏览器的请求，但session只保存在一台服务器中。
+
+解决策略：
+
+粘性session：浏览器只访问一个服务器。（负载不均衡）
+
+同步session：每个服务器存的session都相同（性能降低，增大服务器的耦合性）
+
+共享session：单独有一台服务器来存储session，当服务器需要使用session时，往这台服务器申请（这台服务器威胁到了整个集群）
+
+常用解决方案：一般数据都使用cookie而不是session，必要重要的数据存到数据库（集群）（非关系型数据库redis）里。
+
+## 生成验证码
+
+使用现成工具：kaptcha，在服务端内存中画出验证码，发送给浏览器。
+
+1. 导入kaptcha的jar包
+2. 编写Kaptcha的配置类
+3. 生成随机字符，生成图片
+
+配置Kaptcha如下：
+
+```java
+@Configuration
+public class KaptchaConfig {
+    @Bean
+    public Producer kaptchaProducer() {
+        Properties properties = new Properties();
+        properties.setProperty("kaptcha.image.width", "100");
+        properties.setProperty("kaptcha.image.height", "40");
+        properties.setProperty("kaptcha.textproducer.font.size", "32");
+        properties.setProperty("kaptcha.textproducer.font.color", "0,0,0");
+        properties.setProperty("kaptcha.textproducer.char.string", "1234567890qwertyuiopsdfghklzxcnvbm");
+        properties.setProperty("kaptcha.textproducer.char.length", "4");
+        properties.setProperty("kaptcha.noise,impl", "com.google.code.kaptcha.impl.NoNoise");
+        DefaultKaptcha kaptcha = new DefaultKaptcha();
+        Config config = new Config(properties);
+        kaptcha.setConfig(config);
+        return kaptcha;
+    }
+```
+
+生成验证码，如下：
+
+```java
+@RequestMapping(path = "/kaptcha", method = RequestMethod.GET)
+    public void getKaptcha(HttpServletResponse response, HttpSession session) {
+        //生成验证码
+        String text = kaptchaProducer.createText();
+        BufferedImage image = kaptchaProducer.createImage(text);
+
+        //保存验证码到session
+        session.setAttribute("kaptcha", text);
+
+        //将图片输出到浏览器
+        response.setContentType("image/png");
+
+        try {
+            OutputStream os = response.getOutputStream();
+            ImageIO.write(image, "png", os);
+        } catch (IOException e) {
+            logger.error("响应验证码失败" + e.getMessage());
+        }
+```
+
+login.html修改如下：
+
+```html
+<div class="col-sm-4">
+    <img th:src="@{/kaptcha}" id="kaptcha" style="width:100px;height:40px;" class="mr-2"/>
+    <a href="javascript:refresh_kaptcha();" class="font-size-12 align-bottom">刷新验证码</a>
+</div>
+```
+
+```javascript
+function refresh_kaptcha(){
+    var path = "/community/kaptcha?p=" + Math.random();
+    $("#kaptcha").attr("src",path);
+}
+```
+
