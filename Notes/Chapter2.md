@@ -395,3 +395,113 @@ function refresh_kaptcha(){
 }
 ```
 
+## 开发登录/退出功能
+
+包含有如下业务：
+
+* 登录
+  * 验证账号，密码，验证码
+  * 登录成功，生成登录凭证，发送给客户端
+  * 登录失败，跳转到登录页
+* 退出
+  * 将登录凭证修改为失效
+  * 跳转至网站首页
+
+登录凭证：一个key，包含有敏感数据，存在数据库（后面会存在redies），数据结构如下：
+
+![image-20200427103150507](Chapter2.assets/image-20200427103150507.png)
+
+### 实现数据层
+
+可以用注解来实现LoginTicketMapper接口（与之前在Mapper中写配置文件不同）
+
+好处：方便，坏处：难以阅读，不够整洁
+
+### 实现业务层
+
+包括对用户名/密码的判断，已经验证是否存在该user，如果存在，需要返回一个唯一的ticket。
+
+```java
+    public Map<String, Object> login(String username, String password, int expiredSeconds) {
+        Map<String, Object> map = new HashMap<>();
+
+        //空值判断
+        if (StringUtils.isBlank(username)) {
+            map.put("usernameMsg", "账号不能为空");
+            return map;
+        }
+        if (StringUtils.isBlank(password)) {
+            map.put("passwordMsg", "密码不能为空");
+            return map;
+        }
+
+        //验证账号
+        User user = userMapper.selectByName(username);
+        if (user == null) {
+            map.put("usernameMsg", "账号不存在");
+            return map;
+        }
+        if (user.getStatus() == 0) {
+            map.put("usernameMsg", "账号还没有激活");
+            return map;
+        }
+
+        //验证密码
+        password = CommunityUtil.md5(password + user.getSalt());
+        if (!password.equals(user.getPassword())) {
+            map.put("passwordMsg", "密码错误");
+            return map;
+        }
+        //生成登录凭证
+        LoginTicket loginTicket = new LoginTicket();
+        loginTicket.setUserId(user.getId());
+        loginTicket.setTicket(CommunityUtil.generateUUID());
+        loginTicket.setStatus(0);
+        loginTicket.setExpired(new Date(System.currentTimeMillis() + expiredSeconds * 1000));
+        loginTicketMapper.insertLoginTicket(loginTicket);
+        map.put("ticket", loginTicket.getTicket());
+        return map;
+    }
+```
+
+### 实现处理层
+
+注意进行post请求后，当服务器返回错误的username给login页面时，需要获得该错误的username，显示在网页上, 如何获得该username呢？可以直接在request中取值（因为username是在request中的），使用param.username，可在request中取值。
+
+```java
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public String login(String username, String password, String code, boolean rememberMe,
+                        Model model, HttpSession session, HttpServletResponse response) {
+
+        //检查验证码
+        String kaptcha = (String) session.getAttribute("kaptcha");
+        if (StringUtils.isBlank(kaptcha) || StringUtils.isBlank(code) || !kaptcha.equalsIgnoreCase(code)) {
+            model.addAttribute("codeMsg", "验证码错误");
+            return "/site/login";
+        }
+
+        //检查账号密码
+        int expiredSeconds = rememberMe ? REMEMBER_EXPIRED_SECONDS : DEFALUT_EXPIRED_SECONDS;
+        Map<String, Object> map = userService.login(username, password, expiredSeconds);
+        if (map.containsKey("ticket")) {
+            Cookie cookie = new Cookie("ticket", (String) map.get("ticket"));
+            cookie.setPath(contextPath);
+            cookie.setMaxAge(expiredSeconds);
+            response.addCookie(cookie);
+            return "redirect:/index";
+        } else {
+            model.addAttribute("usernameMsg", map.get("usernameMsg"));
+            model.addAttribute("passwordMsg", map.get("passwordMsg"));
+            return "/site/login";
+        }
+    }
+
+    @RequestMapping(path = "/logout", method = RequestMethod.GET)
+    public String logout(@CookieValue("ticket") String ticket) {
+        userService.logout(ticket);
+        //默认get请求
+        return "redirect:/login";
+    }
+```
+
+注意在index.html中把退出登录按钮的链接配置好。

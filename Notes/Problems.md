@@ -65,3 +65,33 @@ alter user root@localhost identified by ‘wodemima';
 参考[这里](https://www.jianshu.com/p/a1d262143919)，在url加上allowPublicKeyRetrieval=true参数，
 
 但是我打开mysql workbench的相应数据库后，Bug自动消失了(+_+)?
+
+## Chapter 2
+
+### 1.端口号被占用，程序已经启动
+
+强制关闭端口对应的进程，在命令行中使用如下命令
+
+```
+netstat -ano|findstr "15213"
+//可以确定对应PID
+taskkill /pid 5692 -t -f
+//将进程杀死
+```
+
+### 2.执行sql语句找不到传入的参数
+
+原因：使用动态sql查询语句，必须对参数加注解
+
+```java
+    @Update({
+            "<script> ",
+            "update login_ticket set status=#{status} where ticket=#{ticket} ",
+            "<if test=\"ticket != null \" > ",
+            "and 1 = 1 ",
+            "</if> ",
+            "</script>"
+    })
+    int updateStatus(@Param("ticket") String ticket, @Param("status") int status);
+```
+
