@@ -664,3 +664,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
 }
 ```
 
+## 账号设置
+
+开发步骤：
+
+1. 访问账号设置页面
+2. 上传头像（存在服务器上）
+3. 获取图像（页面能够在服务器上获取头像）
+
+### 访问账号设置页面
+
+新建UserController，并处理/user/setting的get方法，返回账号设置页面模板。
+
+修改Index中的header，将对应账号设置按钮，设置相应路径，实现跳转。
