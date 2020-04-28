@@ -505,3 +505,162 @@ function refresh_kaptcha(){
 ```
 
 注意在index.html中把退出登录按钮的链接配置好。
+
+## 显示登录信息
+
+* 根据登录与否，显示登录信息
+* 登录信息在头部，每一个页面都需要显示信息
+
+拦截器：拦截请求，然后在请求中添加代码，能以很低的耦合度，解决通用问题。
+
+### 拦截器示例
+
+* 实现拦截器的接口
+* 配置拦截器：指定拦截哪些请求
+
+拦截器与controller没有直接关系，耦合度很低。
+
+```java
+@Component
+public class Alphainteceptor implements HandlerInterceptor {
+
+    private static final Logger logger = LoggerFactory.getLogger(Alphainteceptor.class);
+
+    //在controller之前执行
+    //返回false，表示controller不往下执行
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        logger.debug("preHandler: " + handler.toString());
+        return true;
+    }
+
+    //调用完controller之后执行
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+        logger.debug("postHander:" + handler.toString());
+    }
+
+    //在模板引擎执行完之后执行
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        logger.debug("afterCompletion : " + handler.toString());
+    }
+}
+```
+
+实现了拦截器的类之后，还需要对这个拦截器进行进行配置，代码如下：
+
+```java
+@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+    @Autowired
+    private Alphainteceptor alphainteceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(alphainteceptor)
+                .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg")
+                .addPathPatterns("/register", "/login");
+        
+    }
+}
+```
+
+### 拦截器应用
+
+包括以下步骤：
+
+1. 在请求之前先查到登录用户
+2. 在本次请求中持有用户数据
+3. 在模板视图上显示用户数据
+4. 在请求结束时清理用户数据
+
+浏览器存着ticket放在cookie中，每次访问服务器，都会把这个ticket发送给服务器，从而得到当前用户是谁（login_ticket），得到user后，把它放在model中，最终html中则显示了用户信息。
+
+把user信息放在ThreadLocal中，这样在整个请求过程中，user都一直存在，并能被访问。
+
+实现拦截器：
+
+```java
+@Component
+public class LoginTicketiterceptor implements HandlerInterceptor {
+
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private HostHolder hostHolder;
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        //从cookie中获取ticket
+        String ticket = CookieUtil.getValue(request, "ticket");
+        if (ticket != null) {
+            LoginTicket loginTicket = userService.findLoginTicket(ticket);
+            if (loginTicket != null && loginTicket.getStatus() == 0 && loginTicket.getExpired().after(new Date())) {
+                User user = userService.findUserById(loginTicket.getUserId());
+                //在本此请求中持有用户，考虑多线程并发，多线程隔离
+                hostHolder.setUser(user);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+        User user = hostHolder.getUser();
+        if (user != null && modelAndView != null) {
+            modelAndView.addObject("loginUser", user);
+        }
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        hostHolder.clear();
+    }
+}
+```
+
+实现HostHolder
+
+```java
+//持有用户信息，用于代替session对象，协程隔离
+@Component
+public class HostHolder {
+    private ThreadLocal<User> users = new ThreadLocal<>();
+
+    public void setUser(User user) {
+        users.set(user);
+    }
+
+    public User getUser() {
+        return users.get();
+    }
+
+    public void clear() {
+        users.remove();
+    }
+}
+```
+
+配置拦截器
+
+```java
+@Configuration
+public class WebMvcConfig implements WebMvcConfigurer {
+    @Autowired
+    private Alphainteceptor alphainteceptor;
+    @Autowired
+    private LoginTicketiterceptor loginTicketiterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(alphainteceptor)
+                .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg")
+                .addPathPatterns("/register", "/login");
+
+        registry.addInterceptor(loginTicketiterceptor)
+                .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");
+    }
+}
+```
+
