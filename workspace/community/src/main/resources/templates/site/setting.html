@@ -69,13 +69,17 @@
         <div class="container p-5 mt-3 mb-3">
             <!-- 上传头像 -->
             <h6 class="text-left text-info border-bottom pb-2">上传头像</h6>
-            <form class="mt-5">
+            <form class="mt-5" method="post" enctype="multipart/form-data" th:action="@{/user/upload}">
                 <div class="form-group row mt-4">
                     <label for="head-image" class="col-sm-2 col-form-label text-right">选择头像:</label>
                     <div class="col-sm-10">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="head-image" lang="es" required="">
+                            <input type="file" th:class="|custom-file-input ${error !=null?'is-invalid':''}|"
+                                   id="head-image" name="headerImage" lang="es" required="">
                             <label class="custom-file-label" for="head-image" data-browse="文件">选择一张图片</label>
+                            <div class="invalid-feedback" th:text="${error}">
+                                上传失败
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -203,6 +207,107 @@
 		$(function(){
 			bsCustomFileInput.init();
 		});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

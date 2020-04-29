@@ -677,3 +677,76 @@ public class WebMvcConfig implements WebMvcConfigurer {
 新建UserController，并处理/user/setting的get方法，返回账号设置页面模板。
 
 修改Index中的header，将对应账号设置按钮，设置相应路径，实现跳转。
+
+### 上传文件
+
+在service层中，需要修改用户头像的url
+
+在controller层中，直接处理传来的文件（利用Spring MVC中的MultipartFile）。
+
+服务层代码如下：
+
+```java
+public int updataHeader(int userId, String headerUrl) {
+    return userMapper.updateHeader(userId, headerUrl);
+}
+```
+
+控制层代码如下：
+
+```java
+@RequestMapping(path = "/upload", method = RequestMethod.POST)
+public String uploadHeader(MultipartFile headerImage, Model model) {
+    if (headerImage == null) {
+        model.addAttribute("error", "您没有选择图片");
+        return "/site/setting";
+    }
+    //不能按照原始文件存储，所以需要生成一个随机名字，但是后缀不能变。
+    String fileName = headerImage.getOriginalFilename();
+    String suffix = fileName.substring(fileName.lastIndexOf("."));
+    if (StringUtils.isBlank(suffix)) {
+        model.addAttribute("error", "文件格式不正确");
+        return "/site/setting";
+    }
+    //生成随机文件名
+    fileName = CommunityUtil.generateUUID() + suffix;
+    //确定文件路径
+    File dest = new File(uploadPath + "/" + fileName);
+    try {
+        headerImage.transferTo(dest);
+    } catch (IOException e) {
+        logger.error("上传文件失败" + e.getMessage());
+        throw new RuntimeException("上传文件失败，服务器发生异常", e);
+    }
+    //更新当前头像途径（外部路径，非本地路径）
+    //http://localhost:15213/community/user/header/***.png
+    User user = hostHolder.getUser();
+    String headerUrl = domain + contextPath + "/user/header/" + fileName;
+    userService.updataHeader(user.getId(), headerUrl);
+    return "redirect:/index";
+
+}
+
+@RequestMapping(path = "/header/{filename}", method = RequestMethod.GET)
+public void getHeader(@PathVariable("filename") String filename, HttpServletResponse response) {
+    //寻找服务器存放的路径
+    filename = uploadPath + "/" + filename;
+    //解析文件后缀
+    String suffix = filename.substring(filename.lastIndexOf("."));
+    response.setContentType("image/jpg");
+    try (
+        OutputStream os = response.getOutputStream();
+        FileInputStream fis = new FileInputStream(filename);
+    ) {
+        byte[] buffer = new byte[1024];
+        int b = 0;
+        while (b != -1) {
+            b = fis.read(buffer);
+            os.write(buffer, 0, b);
+        }
+    } catch (IOException e) {
+        logger.error("读取头像失败" + e.getMessage());
+    }
+}
+```
+

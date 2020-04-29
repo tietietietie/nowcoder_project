@@ -95,3 +95,6 @@ taskkill /pid 5692 -t -f
     int updateStatus(@Param("ticket") String ticket, @Param("status") int status);
 ```
 
+### 3.不能显示用户上传的头像
+
+文件路径名写错，忘记在增加的子路径前面加上"/"
