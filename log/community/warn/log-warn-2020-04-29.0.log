@@ -1,0 +1,5 @@
+2020-04-29 10:56:36,298 WARN [http-nio-15213-exec-1] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [805] milliseconds.
+2020-04-29 10:57:30,994 WARN [http-nio-15213-exec-7] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for POST /community/user/upload
+2020-04-29 11:00:40,205 WARN [http-nio-15213-exec-8] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/site/profile.html
+2020-04-29 11:20:50,138 WARN [HikariPool-2 housekeeper] c.z.h.p.HikariPool [HikariPool.java:779] HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=49s83ms424µs400ns).
+2020-04-29 11:21:17,087 WARN [http-nio-15213-exec-7] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [878] milliseconds.

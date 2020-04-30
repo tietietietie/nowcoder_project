@@ -750,3 +750,45 @@ public void getHeader(@PathVariable("filename") String filename, HttpServletResp
 }
 ```
 
+## 检查登录状态
+
+用户可以通过路径访问http://localhost:15213/community/user/setting，这个链接仅仅是隐藏是不够安全的，服务端需要判断用户是否登录，来允许是否访问。
+
+可以使用拦截器进行配置，也可以直接在方法上加注解。
+
+### 自定义注解
+
+使用元注解来定义我们自己的注解：@Target,@Retention,@Document,@Inherited
+
+如何读取注解：Method.getDeclaredAnnotations(),Method.getAnnotation(Class<T> annotationClass)
+
+### 通过加注解来拦截指定路径
+
+```java
+@Component
+public class LoginRequiredinteceptor implements HandlerInterceptor {
+    private static final Logger logger = LoggerFactory.getLogger(LoginRequiredinteceptor.class);
+    @Autowired
+    private HostHolder hostHolder;
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        if (handler instanceof HandlerMethod) {
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            Method method = handlerMethod.getMethod();
+            LoginRequired loginRequired = method.getAnnotation(LoginRequired.class);
+            if (loginRequired != null && hostHolder.getUser() == null) {
+                try {
+                    response.sendRedirect(request.getContextPath() + "/login");
+                } catch (IOException e) {
+                    logger.error("重定向登录页面失败" + e.getMessage());
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+在一些需要登录的请求前，加上loginrequired注解，就可以对未登录的请求，强制重定向到登录页面。
