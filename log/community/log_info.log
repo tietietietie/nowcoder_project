@@ -233,3 +233,37 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2020-04-30 08:44:59,023 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 12 ms
 2020-04-30 08:44:59,028 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-2 - Starting...
 2020-04-30 08:44:59,040 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-2 - Start completed.
+2020-04-30 10:39:56,224 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 15660 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:39:56,230 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:39:58,088 INFO [main] o.s.b.a.l.ConditionEvaluationReportLoggingListener [ConditionEvaluationReportLoggingListener.java:136] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-04-30 10:42:01,414 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 16956 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:42:01,421 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:42:03,630 INFO [main] o.s.b.a.l.ConditionEvaluationReportLoggingListener [ConditionEvaluationReportLoggingListener.java:136] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-04-30 10:42:36,201 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 5760 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:42:36,220 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:43:41,070 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 25452 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:43:41,074 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:43:43,302 INFO [main] o.s.b.a.l.ConditionEvaluationReportLoggingListener [ConditionEvaluationReportLoggingListener.java:136] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-04-30 10:44:04,000 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 18524 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:44:04,026 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:47:26,521 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 9432 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:47:26,524 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:48:51,833 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 1276 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:48:51,837 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:54:05,287 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 23908 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:54:05,289 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:54:07,413 INFO [main] o.s.b.a.l.ConditionEvaluationReportLoggingListener [ConditionEvaluationReportLoggingListener.java:136] 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-04-30 10:54:57,223 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:55] Starting SensitveTests on zt with PID 15988 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-04-30 10:54:57,228 INFO [main] c.n.c.SensitveTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-04-30 10:54:59,636 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-30 10:54:59,771 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-04-30 10:55:00,754 INFO [main] c.n.c.SensitveTests [StartupInfoLogger.java:61] Started SensitveTests in 4.594 seconds (JVM running for 6.608)
+2020-04-30 10:55:01,303 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
