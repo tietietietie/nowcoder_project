@@ -98,3 +98,11 @@ taskkill /pid 5692 -t -f
 ### 3.不能显示用户上传的头像
 
 文件路径名写错，忘记在增加的子路径前面加上"/"
+
+### 4.找不到Main方法
+
+>错误: 在类 com.nowcoder.community.util.CommunityUtil 中找不到 main 方法, 请将 main 方法定义为:
+>   public static void main(String[] args)
+>否则 JavaFX 应用程序类必须扩展javafx.application.Application
+
+解决办法：

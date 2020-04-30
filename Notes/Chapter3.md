@@ -119,3 +119,17 @@ public class SensitiveFilter {
 }
 ```
 
+## 发布帖子
+
+异步请求：当前网页不刷新，访问服务器，服务器返回一些结果（不是网页），通过这个结果，给网页局部的刷新。
+
+实现技术：AJAX：异步的JavaScript和XML，不是新技术。目前一般不适用XML，而是使用JSON，便于解析。
+
+功能：网页能够增量更新呈现在网页上，而不是刷新整个页面。
+
+手册：Mozilla/AJAX
+
+### jQuery发送AJAX的示例
+
+处理JSON字符串：引入fastjson
+
