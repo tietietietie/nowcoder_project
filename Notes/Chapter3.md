@@ -364,3 +364,114 @@ public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, M
 <div class="mt-4 mb-3 content" th:utext="${post.content}">
 ```
 
+## 事务管理
+
+### 概念回顾
+
+什么是事务：N步数据库操作序列，要么全部执行，要么全部放弃执行（以业务为单元，判断此次操作是否有效）
+
+特性：原子性/一致性/隔离性/持久性
+
+隔离性：针对并发而言，每个线程执行的事务互不干扰。
+
+如果在多线程环境下，没有做多线程隔离（每一个浏览器访问服务器，多会创建一个线程）（多个用户同时访问同一份事务）（需要隔离性处理）
+
+常见并发异常：1，更新。2，脏读。
+
+分层级解决并发异常：串行化：最高级别，加锁，能解决所有问题，但是会造成性能下降。
+
+一般选择：读取已提交数据/可重复读 这两种级别
+
+常见并发异常的含义：
+
+1. 第一类丢失更新：某一个事务的回滚，导致了另外一个事务已更新的数据丢失了。
+2. 第二类丢失更新：某一个事务的提交，导致另一个事务已更新的数据丢失了
+3. 脏读：某一个事务读取了另一个事务未提交的数据，
+4. 不可重复读：某一个事务，对同一数据前后读取结果不一致
+5. 幻读：某一事务，对同一个表，查询到的行数不一致
+
+越不安全效率越高。
+
+事务隔离级别与并发异常表格：
+
+实现机制：
+
+悲观锁（数据库）包括共享锁和排他锁
+
+乐观锁（自定义）：更新数据前，需要检查版本号是否变化，如果版本号变了，就取消本次更新
+
+Spring事务管理：
+
+Spring引以为豪的技术点，无论底层是什么数据（库），Spring对其事务管理API都是统一的，非常方便。
+
+* 在XML或者注解，加上配置就行
+* 也可以编程式事务，通过Transaction Template管理事务（自由度高，对某一步数据库操作进行管理）
+
+### Spring事务管理示例
+
+可以使用注解，代码如下：最终执行结果，数据库中不会出现新的用户和帖子
+
+```java
+//新增用户+自动发一个新人贴
+//传播机制解释：两个事务交叉在一起，如何管理
+//REQUIRED：支持当前事务（支持外部事务）
+//REQUIRES_NEW
+//NESTED:如果当前存在事务（外部事务），则嵌套在该事务中执行
+@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+public Object save1() {
+    //新建用户
+    User user = new User();
+    user.setUsername("aplha");
+    user.setSalt(CommunityUtil.generateUUID().substring(0, 5));
+    user.setPassword(CommunityUtil.md5("123" + user.getSalt()));
+    user.setEmail("Alpha@qq.com");
+    user.setHeaderUrl("http://image/nowcoder.com/head/99t.png");
+    user.setCreatTime(new Date());
+    userMapper.insertUser(user);
+    //新建帖子
+    DiscussPost post = new DiscussPost();
+    post.setUserId(user.getId());
+    post.setTitle("新人贴");
+    post.setContent("新人报到，多多指教");
+    post.setCreateTime(new Date());
+    discussPostMapper.insertDiscussPost(post);
+    //报错前会把数据插入吗？
+    Integer.valueOf("abc");
+    return "ok";
+}
+```
+
+也可以使用TransactionTemplate实现
+
+```java
+public Object save2() {
+    transactionTemplate.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);
+    transactionTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+    return transactionTemplate.execute(new TransactionCallback<Object>() {
+
+        @Override
+        public Object doInTransaction(TransactionStatus transactionStatus) {
+            //新建用户
+            User user = new User();
+            user.setUsername("beta");
+            user.setSalt(CommunityUtil.generateUUID().substring(0, 5));
+            user.setPassword(CommunityUtil.md5("123" + user.getSalt()));
+            user.setEmail("beta@qq.com");
+            user.setHeaderUrl("http://image/nowcoder.com/head/999.png");
+            user.setCreatTime(new Date());
+            userMapper.insertUser(user);
+            //新建帖子
+            DiscussPost post = new DiscussPost();
+            post.setUserId(user.getId());
+            post.setTitle("新人贴,我叫beta");
+            post.setContent("新人报到，多多指教~");
+            post.setCreateTime(new Date());
+            discussPostMapper.insertDiscussPost(post);
+            //报错前会把数据插入吗？
+            Integer.valueOf("abc");
+            return "ok";
+        }
+    });
+}
+```
+

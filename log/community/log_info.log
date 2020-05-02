@@ -238,3 +238,23 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2020-05-02 10:13:55,191 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 10 ms
 2020-05-02 10:13:55,283 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
 2020-05-02 10:13:55,458 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-02 11:44:02,814 INFO [main] c.n.c.TransactionTests [StartupInfoLogger.java:55] Starting TransactionTests on zt with PID 15908 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-02 11:44:02,820 INFO [main] c.n.c.TransactionTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-02 11:44:05,126 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-02 11:44:05,255 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-02 11:44:06,257 INFO [main] c.n.c.TransactionTests [StartupInfoLogger.java:61] Started TransactionTests in 4.518 seconds (JVM running for 6.546)
+2020-05-02 11:44:06,802 INFO [main] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
+2020-05-02 11:44:07,056 INFO [main] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-02 11:44:07,276 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-02 11:44:07,279 INFO [SpringContextShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:350] HikariPool-1 - Shutdown initiated...
+2020-05-02 11:44:07,293 INFO [SpringContextShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:352] HikariPool-1 - Shutdown completed.
+2020-05-02 11:54:56,307 INFO [main] c.n.c.TransactionTests [StartupInfoLogger.java:55] Starting TransactionTests on zt with PID 3676 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-02 11:54:56,320 INFO [main] c.n.c.TransactionTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-02 11:54:58,686 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-02 11:54:58,810 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-02 11:54:59,810 INFO [main] c.n.c.TransactionTests [StartupInfoLogger.java:61] Started TransactionTests in 4.461 seconds (JVM running for 6.116)
+2020-05-02 11:55:00,298 INFO [main] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
+2020-05-02 11:55:00,488 INFO [main] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-02 11:55:00,644 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-02 11:55:00,646 INFO [SpringContextShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:350] HikariPool-1 - Shutdown initiated...
+2020-05-02 11:55:00,655 INFO [SpringContextShutdownHook] c.z.h.HikariDataSource [HikariDataSource.java:352] HikariPool-1 - Shutdown completed.
