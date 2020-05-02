@@ -293,3 +293,74 @@ function publish() {
 最终效果如下:
 
 ![image-20200501211623977](Chapter3.assets/image-20200501211623977.png)
+
+## 显示帖子详情
+
+利用之前所学的内容，就能实现：
+
+1,数据访问层：查寻帖子
+
+2，业务层：查看帖子
+
+3，控制层：处理查询请求
+
+Index.html：处理详情帖子的链接
+
+discuss-detail.html：显示帖子
+
+### 开发三层代码
+
+数据访问层：
+
+```xml
+<select id="selectDiscussPostById" resultType="DiscussPost">
+    select
+    <include refid="selectFields"></include>
+    from discuss_post
+    where id = #{id}
+</select>
+```
+
+用户层：
+
+```java
+public DiscussPost findDiscussPostById(int id) {
+    return discussPostMapper.selectDiscussPostById(id);
+}
+```
+
+控制层
+
+```java
+@RequestMapping(path = "/detail/{discussPostId}", method = RequestMethod.GET)
+public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, Model model) {
+    //查询帖子
+    DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
+    model.addAttribute("post", post);
+    //需要显示用户信息，而不是id
+    //两种办法，在mapper中关联查询，也可以在controller中查userService，获得用户信息,这样效率会低一点
+    //但是之后可以用redies提高速度
+    User user = userService.findUserById(post.getUserId());
+    model.addAttribute("user", user);
+    return "/site/discuss-detail";
+}
+```
+
+### HTML模板代码
+
+修改index.html的链接
+
+```html
+<a th:href="@{|/discuss/detail/${map.post.id}|}" th:utext="${map.post.title}">备战春招，面试刷题跟他复习，一个月全搞定！</a>
+```
+
+修改discuss-detail.html的内容
+
+```html
+<span th:utext="${post.title}">备战春招，面试刷题跟他复习，一个月全搞定！</span>
+<img th:src="${user.headerUrl}"
+<div class="mt-0 text-warning" th:utext="${user.username}">寒江雪</div>
+<b th:text="${#dates.format(post.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-15 15:32:18</b>
+<div class="mt-4 mb-3 content" th:utext="${post.content}">
+```
+
