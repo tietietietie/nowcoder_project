@@ -71,7 +71,6 @@
             <!-- 标题 -->
             <h6 class="mb-4">
                 <img src="http://static.nowcoder.com/images/img/icons/ico-discuss.png"/>
-
                 <span th:utext="${post.title}">备战春招，面试刷题跟他复习，一个月全搞定！</span>
                 <div class="float-right">
                     <button type="button" class="btn btn-danger btn-sm">置顶</button>
@@ -82,8 +81,7 @@
             <!-- 作者 -->
             <div class="media pb-3 border-bottom">
                 <a href="profile.html">
-                    <img th:src="${user.headerUrl}"
-                         class="align-self-start mr-4 rounded-circle user-header" alt="用户头像">
+                    <img th:src="${user.headerUrl}" class="align-self-start mr-4 rounded-circle user-header" alt="用户头像">
                 </a>
                 <div class="media-body">
                     <div class="mt-0 text-warning" th:utext="${user.username}">寒江雪</div>
@@ -92,7 +90,8 @@
                         <ul class="d-inline float-right">
                             <li class="d-inline ml-2"><a href="#" class="text-primary">赞 11</a></li>
                             <li class="d-inline ml-2">|</li>
-                            <li class="d-inline ml-2"><a href="#replyform" class="text-primary">回帖 7</a></li>
+                            <li class="d-inline ml-2"><a href="#replyform" class="text-primary">回帖 <i
+                                    th:text="${post.commentCount}">7</i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -112,7 +111,7 @@
             <!-- 回帖数量 -->
             <div class="row">
                 <div class="col-8">
-                    <h6><b class="square"></b> <i>30</i>条回帖</h6>
+                    <h6><b class="square"></b> <i th:text="${post.commentCount}">30</i>条回帖</h6>
                 </div>
                 <div class="col-4 text-right">
                     <a href="#replyform" class="btn btn-primary btn-sm">&nbsp;&nbsp;回&nbsp;&nbsp;帖&nbsp;&nbsp;</a>
@@ -120,47 +119,57 @@
             </div>
             <!-- 回帖列表 -->
             <ul class="list-unstyled mt-4">
-                <!-- 第1条回帖 -->
-                <li class="media pb-3 pt-3 mb-3 border-bottom">
+                <li class="media pb-3 pt-3 mb-3 border-bottom" th:each="cvo:${comments}">
                     <a href="profile.html">
-                        <img src="http://images.nowcoder.com/head/2t.png"
-                             class="align-self-start mr-4 rounded-circle user-header" alt="用户头像">
+                        <img th:src="${cvo.user.headerUrl}" class="align-self-start mr-4 rounded-circle user-header"
+                             alt="用户头像">
                     </a>
                     <div class="media-body">
                         <div class="mt-0">
-                            <span class="font-size-12 text-success">掉脑袋切切</span>
-                            <span class="badge badge-secondary float-right floor">1#</span>
+                            <span class="font-size-12 text-success" th:utext="${cvo.user.username}">掉脑袋切切</span>
+                            <span class="badge badge-secondary float-right floor">
+									<i th:text="${page.offset + cvoStat.count}">1</i>#
+								</span>
                         </div>
-                        <div class="mt-2">
+                        <div class="mt-2" th:utext="${cvo.comment.content}">
                             这开课时间是不是有点晚啊。。。
                         </div>
                         <div class="mt-4 text-muted font-size-12">
-                            <span>发布于 <b>2019-04-15 15:32:18</b></span>
+                            <span>发布于 <b th:text="${#dates.format(cvo.comment.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-15 15:32:18</b></span>
                             <ul class="d-inline float-right">
                                 <li class="d-inline ml-2"><a href="#" class="text-primary">赞(1)</a></li>
                                 <li class="d-inline ml-2">|</li>
-                                <li class="d-inline ml-2"><a href="#" class="text-primary">回复(2)</a></li>
+                                <li class="d-inline ml-2"><a href="#" class="text-primary">回复(<i
+                                        th:text="${cvo.replyCount}">2</i>)</a></li>
                             </ul>
                         </div>
                         <!-- 回复列表 -->
                         <ul class="list-unstyled mt-4 bg-gray p-3 font-size-12 text-muted">
-                            <!-- 第1条回复 -->
-                            <li class="pb-3 pt-3 mb-3 border-bottom">
+
+                            <li class="pb-3 pt-3 mb-3 border-bottom" th:each="rvo:${cvo.replys}">
                                 <div>
-                                    <span><b class="text-info">寒江雪</b>:&nbsp;&nbsp;</span>
-                                    <span>这个是直播时间哈，觉得晚的话可以直接看之前的完整录播的~</span>
+										<span th:if="${rvo.target==null}">
+											<b class="text-info" th:text="${rvo.user.username}">寒江雪</b>:&nbsp;&nbsp;
+										</span>
+                                    <span th:if="${rvo.target!=null}">
+											<i class="text-info" th:text="${rvo.user.username}">Sissi</i> 回复
+											<b class="text-info" th:text="${rvo.target.username}">寒江雪</b>:&nbsp;&nbsp;
+										</span>
+                                    <span th:utext="${rvo.reply.content}">这个是直播时间哈，觉得晚的话可以直接看之前的完整录播的~</span>
                                 </div>
                                 <div class="mt-3">
-                                    <span>2019-04-15 15:32:18</span>
+                                    <span th:text="${#dates.format(rvo.reply.createTime,'yyyy-MM-dd HH:mm:ss')}">2019-04-15 15:32:18</span>
                                     <ul class="d-inline float-right">
                                         <li class="d-inline ml-2"><a href="#" class="text-primary">赞(1)</a></li>
                                         <li class="d-inline ml-2">|</li>
-                                        <li class="d-inline ml-2"><a href="#huifu01" data-toggle="collapse"
-                                                                     class="text-primary">回复</a></li>
+                                        <li class="d-inline ml-2"><a th:href="|#huifu-${rvoStat.count}|"
+                                                                     data-toggle="collapse" class="text-primary">回复</a>
+                                        </li>
                                     </ul>
-                                    <div id="huifu01" class="mt-4 collapse">
+                                    <div th:id="|huifu-${rvoStat.count}|" class="mt-4 collapse">
                                         <div>
-                                            <input type="text" class="input-size" placeholder="回复寒江雪"/>
+                                            <input type="text" class="input-size"
+                                                   th:placeholder="|回复${rvo.user.username}|"/>
                                         </div>
                                         <div class="text-right mt-2">
                                             <button type="button" class="btn btn-primary btn-sm" onclick="#">&nbsp;&nbsp;回&nbsp;&nbsp;复&nbsp;&nbsp;</button>
@@ -168,67 +177,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- 第2条回复 -->
-                            <li class="pb-3 pt-3 mb-3 border-bottom">
-                                <div>
-									<span><i class="text-info">Sissi</i> 回复 <b
-                                            class="text-info">寒江雪</b>:&nbsp;&nbsp;</span>
-                                    <span>怎么买录播课程呢</span>
-                                </div>
-                                <div class="mt-3">
-                                    <span>2019-04-15 15:32:18</span>
-                                    <ul class="d-inline float-right">
-                                        <li class="d-inline ml-2"><a href="#" class="text-primary">赞(1)</a></li>
-                                        <li class="d-inline ml-2">|</li>
-                                        <li class="d-inline ml-2"><a href="#huifu02" data-toggle="collapse"
-                                                                     class="text-primary">回复</a></li>
-                                    </ul>
-                                    <div id="huifu02" class="mt-4 collapse">
-                                        <div>
-                                            <input type="text" class="input-size" placeholder="回复Sissi"/>
-                                        </div>
-                                        <div class="text-right mt-2">
-                                            <button type="button" class="btn btn-primary btn-sm" onclick="#">&nbsp;&nbsp;回&nbsp;&nbsp;复&nbsp;&nbsp;</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- 回复输入框 -->
-                            <li class="pb-3 pt-3">
-                                <div>
-                                    <input type="text" class="input-size" placeholder="请输入你的观点"/>
-                                </div>
-                                <div class="text-right mt-2">
-                                    <button type="button" class="btn btn-primary btn-sm" onclick="#">&nbsp;&nbsp;回&nbsp;&nbsp;复&nbsp;&nbsp;</button>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <!-- 第2条回帖 -->
-                <li class="media pb-3 pt-3 mb-3 border-bottom">
-                    <a href="profile.html">
-                        <img src="http://images.nowcoder.com/head/3t.png"
-                             class="align-self-start mr-4 rounded-circle user-header" alt="用户头像">
-                    </a>
-                    <div class="media-body">
-                        <div class="mt-0">
-                            <span class="font-size-12 text-success">Nikeless</span>
-                            <span class="badge badge-secondary float-right floor">1#</span>
-                        </div>
-                        <div class="mt-2">
-                            强烈支持!!!
-                        </div>
-                        <div class="mt-4 text-muted font-size-12">
-                            <span>发布于 <b>2019-04-15 15:32:18</b></span>
-                            <ul class="d-inline float-right">
-                                <li class="d-inline ml-2"><a href="#" class="text-primary">赞(1)</a></li>
-                                <li class="d-inline ml-2">|</li>
-                                <li class="d-inline ml-2"><a href="#" class="text-primary">回复(2)</a></li>
-                            </ul>
-                        </div>
-                        <!-- 回复列表 -->
-                        <ul class="list-unstyled mt-4 bg-gray p-3 font-size-12 text-muted">
+
                             <!-- 回复输入框 -->
                             <li class="pb-3 pt-3">
                                 <div>
@@ -243,7 +192,7 @@
                 </li>
             </ul>
             <!-- 分页 -->
-            <nav class="mt-5">
+            <nav class="mt-5" th:replace="index::pagination">
                 <ul class="pagination justify-content-center">
                     <li class="page-item"><a class="page-link" href="#">首页</a></li>
                     <li class="page-item disabled"><a class="page-link" href="#">上一页</a></li>

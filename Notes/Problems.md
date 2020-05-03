@@ -106,3 +106,29 @@ taskkill /pid 5692 -t -f
 >否则 JavaFX 应用程序类必须扩展javafx.application.Application
 
 解决办法：
+
+## Chapter 3
+
+### 1.显示帖子评论的时候，模板引擎报错
+
+原因：
+
+```java
+if (reply.getTargetId() != 0) {
+	replyVo.put("target", userService.findUserById(reply.getTargetId()));
+} 
+```
+
+因为当不存在回复对象target时，也要放入target
+
+```java
+if (reply.getTargetId() != 0) {
+    replyVo.put("target", userService.findUserById(reply.getTargetId()));
+} else
+    replyVo.put("target", null);
+```
+
+### 2.显示帖子评论时，无法获得page的offset变量
+
+原因：page的getOffset方法写成了page.getOffSet()。
+

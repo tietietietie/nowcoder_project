@@ -147,30 +147,29 @@
                             <ul class="d-inline float-right">
                                 <li class="d-inline ml-2">赞 11</li>
                                 <li class="d-inline ml-2">|</li>
-                                <li class="d-inline ml-2">回帖 7</li>
+                                <li class="d-inline ml-2">回帖 <span th:text="${map.post.commentCount}">7</span></li>
                             </ul>
                         </div>
                     </div>
                 </li>
             </ul>
             <!-- 分页 -->
-            <nav class="mt-5">
-                <ul class="pagination justify-content-center" th:if="${page.rows > 0}">
+            <nav class="mt-5" th:if="${page.rows>0}" th:fragment="pagination">
+                <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        <a class="page-link" th:href="@{${page.path}(current = 1)}">首页</a>
+                        <a class="page-link" th:href="@{${page.path}(current=1)}">首页</a>
                     </li>
-                    <li th:class="|page-item ${page.current == 1 ? 'disabled' : ''}|">
-                        <a class="page-link" th:href="@{${page.path}(current = ${page.current-1})}">上一页</a>
-                    </li>
-                    <li th:class="|page-item ${page.current == i ? 'active' : ''}|"
+                    <li th:class="|page-item ${page.current==1?'disabled':''}|">
+                        <a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a></li>
+                    <li th:class="|page-item ${i==page.current?'active':''}|"
                         th:each="i:${#numbers.sequence(page.from,page.to)}">
                         <a class="page-link" href="#" th:text="${i}">1</a>
                     </li>
-                    <li th:class="|page-item ${page.current == page.total ? 'disabled' : ''}|">
-                        <a class="page-link" href="@{${page.path}(current = ${page.current+1})}">下一页</a>
+                    <li th:class="|page-item ${page.current==page.total?'disabled':''}|">
+                        <a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" th:href="@{${page.path}(current = ${page.total})}">末页</a>
+                        <a class="page-link" th:href="@{${page.path}(current=${page.total})}">末页</a>
                     </li>
                 </ul>
             </nav>

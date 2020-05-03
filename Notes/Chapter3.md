@@ -475,3 +475,141 @@ public Object save2() {
 }
 ```
 
+## 显示评论
+
+还是分成三层进行开发
+
+### 数据层
+
+查询一页的评论，需要明确数据表中每个字段的含义：
+entity_type:表示评论的对象类型：可以评论帖子，可以评论题目等等，本项目评论对象为帖子
+
+entity_id：表示帖子的Id
+
+target_id：表示这条评论是指向哪个用户的。
+
+```java
+@Mapper
+public interface CommentMapper {
+    //查询某一页数据/一共多少条数据
+    List<Comment> selectCommentByEntity(@Param("entityType") int entityType, @Param("entityId") int entityId, @Param("offset") int offset, @Param("limit") int limit);
+
+    int selectCountByEntity(@Param("entityType") int entityType, @Param("entityId") int entityId);
+}
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nowcoder.community.dao.CommentMapper">
+    <sql id="selectFields">
+        id, user_id, entity_type, entity_id, target_id, content, status, create_time
+    </sql>
+
+    <select id="selectCommentByEntity" resultType="Comment">
+        select
+        <include refid="selectFields"></include>
+        from comment
+        where status = 0
+        and entity_type = #{entityType}
+        and entity_id = #{entityId}
+        order by create_time asc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectCountByEntity" resultType="int">
+        select count(id)
+        from comment
+        where status = 0
+        and entity_type = #{entityType}
+        and entity_id = #{entityId}
+    </select>
+</mapper>
+```
+
+### 服务层
+
+根据评论类型，评论对象，以及页码的一些数据，可以找到所需评论
+
+```java
+@Service
+public class CommentService {
+    @Autowired
+    private CommentMapper commentMapper;
+
+    //查询某一页数据
+    public List<Comment> findCommentsByEntity(int entityType, int entityId, int offset, int limit) {
+        return commentMapper.selectCommentByEntity(entityType, entityId, offset, limit);
+    }
+
+    public int findCommentCount(int entityType, int entityId) {
+        return commentMapper.selectCountByEntity(entityType, entityId);
+    }
+}
+```
+
+### 控制层
+
+需要将查找到的评论装入一个commentVoList，然后装入Model
+
+```java
+    //SpringMVC每次会把参数中的bean(Page)都自动放在Model里面
+    @RequestMapping(path = "/detail/{discussPostId}", method = RequestMethod.GET)
+    public String getDiscussPost(@PathVariable("discussPostId") int discussPostId, Model model, Page page) {
+        //查询帖子
+        DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
+        model.addAttribute("post", post);
+        //需要显示用户信息，而不是id
+        //两种办法，在mapper中关联查询，也可以在controller中查userService，获得用户信息,这样效率会低一点
+        //但是之后可以用redies提高速度
+        User user = userService.findUserById(post.getUserId());
+        model.addAttribute("user", user);
+        //评论分页信息
+        page.setLimit(5);
+        page.setPath("/discuss/detail/" + discussPostId);
+        page.setRows(post.getCommentCount());
+        //评论：帖子的评论
+        //回复：评论的评论
+        //评论的列表
+        List<Comment> commentList =
+                commentService.findCommentsByEntity(ENTITY_TYPE_POST, post.getId(), page.getOffset(), page.getLimit());
+        //评论的VO列表
+        List<Map<String, Object>> commentVoList = new ArrayList<>();
+        if (commentList != null) {
+            for (Comment comment : commentList) {
+                //一个评论的VO
+                Map<String, Object> commentVo = new HashMap<>();
+                //往VO添加评论
+                commentVo.put("comment", comment);
+                //往VO添加作者
+                commentVo.put("user", userService.findUserById(comment.getUserId()));
+                //添加回复
+                List<Comment> replyList =
+                        commentService.findCommentsByEntity(ENTITY_TYPE_COMMENT, comment.getId(), 0, Integer.MAX_VALUE);
+                //回复的VO列表
+                List<Map<String, Object>> replyVoList = new ArrayList<>();
+                if (replyList != null) {
+                    for (Comment reply : replyList) {
+                        Map<String, Object> replyVo = new HashMap<>();
+                        replyVo.put("reply", reply);
+                        replyVo.put("user", userService.findUserById(reply.getUserId()));
+                        //回复目标
+                        if (reply.getTargetId() != 0) {
+                            replyVo.put("target", userService.findUserById(reply.getTargetId()));
+                        } else
+                            replyVo.put("target", null);
+                        replyVoList.add(replyVo);
+                    }
+                }
+                commentVo.put("replys", replyVoList);
+                commentVo.put("replyCount", commentService.findCommentCount(ENTITY_TYPE_COMMENT, comment.getId()));
+                commentVoList.add(commentVo);
+            }
+        }
+        model.addAttribute("comments", commentVoList);
+        return "/site/discuss-detail";
+    }
+```
+
