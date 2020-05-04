@@ -613,3 +613,72 @@ public class CommentService {
     }
 ```
 
+## 添加评论
+
+增加评论的同时，需要更新帖子表中的评论数量，还是按照三层结构开发。
+
+### 开发数据层
+
+* 增加评论
+
+```xml
+<insert id="insertComment" parameterType="Comment">
+    insert into comment(<include refid="insertFields"></include>)
+    values(#{userId},#{entityType},#{entityId},#{targetId},#{content},#{status},#{createTime})
+</insert>
+```
+
+* 更新帖子评论数
+
+```xml
+<update id="updateCommentCount">
+    update discuss_post set comment_count = #{commentCount} where id = #{id}
+</update>
+```
+
+### 开发服务层
+
+* 添加评论
+
+```java
+    @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+    public int addComment(Comment comment) {
+        if (comment == null) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+        //添加完评论后，需要更新评论数量
+        comment.setContent(HtmlUtils.htmlEscape(comment.getContent()));
+        comment.setContent(sensitiveFilter.filter(comment.getContent()));
+        int rows = commentMapper.insertComment(comment);
+        //如果更新的是帖子
+        if (comment.getEntityType() == ENTITY_TYPE_POST) {
+            int count = commentMapper.selectCountByEntity(ENTITY_TYPE_POST, comment.getEntityId());
+            discussPostService.updateCommentCount(comment.getEntityId(), count);
+        }
+        return rows;
+    }
+```
+
+* 更新帖子数量
+
+```java
+public int updateCommentCount(int id, int commentCount) {
+    return discussPostMapper.updateCommentCount(id, commentCount);
+}
+```
+
+### 开发控制层
+
+```java
+@RequestMapping(path = "/add/{discussPostId}", method = RequestMethod.POST)
+public String addComment(@PathVariable("discussPostId") int discussPostId, Comment comment) {
+    //统一的异常处理（如果空）
+    //统一权限认证
+    comment.setUserId(hostHolder.getUser().getId());
+    comment.setStatus(0);
+    comment.setCreateTime(new Date());
+    commentService.addComment(comment);
+    return "redirect:/discuss/detail/" + discussPostId;
+}
+```
+
