@@ -682,3 +682,19 @@ public String addComment(@PathVariable("discussPostId") int discussPostId, Comme
 }
 ```
 
+## 私信列表
+
+指的是朋友私信：
+
+会话是指和某个用户的多条私信，私信列表是会话列表。会话列表只会显示最新的一条私信，而会话详情会包括和某个用户的全部私信。
+
+还需要显示总的会话消息量。
+
+会话ID，小的ID在前面大的ID在后面，为了查询会话数据时，筛选方便。
+
+新建类：
+
+
+
+### 数据层
+
