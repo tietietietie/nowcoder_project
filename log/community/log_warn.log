@@ -1,1 +1,15 @@
-2020-05-04 10:46:30,594 WARN [http-nio-15213-exec-8] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [809] milliseconds.
+2020-05-06 10:41:12,482 WARN [http-nio-15213-exec-10] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [731] milliseconds.
+2020-05-06 10:43:32,487 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/index
+2020-05-06 10:43:39,036 WARN [http-nio-15213-exec-4] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/index
+2020-05-06 10:46:50,035 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/letter/map.target.header
+2020-05-06 10:48:10,336 WARN [http-nio-15213-exec-6] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/letter/map.target.headerUrl
+2020-05-06 10:49:39,626 WARN [http-nio-15213-exec-7] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/letter/notice.html
+2020-05-06 10:50:27,566 WARN [http-nio-15213-exec-5] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [711] milliseconds.
+2020-05-06 11:13:17,902 WARN [http-nio-15213-exec-10] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [698] milliseconds.
+2020-05-06 11:33:39,310 WARN [http-nio-15213-exec-5] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/letter/detail/111_112
+2020-05-06 11:33:44,679 WARN [http-nio-15213-exec-10] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/letter/list
+2020-05-06 11:33:56,105 WARN [http-nio-15213-exec-7] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/index
+2020-05-06 11:38:24,596 WARN [http-nio-15213-exec-1] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/logout
+2020-05-06 11:38:31,398 WARN [http-nio-15213-exec-2] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/index
+2020-05-06 11:38:50,870 WARN [http-nio-15213-exec-1] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [713] milliseconds.
+2020-05-06 11:44:02,804 WARN [http-nio-15213-exec-10] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [712] milliseconds.

@@ -692,9 +692,287 @@ public String addComment(@PathVariable("discussPostId") int discussPostId, Comme
 
 会话ID，小的ID在前面大的ID在后面，为了查询会话数据时，筛选方便。
 
-新建类：
+新建实体类：Message
 
+```java
+public class Message {
 
+    private int id;
+    private int fromId;
+    private int toId;
+    private String conversationId;
+    private String content;
+    private int status;
+    private Date createTime;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getFromId() {
+        return fromId;
+    }
+
+    public void setFromId(int fromId) {
+        this.fromId = fromId;
+    }
+
+    public int getToId() {
+        return toId;
+    }
+
+    public void setToId(int toId) {
+        this.toId = toId;
+    }
+
+    public String getConversationId() {
+        return conversationId;
+    }
+
+    public void setConversationId(String conversationId) {
+        this.conversationId = conversationId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", fromId=" + fromId +
+                ", toId=" + toId +
+                ", conversationId='" + conversationId + '\'' +
+                ", content='" + content + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                '}';
+    }
+}
+```
 
 ### 数据层
 
+数据库中一共只有14个会话，返回对话列表时，需要找到每个会话的最新数据
+
+```java
+@Mapper
+public interface MessageMapper {
+    //查询会话列表一页数据，每个会话，只返回一条最新的私信
+    List<Message> selectConversations(@Param("userId") int userId, @Param("offset") int offset, @Param("limit") int limit);
+
+    //查询会话列表总行数
+    int selectConversationCount(@Param("userId") int userId);
+
+    //查询详情的总消息数
+    List<Message> selectLetters(@Param("conversationId") String conversationId, @Param("offset") int offset, @Param("limit") int limit);
+
+    //查询详情的当前页面消息
+    int selectLetterCount(@Param("conversationId") String conversationId);
+
+    //查询未读消息数量
+    int selectLetterUnreadCount(@Param("userId") int userId, @Param("conversationId") String conversationId);
+}
+```
+
+配置文件如下：
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nowcoder.community.dao.MessageMapper">
+
+    <sql id="selectFields">
+        id, from_id, to_id, conversation_id, content, status, create_time
+    </sql>
+    <select id="selectConversations" resultType="Message">
+        select
+        <include refid="selectFields"></include>
+        from message where id in(
+        select max(id) from message
+        where status != 2
+        and from_id != 1
+        and (from_id = #{userId} or to_id = #{userId})
+        group by conversation_id
+        )
+        order by id desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectConversationCount" resultType="int">
+        select count(m.maxid) from(
+        select max(id) as maxid from message
+        where status != 2
+        and from_id != 1
+        and (from_id = #{userId} or to_id = #{userId})
+        group by conversation_id
+        ) as m
+    </select>
+
+    <select id="selectLetters" resultType="Message">
+        select
+        <include refid="selectFields"></include>
+        from message
+        where status != 2
+        and from_id != 1
+        and conversation_id = #{conversationId}
+        order by id desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectLetterCount" resultType="int">
+        select count(id)
+        from message
+        where status != 2
+        and from_id != 1
+        and conversation_id = #{conversationId}
+    </select>
+
+    <select id="selectLetterUnreadCount" resultType="int">
+        select count(id)
+        from message
+        where status = 0
+        and from_id != 1
+        and to_id = #{userId}
+        <if test="conversationId != null">
+            and conversation_id = #{conversationId}
+        </if>
+    </select>
+</mapper>
+
+```
+
+### 服务层
+
+```java
+@Service
+public class MessageService {
+    @Autowired
+    private MessageMapper messageMapper;
+
+    public List<Message> findConversations(int userId, int offset, int limit) {
+        return messageMapper.selectConversations(userId, offset, limit);
+    }
+
+    public int fingConversationCount(int userId) {
+        return messageMapper.selectConversationCount(userId);
+    }
+
+    public List<Message> findLetters(String conversationId, int offset, int limit) {
+        return messageMapper.selectLetters(conversationId, offset, limit);
+    }
+
+    public int findLetterCount(String conversationId) {
+        return messageMapper.selectLetterCount(conversationId);
+    }
+
+    public int findUnreadCount(int userId, String conversationId) {
+        return messageMapper.selectLetterUnreadCount(userId, conversationId);
+    }
+}
+
+```
+
+### 控制层
+
+```java
+@Controller
+public class MessageController {
+    @Autowired
+    private MessageService messageService;
+    @Autowired
+    private HostHolder hostHolder;
+    @Autowired
+    private UserService userService;
+
+    //处理私信列表
+    @RequestMapping(path = "/letter/list", method = RequestMethod.GET)
+    public String getLetterList(Model model, Page page) {
+        User user = hostHolder.getUser();
+        //设置分页信息
+        page.setLimit(5);
+        page.setPath("/letter/list");
+        page.setRows(messageService.fingConversationCount(user.getId()));
+        //会话列表
+        List<Message> messages = messageService.findConversations(user.getId(), page.getOffset(), page.getLimit());
+        List<Map<String, Object>> conversations = new ArrayList<>();
+        if (messages != null) {
+            for (Message message : messages) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("conversation", message);
+                map.put("unreadCount", messageService.findUnreadCount(user.getId(), message.getConversationId()));
+                map.put("letterCount", messageService.findLetterCount(message.getConversationId()));
+                int targetId = user.getId() == message.getFromId() ? message.getToId() : message.getFromId();
+                map.put("target", userService.findUserById(targetId));
+                conversations.add(map);
+            }
+        }
+        model.addAttribute("conversations", conversations);
+        //查询当前用户未读消息数量
+        int letterUnreadCount = messageService.findUnreadCount(user.getId(), null);
+        model.addAttribute("letterUnreadCount", letterUnreadCount);
+        return "/site/letter";
+    }
+
+    @RequestMapping(path = "/letter/detail/{conversationId}", method = RequestMethod.GET)
+    public String getLetterDetail(@PathVariable("conversationId") String conversationId, Page page, Model model) {
+        //分页信息
+        page.setLimit(5);
+        page.setPath("/letter/detail/" + conversationId);
+        page.setRows(messageService.findLetterCount(conversationId));
+        //得到了会话的所有私信
+        List<Message> letterList = messageService.findLetters(conversationId, page.getOffset(), page.getLimit());
+        //只需要显示from_user、
+        List<Map<String, Object>> letters = new ArrayList<>();
+        if (letterList != null) {
+            for (Message letter : letterList) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("letter", letter);
+                map.put("fromUser", userService.findUserById(letter.getFromId()));
+                letters.add(map);
+            }
+        }
+        model.addAttribute("letters", letters);
+        User target = getLetterTarget(conversationId);
+        model.addAttribute("target", target);
+        return "/site/letter-detail";
+    }
+
+    private User getLetterTarget(String conversationId) {
+        String[] ids = conversationId.split("_");
+        int id0 = Integer.parseInt(ids[0]);
+        int id1 = Integer.parseInt(ids[1]);
+        if (id0 == hostHolder.getUser().getId())
+            return userService.findUserById(id1);
+        return userService.findUserById(id0);
+    }
+```
+
+模板处理略。

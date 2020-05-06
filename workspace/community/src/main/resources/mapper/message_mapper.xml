@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nowcoder.community.dao.MessageMapper">
+
+    <sql id="selectFields">
+        id, from_id, to_id, conversation_id, content, status, create_time
+    </sql>
+    <select id="selectConversations" resultType="Message">
+        select
+        <include refid="selectFields"></include>
+        from message where id in(
+        select max(id) from message
+        where status != 2
+        and from_id != 1
+        and (from_id = #{userId} or to_id = #{userId})
+        group by conversation_id
+        )
+        order by id desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectConversationCount" resultType="int">
+        select count(m.maxid) from(
+        select max(id) as maxid from message
+        where status != 2
+        and from_id != 1
+        and (from_id = #{userId} or to_id = #{userId})
+        group by conversation_id
+        ) as m
+    </select>
+
+    <select id="selectLetters" resultType="Message">
+        select
+        <include refid="selectFields"></include>
+        from message
+        where status != 2
+        and from_id != 1
+        and conversation_id = #{conversationId}
+        order by id desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectLetterCount" resultType="int">
+        select count(id)
+        from message
+        where status != 2
+        and from_id != 1
+        and conversation_id = #{conversationId}
+    </select>
+
+    <select id="selectLetterUnreadCount" resultType="int">
+        select count(id)
+        from message
+        where status = 0
+        and from_id != 1
+        and to_id = #{userId}
+        <if test="conversationId != null">
+            and conversation_id = #{conversationId}
+        </if>
+    </select>
+</mapper>
