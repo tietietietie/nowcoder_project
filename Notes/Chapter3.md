@@ -1101,3 +1101,54 @@ public String sendLetter(String toName, String content) {
 ```
 
 前端模板代码略
+
+## 统一处理异常
+
+服务器分为三层，如果数据层出异常了，会把异常抛给业务层，最后抛给表现层。
+
+所以所有的异常都会汇聚到表现层，我们统一的处理表现层异常即可。
+
+SpringBoot提供的方案：在项目的某一个路径下，加上对应错误页面，自动跳转到这个页面即可。
+
+### Spring Boot处理异常演示
+
+首先需要把错误页面文件夹error移动到templates目录下，发生错误自动跳转
+
+### Spring统一处理异常
+
+注解：@ControllerAdvice
+
+对controller全局统一配置，对任意controller发生异常，都可以全局统一处理，可以使用以下三种配置
+
+@ModelAttribute绑定数据：controller中有很多请求，都需要使用某一个参数，可以使用此注解，对model中统一绑定一个参数
+
+@DataBinder:SpringMVC有很多转换器，将页面发来的数据转换成服务器的数据类型，当内置的转换器不够用，可以使用此配置，自定义转换
+
+@ExceptionHandler：统一捕获异常
+
+在Controller中新建advice包，并实现统一处理异步请求和普通请求的异常，如下：
+
+```java
+@ControllerAdvice(annotations = Controller.class)
+public class ExceptionAdvice {
+    private static final Logger logger = LoggerFactory.getLogger(ExceptionAdvice.class);
+
+    @ExceptionHandler({Exception.class})
+    public void handleException(Exception e, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.error("服务器发生异常" + e.getMessage());
+        for (StackTraceElement element : e.getStackTrace()) {
+            logger.error(element.toString());
+        }
+        String xRequestedWith = request.getHeader("x-requested-with");
+        if ("XMLHttpRequest".equals(xRequestedWith)) {
+            response.setContentType("application/plain;charset=utf-8");
+            PrintWriter writer = response.getWriter();
+            writer.write(CommunityUtil.getJSONString(1, "服务器异常"));
+        } else {
+            response.sendRedirect(request.getContextPath() + "/error");
+        }
+    }
+}
+
+```
+
