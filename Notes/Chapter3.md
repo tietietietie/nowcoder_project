@@ -976,3 +976,128 @@ public class MessageController {
 ```
 
 模板处理略。
+
+## 发送私信
+
+* 在私信列表/私信详情内发私信
+
+* 进入私信详情中，未读消息需要变为已读
+
+### 数据层
+
+添加增加私信的功能和修改私信状态的功能
+
+```java
+//新增消息
+int insertMessage(Message message);
+
+//修改状态
+int updateStatus(@Param("ids") List<Integer> ids, @Param("status") int status);
+```
+
+```xml
+<insert id="insertMessage" parameterType="Message" keyProperty="id">
+    insert into message(<include refid="insertFields"></include>)
+    values(#{fromId},#{toId},#{conversationId},#{content},#{status},#{createTime})
+</insert>
+
+<update id="updateStatus">
+    update message set status = #{status}
+    where id in
+    <foreach collection="ids" item="id" open="(" separator="," close=")">
+        #{id}
+    </foreach>
+</update>
+```
+
+### 服务层
+
+```java
+public int addMessage(Message message) {
+    message.setContent(HtmlUtils.htmlEscape(message.getContent()));
+    message.setContent(sensitiveFilter.filter(message.getContent()));
+    return messageMapper.insertMessage(message);
+}
+
+public int readMessage(List<Integer> ids) {
+    return messageMapper.updateStatus(ids, 1);
+}
+```
+
+### 控制层
+
+```java
+private List<Integer> getLetterIds(List<Message> letterList) {
+    List<Integer> ids = new ArrayList<>();
+    if (letterList != null) {
+        for (Message letter : letterList) {
+            if (hostHolder.getUser().getId() == letter.getToId() && letter.getStatus() == 0) {
+                ids.add(letter.getId());
+            }
+        }
+    }
+    return ids;
+}
+
+@RequestMapping(path = "/letter/detail/{conversationId}", method = RequestMethod.GET)
+public String getLetterDetail(@PathVariable("conversationId") String conversationId, Page page, Model model) {
+    //分页信息
+    page.setLimit(5);
+    page.setPath("/letter/detail/" + conversationId);
+    page.setRows(messageService.findLetterCount(conversationId));
+    //得到了会话的所有私信
+    List<Message> letterList = messageService.findLetters(conversationId, page.getOffset(), page.getLimit());
+    //只需要显示from_user、
+    List<Map<String, Object>> letters = new ArrayList<>();
+    if (letterList != null) {
+        for (Message letter : letterList) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("letter", letter);
+            map.put("fromUser", userService.findUserById(letter.getFromId()));
+            letters.add(map);
+        }
+    }
+    model.addAttribute("letters", letters);
+    User target = getLetterTarget(conversationId);
+    model.addAttribute("target", target);
+    List<Integer> ids = getLetterIds(letterList);
+    if (!ids.isEmpty()) {
+        messageService.readMessage(ids);
+    }
+    return "/site/letter-detail";
+}
+
+private User getLetterTarget(String conversationId) {
+    String[] ids = conversationId.split("_");
+    int id0 = Integer.parseInt(ids[0]);
+    int id1 = Integer.parseInt(ids[1]);
+    if (id0 == hostHolder.getUser().getId())
+        return userService.findUserById(id1);
+    return userService.findUserById(id0);
+}
+
+@RequestMapping(path = "/letter/send", method = RequestMethod.POST)
+//因为是异步请求
+@ResponseBody
+public String sendLetter(String toName, String content) {
+    User target = userService.findUserByName(toName);
+    if (target == null) {
+        return CommunityUtil.getJSONString(1, "目标用户不存在");
+    }
+    Message message = new Message();
+    message.setFromId(hostHolder.getUser().getId());
+    message.setToId(target.getId());
+    if (message.getFromId() <= message.getToId()) {
+        message.setConversationId(message.getFromId() + "_" + message.getToId());
+    } else {
+        message.setConversationId(message.getToId() + "_" + message.getFromId());
+    }
+    message.setContent(content);
+    message.setCreateTime(new Date());
+    messageService.addMessage(message);
+    //统一解决异常
+    return CommunityUtil.getJSONString(0);
+}
+```
+
+前端模板代码略

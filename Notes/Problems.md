@@ -132,3 +132,23 @@ if (reply.getTargetId() != 0) {
 
 原因：page的getOffset方法写成了page.getOffSet()。
 
+### 3.写Mapper接口时，给参数声明Param注解会报错
+
+```java
+//新增消息
+int insertMessage(@Param("message")Message message);
+```
+
+去掉注解不会报错，原因传入实体类型和传入基本类型，xml的写法是不同的，
+
+```java
+public List<student> selectuser(@Param(value = "page")int pn ,@Param(value = "st")student student);
+
+<select id="selectuser" resultType="com.user.entity.student">
+    SELECT * FROM student
+    where sname like concat(concat("%",#{st.sname}),"%")
+    LIMIT #{page} ,5
+</select>
+```
+
+参考[这里](https://www.cnblogs.com/goloving/p/9241449.html)
