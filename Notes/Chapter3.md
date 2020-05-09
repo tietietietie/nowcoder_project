@@ -1152,3 +1152,60 @@ public class ExceptionAdvice {
 
 ```
 
+## 统一记录日志
+
+记录日志的代码封装到一个组件，在不同的service中调用，但是这样会把系统需求和业务需求耦合在一起。
+
+把系统需求单独实现：AOP（面向切面编程）（对OOP的补充）（提高编程效率）
+
+### AOP
+
+每个业务模块都有相同的系统需求，只需要单独的定义系统组件，包含各种业务组件。
+
+常见术语：
+
+* 一批业务组件（目标）：target（有很多地方可以织入代码）
+* 代码单独封装在一个组件，称为方面组件，编程针对于方面（切面）
+* 将方面组件代码织入（weaving)到目标中，有多种织入方式
+  * 编译时织入
+  * 装载时织入
+  * 运载时织入
+* 目标代码上，有可能织入的位置，称为连接点（Joinpoint）
+* Pointcut：声明具体织入到哪些对象的哪些位置（方面组件中）
+* Advice：解决具体织入逻辑（调用前？调用后？返回后？异常时？）（方面组件中）
+
+如何实现：常见有AspectJ和Spring AOP，其中AspectJ是新的语言，能解决所有AOP问题，在编译时织入代码，支持所有连接点。
+
+SpringAOP纯JAVA实现，运行时织入代码（通过代理），只支持方法类型的织入点（局限），支持对AspectJ的集合。
+
+代理：在某个对象生成代理对象，调用时只调用代理对象。
+
+SpringAOP默认使用JDK动态代理，在运行时创建接口的代理实例，通过接口的代理实例织入代码，CGLib动态代理：底层字节码技术，通过子类实现代理。
+
+### AOP统一处理Service
+
+```java
+@Component
+@Aspect
+public class ServiceAspect {
+    public static final Logger logger = LoggerFactory.getLogger(ServiceAspect.class);
+
+    @Pointcut("execution(* com.nowcoder.community.service.*.*(..))")
+    public void pointcut() {
+
+    }
+
+    @Before("pointcut()")
+    public void before(JoinPoint joinPoint) {
+        //用户（ip)在某一时间，访问了什么方法（service）
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String ip = request.getRemoteHost();
+        String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        String target = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
+        logger.info(String.format("用户[%s],在[%s]，访问了[%s].", ip, now, target));
+    }
+}
+```
+
+注意如何获得当前请求的ip地址，当前接入点的方法名。
