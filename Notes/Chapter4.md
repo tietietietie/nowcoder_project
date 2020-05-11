@@ -194,3 +194,96 @@ public void testTransactional() {
 }
 ```
 
+## 点赞
+
+点赞为高频操作，可以使用redis存储数据，提高性能
+
+* 对帖子点赞，对帖子的评论点赞
+* 没赞点一下变成点赞，点赞了再点一下，变成没赞
+* 需要统计点赞数量
+
+### 数据访问层
+
+不需要写，因为非常简单
+
+### 服务层
+
+写一个工具，专门生成redis的key
+
+```java
+public class RedisKeyUtil {
+    private static final String SPLIT = ":";
+    private static final String PREFIX_ENTITY_LIKE = "like:entity";
+
+    //某个实体的赞
+    //like:entity:entityType:entityId -> set(userId)
+    public static String getEntityLikeKey(int entityType, int entityId) {
+        return PREFIX_ENTITY_LIKE + SPLIT + entityType + SPLIT + entityId;
+    }
+
+}
+```
+
+点赞/查询点赞数量/查询点赞状态
+
+```java
+@Service
+public class LikeService {
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    //点赞
+    public void like(int userId, int entityType, int entityId) {
+        String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
+        if (redisTemplate.opsForSet().isMember(entityLikeKey, userId)) {
+            redisTemplate.opsForSet().remove(entityLikeKey, userId);
+        } else {
+            redisTemplate.opsForSet().add(entityLikeKey, userId);
+        }
+    }
+
+    //查询实体点赞数量
+    public long findEntityLikeCount(int entityType, int entityId) {
+        String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
+        return redisTemplate.opsForSet().size(entityLikeKey);
+    }
+
+    //查询某人对某实体是否点过赞(int更具扩展性）
+    public int findEntityLikeStatus(int userId, int entityType, int entityId) {
+        String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
+        return redisTemplate.opsForSet().isMember(entityLikeKey, userId) ? 1 : 0;
+    }
+}
+```
+
+### 控制层
+
+采用异步消息，进行点赞，返回点赞数量和点赞状态
+
+```java
+@Controller
+public class LikeController {
+
+    @Autowired
+    private LikeService likeService;
+
+    @Autowired
+    private HostHolder hostHolder;
+
+    @RequestMapping(path = "/like", method = RequestMethod.POST)
+    @ResponseBody
+    public String like(int entityType, int entityId) {
+        User user = hostHolder.getUser();
+        likeService.like(user.getId(), entityType, entityId);
+        long likeCount = likeService.findEntityLikeCount(entityType, entityId);
+        int likeStatus = likeService.findEntityLikeStatus(user.getId(), entityType, entityId);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("likeCount", likeCount);
+        map.put("likeStatus", likeStatus);
+        return CommunityUtil.getJSONString(0, null, map);
+    }
+
+}
+```
+

@@ -1,0 +1,88 @@
+2020-05-10 10:23:50,255 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 820 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 10:23:50,279 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 10:23:53,254 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 10:23:53,264 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 10:23:53,362 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 35ms. Found 0 Redis repository interfaces.
+2020-05-10 10:23:56,504 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:23:56,685 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 10:23:57,953 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 9.025 seconds (JVM running for 11.469)
+2020-05-10 10:23:58,703 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 10:23:58,706 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 10:24:00,224 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:40:35,774 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 8116 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 10:40:35,780 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 10:40:37,370 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 10:40:37,375 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 10:40:37,442 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 38ms. Found 0 Redis repository interfaces.
+2020-05-10 10:40:40,507 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:40:40,663 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 10:40:41,835 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 7.572 seconds (JVM running for 10.208)
+2020-05-10 10:40:42,516 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 10:40:42,519 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 10:40:43,942 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:44:18,173 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 19388 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 10:44:18,178 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 10:44:19,641 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 10:44:19,645 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 10:44:19,708 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 45ms. Found 0 Redis repository interfaces.
+2020-05-10 10:44:23,246 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:44:23,412 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 10:44:25,021 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 8.697 seconds (JVM running for 10.986)
+2020-05-10 10:44:25,764 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 10:44:25,767 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 10:44:27,325 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:47:38,428 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 21568 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 10:47:38,441 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 10:47:39,969 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 10:47:39,972 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 10:47:40,016 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 27ms. Found 0 Redis repository interfaces.
+2020-05-10 10:47:42,694 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:47:42,845 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 10:47:44,086 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 6.908 seconds (JVM running for 8.624)
+2020-05-10 10:47:44,741 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 10:47:44,743 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 10:47:46,281 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:53:29,087 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 6236 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 10:53:29,090 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 10:53:30,664 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 10:53:30,668 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 10:53:30,728 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 45ms. Found 0 Redis repository interfaces.
+2020-05-10 10:53:33,402 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:53:33,545 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 10:53:34,719 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 6.574 seconds (JVM running for 8.462)
+2020-05-10 10:53:35,336 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 10:53:35,338 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 10:53:36,861 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:57:09,761 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 19124 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 10:57:09,764 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 10:57:11,400 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 10:57:11,404 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 10:57:11,449 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 29ms. Found 0 Redis repository interfaces.
+2020-05-10 10:57:14,235 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 10:57:14,387 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 10:57:15,597 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 6.812 seconds (JVM running for 8.579)
+2020-05-10 10:57:16,317 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 10:57:16,320 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 10:57:17,854 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 11:00:18,537 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 12716 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 11:00:18,540 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 11:00:19,931 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 11:00:19,937 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 11:00:19,995 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 36ms. Found 0 Redis repository interfaces.
+2020-05-10 11:00:22,934 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 11:00:23,160 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 11:00:24,466 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 7.225 seconds (JVM running for 9.193)
+2020-05-10 11:00:25,154 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 11:00:25,156 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 11:00:26,594 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 11:07:10,569 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:55] Starting RedisTests on zt with PID 8228 (started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-10 11:07:10,573 INFO [main] c.n.c.RedisTests [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-10 11:07:12,018 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-10 11:07:12,023 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-10 11:07:12,089 INFO [main] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 47ms. Found 0 Redis repository interfaces.
+2020-05-10 11:07:14,947 INFO [main] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 11:07:15,107 INFO [main] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-10 11:07:16,320 INFO [main] c.n.c.RedisTests [StartupInfoLogger.java:61] Started RedisTests in 6.724 seconds (JVM running for 8.495)
+2020-05-10 11:07:16,906 INFO [main] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-10 11:07:16,909 INFO [main] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-10 11:07:18,435 INFO [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:218] Shutting down ExecutorService 'applicationTaskExecutor'
