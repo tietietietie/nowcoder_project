@@ -18,15 +18,14 @@ public class LikeController {
 
     @Autowired
     private LikeService likeService;
-
     @Autowired
     private HostHolder hostHolder;
 
     @RequestMapping(path = "/like", method = RequestMethod.POST)
     @ResponseBody
-    public String like(int entityType, int entityId) {
+    public String like(int entityType, int entityId, int entityUserId) {
         User user = hostHolder.getUser();
-        likeService.like(user.getId(), entityType, entityId);
+        likeService.like(user.getId(), entityType, entityId, entityUserId);
         long likeCount = likeService.findEntityLikeCount(entityType, entityId);
         int likeStatus = likeService.findEntityLikeStatus(user.getId(), entityType, entityId);
 
@@ -35,5 +34,4 @@ public class LikeController {
         map.put("likeStatus", likeStatus);
         return CommunityUtil.getJSONString(0, null, map);
     }
-
 }

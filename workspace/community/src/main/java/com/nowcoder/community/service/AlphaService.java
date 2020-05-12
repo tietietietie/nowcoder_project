@@ -68,7 +68,7 @@ public class AlphaService {
         user.setPassword(CommunityUtil.md5("123" + user.getSalt()));
         user.setEmail("Alpha@qq.com");
         user.setHeaderUrl("http://image/nowcoder.com/head/99t.png");
-        user.setCreatTime(new Date());
+        user.setCreateTime(new Date());
         userMapper.insertUser(user);
         //新建帖子
         DiscussPost post = new DiscussPost();
@@ -96,7 +96,7 @@ public class AlphaService {
                 user.setPassword(CommunityUtil.md5("123" + user.getSalt()));
                 user.setEmail("beta@qq.com");
                 user.setHeaderUrl("http://image/nowcoder.com/head/999.png");
-                user.setCreatTime(new Date());
+                user.setCreateTime(new Date());
                 userMapper.insertUser(user);
                 //新建帖子
                 DiscussPost post = new DiscussPost();

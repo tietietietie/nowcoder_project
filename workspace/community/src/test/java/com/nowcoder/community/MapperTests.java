@@ -45,7 +45,7 @@ public class MapperTests {
         user.setSalt("abc");
         user.setEmail("test@qq.com");
         user.setHeaderUrl("http://www.nowcoder.com/101.png");
-        user.setCreatTime(new Date());
+        user.setCreateTime(new Date());
         int rows = userMapper.insertUser(user);
         System.out.println(rows);
         System.out.println(user.getId());

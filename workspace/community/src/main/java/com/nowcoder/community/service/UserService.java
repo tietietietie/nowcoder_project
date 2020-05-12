@@ -80,7 +80,7 @@ public class UserService implements CommunityConstant {
         user.setStatus(0);
         user.setActivationCode(CommunityUtil.generateUUID());
         user.setHeaderUrl(String.format("http://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000)));
-        user.setCreatTime(new Date());
+        user.setCreateTime(new Date());
         userMapper.insertUser(user);
 
         //发送激活邮件

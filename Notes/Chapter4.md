@@ -287,3 +287,79 @@ public class LikeController {
 }
 ```
 
+## 我收到的赞
+
+* 个人主页上显示
+
+重构点赞功能，点赞时，把点赞对象（用户）的赞加一。
+
+* 开发个人主页
+
+包括个人信息，以及收到的赞
+
+### 修改RedisKeyUtil
+
+每一个用户获得的赞，作为一个key存在redis中
+
+```java
+private static final String PREFIC_USER_LIKE = "like:user";
+//某个用户收获的赞
+public static String getUserLikeKey(int userId) {
+    return PREFIC_USER_LIKE + SPLIT + userId;
+}
+```
+
+### 修改likeService
+
+需要保证事务性
+
+```java
+public void like(int userId, int entityType, int entityId, int entityUserId) {
+    //        String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
+    //        if (redisTemplate.opsForSet().isMember(entityLikeKey, userId)) {
+    //            redisTemplate.opsForSet().remove(entityLikeKey, userId);
+    //        } else {
+    //            redisTemplate.opsForSet().add(entityLikeKey, userId);
+    //        }
+    //更新某用户的赞，需要保证事务性
+    redisTemplate.execute(new SessionCallback() {
+        @Override
+        public Object execute(RedisOperations operations) throws DataAccessException {
+            String entityLikeKey = RedisKeyUtil.getEntityLikeKey(entityType, entityId);
+            String userLikeKey = RedisKeyUtil.getUserLikeKey(entityUserId);
+            boolean isMember = operations.opsForSet().isMember(entityLikeKey, userId);
+            //开启事务
+            operations.multi();
+            if (isMember) {
+                operations.opsForSet().remove(entityLikeKey, userId);
+                operations.opsForValue().decrement(userLikeKey);
+            } else {
+                operations.opsForSet().add(entityLikeKey, userId);
+                operations.opsForValue().increment(userLikeKey);
+            }
+            return operations.exec();
+        }
+    });
+}
+```
+
+### 修改Controller，点赞对象id作为参数传入
+
+代码略
+
+### 修改用户个人主页代码，显示赞
+
+代码略
+
+## 关注/取消关注
+
+* 实现关注/取关功能
+* 统计关注数/粉丝数
+
+A关注B，A是B的粉丝，B是A的关注者，A是B的follower，B是A的followee
+
+关注的目标不能写死，可以关注用户或者帖子等抽象实体
+
+分为两部：实现关注/去关，统计关注数量，粉丝数量
+
+### 定义RedisKeyUtil
