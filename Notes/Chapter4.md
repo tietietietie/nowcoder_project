@@ -363,3 +363,137 @@ A关注B，A是B的粉丝，B是A的关注者，A是B的follower，B是A的follo
 分为两部：实现关注/去关，统计关注数量，粉丝数量
 
 ### 定义RedisKeyUtil
+
+```java
+//某个用户的关注实体
+//followee:userId:entityType -> zSet(entityId,time)
+public static String getFolloweeKey(int userId, int entityType) {
+    return PREFIX_FOLLOWEE + SPLIT + userId + SPLIT + entityType;
+}
+
+//某个用户的粉丝
+//follower:entityType:entityId -> zSet(userId,time)
+public static String getFollowerKey(int entityType, int entityId) {
+    return PREFIX_FOLLOWER + SPLIT + entityType + SPLIT + entityId;
+}
+```
+
+### 服务层
+
+关注/点赞，查询关注者数量，查询粉丝数量，查询当前用户对某用户的关注状态
+
+```java
+@Service
+public class FollowService {
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    public void follow(int userId, int entityType, int entityId) {
+        redisTemplate.execute(new SessionCallback() {
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException {
+                String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
+                String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
+                operations.multi();
+                operations.opsForZSet().add(followeeKey, entityId, System.currentTimeMillis());
+                operations.opsForZSet().add(followerKey, userId, System.currentTimeMillis());
+                return operations.exec();
+            }
+        });
+    }
+
+    public void unFollow(int userId, int entityType, int entityId) {
+        redisTemplate.execute(new SessionCallback() {
+            @Override
+            public Object execute(RedisOperations operations) throws DataAccessException {
+                String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
+                String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
+                operations.multi();
+                operations.opsForZSet().remove(followeeKey, entityId);
+                operations.opsForZSet().remove(followerKey, userId);
+                return operations.exec();
+            }
+        });
+    }
+
+    //查询关注实体的数量
+    public long findFolloweeCount(int userId, int entityType) {
+        String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
+        return redisTemplate.opsForZSet().size(followeeKey);
+    }
+
+    //查询粉丝数量
+    public long fingFollowerCount(int entityType, int entityId) {
+        String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
+        return redisTemplate.opsForZSet().size(followerKey);
+    }
+
+    //显示关注状态
+    public boolean hasFollowed(int userId, int entityType, int entityId) {
+        String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
+        Double status = redisTemplate.opsForZSet().score(followeeKey, entityId);
+        return status != null;
+    }
+}
+```
+
+### 控制层
+
+在主页显示关注数量/粉丝数量/关注状态，并定义“关注”按钮
+
+```java
+@Controller
+public class FollowController {
+    @Autowired
+    private FollowService followService;
+    @Autowired
+    private HostHolder hostHolder;
+
+    @RequestMapping(path = "/follow", method = RequestMethod.POST)
+    @ResponseBody
+    @LoginRequired
+    public String follow(int entityType, int entityId) {
+        User user = hostHolder.getUser();
+        followService.follow(user.getId(), entityType, entityId);
+        return CommunityUtil.getJSONString(0, "已关注");
+    }
+
+    @RequestMapping(path = "/unfollow", method = RequestMethod.POST)
+    @ResponseBody
+    @LoginRequired
+    public String unfollow(int entityType, int entityId) {
+        User user = hostHolder.getUser();
+        followService.unFollow(user.getId(), entityType, entityId);
+        return CommunityUtil.getJSONString(0, "已取消关注");
+    }
+}
+```
+
+```java
+@Controller
+public class FollowController {
+    @Autowired
+    private FollowService followService;
+    @Autowired
+    private HostHolder hostHolder;
+
+    @RequestMapping(path = "/follow", method = RequestMethod.POST)
+    @ResponseBody
+    @LoginRequired
+    public String follow(int entityType, int entityId) {
+        User user = hostHolder.getUser();
+        followService.follow(user.getId(), entityType, entityId);
+        return CommunityUtil.getJSONString(0, "已关注");
+    }
+
+    @RequestMapping(path = "/unfollow", method = RequestMethod.POST)
+    @ResponseBody
+    @LoginRequired
+    public String unfollow(int entityType, int entityId) {
+        User user = hostHolder.getUser();
+        followService.unFollow(user.getId(), entityType, entityId);
+        return CommunityUtil.getJSONString(0, "已取消关注");
+    }
+}
+```
+

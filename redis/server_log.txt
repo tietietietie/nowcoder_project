@@ -77,3 +77,7 @@
 [8468] 12 May 13:15:00.094 * Background saving started by pid 8484
 [8468] 12 May 13:15:00.400 # fork operation complete
 [8468] 12 May 13:15:00.401 * Background saving terminated with success
+[8468] 12 May 13:20:01.010 * 10 changes in 300 seconds. Saving...
+[8468] 12 May 13:20:01.048 * Background saving started by pid 20704
+[8468] 12 May 13:20:01.798 # fork operation complete
+[8468] 12 May 13:20:01.800 * Background saving terminated with success
