@@ -497,3 +497,105 @@ public class FollowController {
 }
 ```
 
+## 关注列表/粉丝列表
+
+已有有数据，展示即可。
+
+业务层：查询某用户关注的人，以及粉丝，支持分页
+
+表现层：处理请求，编写模板
+
+### 服务层
+
+获得某一用户的关注者/关注事件，粉丝/关注之间，放在map中，以list形式返回
+
+```java
+    //查询某个用户关注的人
+    public List<Map<String, Object>> findFollowees(int userId, int offset, int limit) {
+        String followeeKey = RedisKeyUtil.getFolloweeKey(userId, ENTITY_TYPE_USER);
+        Set<Integer> targetIds = redisTemplate.opsForZSet().reverseRange(followeeKey, offset, offset + limit - 1);
+        if (targetIds != null && !targetIds.isEmpty()) {
+            List<Map<String, Object>> list = new ArrayList<>();
+            for (Integer targetId : targetIds) {
+                Map<String, Object> map = new HashMap<>();
+                User user = userService.findUserById(targetId);
+                map.put("user", user);
+                Double score = redisTemplate.opsForZSet().score(followeeKey, targetId);
+                map.put("followTime", new Date(score.longValue()));
+                list.add(map);
+            }
+            return list;
+        }
+        return null;
+    }
+
+    //查询某用户的粉丝
+    public List<Map<String, Object>> findFollowers(int userId, int offset, int limit) {
+        String followerKey = RedisKeyUtil.getFollowerKey(ENTITY_TYPE_USER, userId);
+        //set虽然是无序的，但是redis做了内置处理，变得有序
+        Set<Integer> targetIds = redisTemplate.opsForZSet().reverseRange(followerKey, offset, offset + limit - 1);
+        if (targetIds != null && !targetIds.isEmpty()) {
+            List<Map<String, Object>> list = new ArrayList<>();
+            for (Integer targetId : targetIds) {
+                Map<String, Object> map = new HashMap<>();
+                User user = userService.findUserById(targetId);
+                map.put("user", user);
+                Double score = redisTemplate.opsForZSet().score(followerKey, targetId);
+                map.put("followTime", new Date(score.longValue()));
+                list.add(map);
+            }
+            return list;
+        }
+        return null;
+    }
+```
+
+### 控制层
+
+处理分页信息，以及判断当前用户是否关注了list中的用户,以及获得当前用户的信息
+
+```java
+    @RequestMapping(path = "/followees/{userId}", method = RequestMethod.GET)
+    public String getFollowees(@PathVariable("userId") int userId, Model model, Page page) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        page.setLimit(5);
+        page.setPath("/followees/" + userId);
+        page.setRows((int) followService.findFolloweeCount(userId, ENTITY_TYPE_USER));
+        List<Map<String, Object>> userList = followService.findFollowees(userId, page.getOffset(), page.getLimit());
+        if (userList != null && !userList.isEmpty()) {
+            for (Map<String, Object> map : userList) {
+                User followee = (User) map.get("user");
+                map.put("hasFollowed", hasFollowed(followee.getId()));
+            }
+        }
+        model.addAttribute("users", userList);
+        return "site/followee";
+    }
+
+    private boolean hasFollowed(int userId) {
+        if (hostHolder.getUser() == null) {
+            return false;
+        }
+        return followService.hasFollowed(hostHolder.getUser().getId(), ENTITY_TYPE_USER, userId);
+    }
+
+    @RequestMapping(path = "/followers/{userId}", method = RequestMethod.GET)
+    public String getFollowers(@PathVariable("userId") int userId, Model model, Page page) {
+        User user = userService.findUserById(userId);
+        model.addAttribute("user", user);
+        page.setLimit(5);
+        page.setPath("/followers/" + userId);
+        page.setRows((int) followService.fingFollowerCount(ENTITY_TYPE_USER, userId));
+        List<Map<String, Object>> userList = followService.findFollowers(userId, page.getOffset(), page.getLimit());
+        if (userList != null && !userList.isEmpty()) {
+            for (Map<String, Object> map : userList) {
+                User follower = (User) map.get("user");
+                map.put("hasFollowed", hasFollowed(follower.getId()));
+            }
+        }
+        model.addAttribute("users", userList);
+        return "site/follower";
+    }
+```
+
