@@ -599,3 +599,10 @@ public class FollowController {
     }
 ```
 
+## 优化登录模块
+
+* 使用redis存储验证码（因为频繁访问），而且不需要永久保存，存在session里有问题。
+* Redis处理登录凭证（ticket），（每次在拦截器里面查）
+* 缓存用户信息，每次根据凭证查用户
+
+### Redis
