@@ -605,4 +605,84 @@ public class FollowController {
 * Redis处理登录凭证（ticket），（每次在拦截器里面查）
 * 缓存用户信息，每次根据凭证查用户
 
-### Redis
+### Redis验证码
+
+定义key
+
+```java
+//验证码
+public static String getKaptchaKey(String owner) {
+    return PREFIX_KAPTCHA + SPLIT + owner;
+}
+```
+
+生成验证码所有者，放在cookie中（类似于sessionID）
+
+```java
+//需要解决验证码的归属问题
+String kaptchaOwner = CommunityUtil.generateUUID();
+Cookie cookie = new Cookie("kaptchaOwner", kaptchaOwner);
+cookie.setMaxAge(60);
+cookie.setPath(contextPath);
+response.addCookie(cookie);
+
+//将验证码存入redis
+String redisKey = RedisKeyUtil.getKaptchaKey(kaptchaOwner);
+redisTemplate.opsForValue().set(redisKey, text, 60, TimeUnit.SECONDS);
+```
+
+检查验证码
+
+```java
+//检查验证码
+String kaptcha = null;
+if (StringUtils.isNotBlank(kaptchaOwner)) {
+    String redisKey = RedisKeyUtil.getKaptchaKey(kaptchaOwner);
+    kaptcha = (String) redisTemplate.opsForValue().get(redisKey);
+}
+```
+
+### Redis记录登录凭证
+
+redis key
+
+```java
+//登录凭证
+public static String getTicketKey(String ticket) {
+    return PREFIX_TICKET + SPLIT + ticket;
+}
+```
+
+### Redis缓存用户信息
+
+* 缓存时，如果取到，则取，不然，添加缓存，更新数据时，也要更新缓存（但是一般是直接删除，下次请求重查即可）（更新数据可能会有并发问题）。
+
+  * 优先缓存取值
+  * 取不到，初始化缓存
+  * 数据变化，清除缓存
+
+  在service层定义三个函数，分别初始化缓存，获得缓存，清除缓存
+
+  ```java
+  //从缓存中取数据
+  private User getCache(int userId) {
+      String redisKey = RedisKeyUtil.getUserKey(userId);
+      return (User) redisTemplate.opsForValue().get(redisKey);
+  }
+  
+  //初始化缓存
+  private User initCache(int userId) {
+      User user = userMapper.selectById(userId);
+      String redisKey = RedisKeyUtil.getUserKey(userId);
+      redisTemplate.opsForValue().set(redisKey, user, 3600, TimeUnit.SECONDS);
+      return user;
+  }
+  
+  //清除缓存
+  private void clearCache(int userId) {
+      String redisKey = RedisKeyUtil.getUserKey(userId);
+      redisTemplate.delete(redisKey);
+  }
+  ```
+
+  
