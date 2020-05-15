@@ -86,4 +86,73 @@ class Consumer implements Runnable {
   * Leader Replica：从副本，只是备份，不负责相应，主副本挂掉，选择一个从副本变为主副本。
 * 安装过程略
 
+启动zookeeper
+
+```
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+```
+
+启动kafka
+
+```
+bin\windows\kafka-server-start.bat config\server.properties
+```
+
+创建主题（表示一种消息类别）
+
+```
+
+```
+
+
+
 ## Spring整合Kafka
+
+生产者发消息：主动
+
+消费者收到消息：被动
+
+演示：
+
+```java
+@SpringBootTest
+@ContextConfiguration(classes = CommunityApplication.class)
+public class KafkaTests {
+
+    @Autowired
+    private KafkaProducer kafkaProducer;
+
+    @Autowired
+    private KafkaConsumer kafkaConsumer;
+
+    @Test
+    public void testKafka() {
+        kafkaProducer.sendMessage("test", "你好");
+        kafkaProducer.sendMessage("test", "hello");
+        try {
+            Thread.sleep(1000 * 10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+@Component
+class KafkaProducer {
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
+
+    public void sendMessage(String topic, String context) {
+        kafkaTemplate.send(topic, context);
+    }
+}
+
+@Component
+class KafkaConsumer {
+    @KafkaListener(topics = {"test"})
+    public void handleMessage(ConsumerRecord consumerRecord) {
+        System.out.println(consumerRecord.value());
+    }
+}
+```
+

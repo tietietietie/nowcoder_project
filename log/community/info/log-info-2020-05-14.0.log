@@ -1,0 +1,693 @@
+2020-05-14 09:32:48,317 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:55] Starting CommunityApplication on zt with PID 16116 (D:\Java\nowcoder_project\workspace\community\target\classes started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-14 09:32:48,366 INFO [restartedMain] c.n.c.CommunityApplication [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-14 09:32:48,506 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-14 09:32:48,506 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-14 09:32:50,994 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-14 09:32:51,000 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-14 09:32:51,064 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 37ms. Found 0 Redis repository interfaces.
+2020-05-14 09:32:53,213 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:92] Tomcat initialized with port(s): 15213 (http)
+2020-05-14 09:32:53,231 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-15213"]
+2020-05-14 09:32:53,232 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
+2020-05-14 09:32:53,233 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-05-14 09:32:53,731 INFO [restartedMain] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
+2020-05-14 09:32:53,732 INFO [restartedMain] o.s.w.c.ContextLoader [ServletWebServerApplicationContext.java:284] Root WebApplicationContext: initialization completed in 5225 ms
+2020-05-14 09:32:55,516 INFO [restartedMain] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 09:32:55,653 INFO [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-14 09:32:56,125 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:58] LiveReload server is running on port 35729
+2020-05-14 09:32:56,154 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-15213"]
+2020-05-14 09:32:56,204 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:204] Tomcat started on port(s): 15213 (http) with context path '/community'
+2020-05-14 09:32:56,210 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:61] Started CommunityApplication in 8.862 seconds (JVM running for 12.256)
+2020-05-14 09:33:53,706 INFO [http-nio-15213-exec-2] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 09:33:53,710 INFO [http-nio-15213-exec-2] o.s.w.s.DispatcherServlet [FrameworkServlet.java:525] Initializing Servlet 'dispatcherServlet'
+2020-05-14 09:33:53,745 INFO [http-nio-15213-exec-2] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 34 ms
+2020-05-14 09:33:53,866 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:53]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 09:33:54,215 INFO [http-nio-15213-exec-2] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
+2020-05-14 09:33:54,883 INFO [http-nio-15213-exec-2] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-14 09:33:55,039 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:55]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 09:33:55,057 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:55]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:55,072 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:55]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:55,279 INFO [http-nio-15213-exec-2] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-14 09:33:55,282 INFO [http-nio-15213-exec-2] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-14 09:33:56,354 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,358 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,360 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,364 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,367 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,369 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,371 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,374 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,376 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,380 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,382 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,386 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,389 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,393 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,394 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,398 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:33:56,400 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:33:56,403 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:33:56]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,269 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.login].
+2020-05-14 09:34:06,422 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:06,425 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,430 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 09:34:06,436 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 09:34:06,449 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,454 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,456 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,459 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,461 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,465 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,468 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,476 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,478 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,483 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,486 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,490 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,492 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,501 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,503 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,507 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,510 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,519 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,521 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:06,526 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 09:34:06,650 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:06,658 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:06]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:08,556 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:08]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:08,559 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:08]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:08,563 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:08]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:08,565 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:08]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 09:34:08,606 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:08]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 09:34:08,622 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:08]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 09:34:08,624 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:08]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 09:34:10,097 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:10,102 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:10,114 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:10,117 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 09:34:10,120 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.FollowService.findFollowees].
+2020-05-14 09:34:10,124 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:10,132 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:10,137 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 09:34:10,138 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:10]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 09:34:11,676 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:11,680 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:11,688 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.FollowService.unFollow].
+2020-05-14 09:34:11,831 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:11,834 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:11,839 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:11,842 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 09:34:11,923 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.FollowService.findFollowees].
+2020-05-14 09:34:11,925 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:11,932 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:11]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 09:34:16,056 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:16]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:16,059 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:16]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:16,061 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:16]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:16,063 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:16]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 09:34:16,065 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:16]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 09:34:16,066 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:16]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 09:34:16,067 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:16]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 09:34:18,037 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:18,043 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:18,047 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:18,051 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 09:34:18,053 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.FollowService.findFollowers].
+2020-05-14 09:34:18,056 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:18,062 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 09:34:18,227 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:18,241 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:18]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:20,385 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:20,389 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:20,393 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.FollowService.follow].
+2020-05-14 09:34:20,478 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:20,482 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:20,487 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:20,491 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 09:34:20,492 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.FollowService.findFollowers].
+2020-05-14 09:34:20,493 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:20,497 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 09:34:20,589 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:20,593 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:20]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:23,908 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:23]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 09:34:23,910 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:23]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:23,913 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:23]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 09:34:23,915 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:23]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 09:34:23,916 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:23]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 09:34:23,917 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:23]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 09:34:23,918 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 09:34:23]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 10:18:26,554 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:55] Starting CommunityApplication on zt with PID 4228 (D:\Java\nowcoder_project\workspace\community\target\classes started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-14 10:18:26,560 INFO [restartedMain] c.n.c.CommunityApplication [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-14 10:18:26,630 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-14 10:18:26,631 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-14 10:18:27,736 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-14 10:18:27,741 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-14 10:18:27,800 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 34ms. Found 0 Redis repository interfaces.
+2020-05-14 10:18:30,301 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:92] Tomcat initialized with port(s): 15213 (http)
+2020-05-14 10:18:30,316 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-15213"]
+2020-05-14 10:18:30,317 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
+2020-05-14 10:18:30,317 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-05-14 10:18:30,602 INFO [restartedMain] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
+2020-05-14 10:18:30,603 INFO [restartedMain] o.s.w.c.ContextLoader [ServletWebServerApplicationContext.java:284] Root WebApplicationContext: initialization completed in 3972 ms
+2020-05-14 10:18:32,287 INFO [restartedMain] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 10:18:32,411 INFO [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-14 10:18:33,057 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:58] LiveReload server is running on port 35729
+2020-05-14 10:18:33,093 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-15213"]
+2020-05-14 10:18:33,150 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:204] Tomcat started on port(s): 15213 (http) with context path '/community'
+2020-05-14 10:18:33,157 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:61] Started CommunityApplication in 7.282 seconds (JVM running for 8.198)
+2020-05-14 10:18:35,072 INFO [http-nio-15213-exec-1] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 10:18:35,073 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:525] Initializing Servlet 'dispatcherServlet'
+2020-05-14 10:18:35,089 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 16 ms
+2020-05-14 10:18:35,124 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:35]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:35,164 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
+2020-05-14 10:18:35,489 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-14 10:18:35,670 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:35]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:35,717 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:35]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 10:18:35,786 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:35]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 10:18:35,800 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:35]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:35,806 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:35]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:36,090 INFO [http-nio-15213-exec-1] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-14 10:18:36,092 INFO [http-nio-15213-exec-1] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-14 10:18:37,319 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,322 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,325 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,329 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,333 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,336 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,339 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,342 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,345 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,351 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,354 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,358 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,361 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,365 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,366 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,370 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:37,372 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:37,375 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:37]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:18:38,256 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:38]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:38,263 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:38]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:44,457 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:44]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:44,460 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:44]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:18:44,466 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:44]，访问了[com.nowcoder.community.service.UserService.logout].
+2020-05-14 10:18:44,559 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:44]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:44,960 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:44]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:46,305 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:46]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:47,703 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:47]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:48,175 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:48]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:55,370 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:55]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:18:58,949 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:18:58]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:19:04,058 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:19:04,115 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.login].
+2020-05-14 10:19:04,181 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:19:04,186 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,191 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 10:19:04,195 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 10:19:04,208 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,214 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,216 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,220 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,224 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,228 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,229 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,233 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,235 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,240 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,242 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,245 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,248 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,251 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,253 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,258 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,260 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,264 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,266 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:19:04,269 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:19:04,433 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:19:04,440 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:19:04]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:46:52,682 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:55] Starting CommunityApplication on zt with PID 6392 (D:\Java\nowcoder_project\workspace\community\target\classes started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-14 10:46:52,685 INFO [restartedMain] c.n.c.CommunityApplication [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-14 10:46:52,751 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-14 10:46:52,752 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-14 10:46:53,808 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-14 10:46:53,811 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-14 10:46:53,903 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 64ms. Found 0 Redis repository interfaces.
+2020-05-14 10:46:55,924 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:92] Tomcat initialized with port(s): 15213 (http)
+2020-05-14 10:46:55,938 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-15213"]
+2020-05-14 10:46:55,939 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
+2020-05-14 10:46:55,939 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-05-14 10:46:56,118 INFO [restartedMain] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
+2020-05-14 10:46:56,119 INFO [restartedMain] o.s.w.c.ContextLoader [ServletWebServerApplicationContext.java:284] Root WebApplicationContext: initialization completed in 3367 ms
+2020-05-14 10:46:57,671 INFO [restartedMain] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 10:46:57,802 INFO [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-14 10:46:58,189 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:58] LiveReload server is running on port 35729
+2020-05-14 10:46:58,232 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-15213"]
+2020-05-14 10:46:58,272 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:204] Tomcat started on port(s): 15213 (http) with context path '/community'
+2020-05-14 10:46:58,277 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:61] Started CommunityApplication in 6.262 seconds (JVM running for 7.245)
+2020-05-14 10:47:10,898 INFO [http-nio-15213-exec-1] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 10:47:10,899 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:525] Initializing Servlet 'dispatcherServlet'
+2020-05-14 10:47:10,915 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 16 ms
+2020-05-14 10:47:10,943 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:10]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:11,182 INFO [http-nio-15213-exec-1] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-14 10:47:11,184 INFO [http-nio-15213-exec-1] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-14 10:47:12,143 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 10:47:12,197 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
+2020-05-14 10:47:12,424 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-14 10:47:12,516 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 10:47:12,530 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,540 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,551 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,556 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,559 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,563 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,565 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,569 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,571 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,575 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,577 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,581 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,584 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,588 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,590 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,593 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,595 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,598 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:12,600 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:12,604 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:12]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:13,438 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:13]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:17,316 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:17]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:17,630 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:17]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:26,367 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:26,417 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.login].
+2020-05-14 10:47:26,536 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:26,564 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,570 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 10:47:26,575 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 10:47:26,601 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,606 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,609 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,618 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,620 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,624 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,628 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,637 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,639 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,643 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,647 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,650 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,653 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,658 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,660 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,667 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,670 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,673 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:26,675 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:26,682 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:26]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:27,034 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:27]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:27,036 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:27]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,117 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:33,119 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,131 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostById].
+2020-05-14 10:47:33,136 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,140 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,142 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,146 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentsByEntity].
+2020-05-14 10:47:33,170 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,173 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,175 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,177 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentsByEntity].
+2020-05-14 10:47:33,181 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,185 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,187 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,189 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,192 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,194 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,197 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentCount].
+2020-05-14 10:47:33,200 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,203 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,205 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,206 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentsByEntity].
+2020-05-14 10:47:33,209 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentCount].
+2020-05-14 10:47:33,211 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,215 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,217 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,219 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentsByEntity].
+2020-05-14 10:47:33,222 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentCount].
+2020-05-14 10:47:33,225 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,229 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,230 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,232 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentsByEntity].
+2020-05-14 10:47:33,235 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentCount].
+2020-05-14 10:47:33,237 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:33,239 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 10:47:33,240 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 10:47:33,241 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentsByEntity].
+2020-05-14 10:47:33,244 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.CommentService.findCommentCount].
+2020-05-14 10:47:33,525 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:33,528 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:33]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:36,986 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:36]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:36,988 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:36]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:36,991 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:36]，访问了[com.nowcoder.community.service.MessageService.fingConversationCount].
+2020-05-14 10:47:37,056 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:37]，访问了[com.nowcoder.community.service.MessageService.findConversations].
+2020-05-14 10:47:37,062 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:37]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 10:47:37,067 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:37]，访问了[com.nowcoder.community.service.MessageService.findLetterCount].
+2020-05-14 10:47:37,069 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:37,072 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:37]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 10:47:37,370 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:37]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:37,372 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:37]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:44,041 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:44,042 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:44,045 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.MessageService.fingConversationCount].
+2020-05-14 10:47:44,046 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.MessageService.findConversations].
+2020-05-14 10:47:44,049 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 10:47:44,054 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.MessageService.findLetterCount].
+2020-05-14 10:47:44,056 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:44,058 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 10:47:44,295 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:44,297 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:44]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:45,326 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:45]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:45,327 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:45]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:45,596 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:45]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:45,602 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:45]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:57,368 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:57,371 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:57,375 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:47:57,376 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 10:47:57,378 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 10:47:57,386 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 10:47:57,388 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 10:47:57,675 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:47:57,679 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:47:57]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:48:20,629 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:20]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:48:26,342 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:48:26,347 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.MessageService.fingConversationCount].
+2020-05-14 10:48:26,350 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.MessageService.findConversations].
+2020-05-14 10:48:26,353 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 10:48:26,355 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.MessageService.findLetterCount].
+2020-05-14 10:48:26,357 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 10:48:26,360 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 10:48:26,613 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 10:48:26,617 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 10:48:26]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:10:53,308 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:55] Starting CommunityApplication on zt with PID 18596 (D:\Java\nowcoder_project\workspace\community\target\classes started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-14 11:10:53,311 INFO [restartedMain] c.n.c.CommunityApplication [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-14 11:10:53,369 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-14 11:10:53,370 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-14 11:10:54,570 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-14 11:10:54,573 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-14 11:10:54,621 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 29ms. Found 0 Redis repository interfaces.
+2020-05-14 11:10:56,565 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:92] Tomcat initialized with port(s): 15213 (http)
+2020-05-14 11:10:56,578 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-15213"]
+2020-05-14 11:10:56,579 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
+2020-05-14 11:10:56,580 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-05-14 11:10:56,777 INFO [restartedMain] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
+2020-05-14 11:10:56,778 INFO [restartedMain] o.s.w.c.ContextLoader [ServletWebServerApplicationContext.java:284] Root WebApplicationContext: initialization completed in 3408 ms
+2020-05-14 11:10:58,266 INFO [restartedMain] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 11:10:58,390 INFO [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-14 11:10:58,758 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:58] LiveReload server is running on port 35729
+2020-05-14 11:10:58,801 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-15213"]
+2020-05-14 11:10:58,843 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:204] Tomcat started on port(s): 15213 (http) with context path '/community'
+2020-05-14 11:10:58,849 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:61] Started CommunityApplication in 6.351 seconds (JVM running for 7.303)
+2020-05-14 11:11:05,573 INFO [http-nio-15213-exec-1] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 11:11:05,574 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:525] Initializing Servlet 'dispatcherServlet'
+2020-05-14 11:11:05,592 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 18 ms
+2020-05-14 11:11:05,624 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:05]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:11:05,847 INFO [http-nio-15213-exec-1] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-14 11:11:05,849 INFO [http-nio-15213-exec-1] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-14 11:11:07,085 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,110 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
+2020-05-14 11:11:07,319 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-14 11:11:07,501 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 11:11:07,574 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 11:11:07,591 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,624 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,654 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,674 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,677 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,681 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,684 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,686 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,689 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,698 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,702 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,706 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,709 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,714 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,718 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,727 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,729 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,738 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:07,740 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:07,749 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:07]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:08,746 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:08]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:11:08,752 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:08]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:19,143 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:19]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:11:19,146 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:19]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:51,771 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:51]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostById].
+2020-05-14 11:11:51,776 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:51]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:11:54,095 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:54]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:11:54,097 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:54]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeStatus].
+2020-05-14 11:11:54,101 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:54]，访问了[com.nowcoder.community.service.CommentService.findCommentsByEntity].
+2020-05-14 11:11:54,387 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:54]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:11:54,390 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:11:54]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:03,287 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:03]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:03,289 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:03]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:03,705 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:03]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:03,708 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:03]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:19,153 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:19,155 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:19,159 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:19,161 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 11:12:19,162 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 11:12:19,177 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 11:12:19,179 INFO [http-nio-15213-exec-7] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 11:12:19,488 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:19,491 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:19]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:21,781 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:21]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:21,784 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:21]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:22,041 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:22]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:22,043 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:22]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:41,878 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:41]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:41,879 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:41]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:12:42,177 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:42]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:12:42,180 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:12:42]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:13:08,685 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:13:08]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:13:08,688 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:13:08]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:13:08,977 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:13:08]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:13:08,980 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:13:08]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:30,908 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:30]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:30,911 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:30]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:30,914 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:30]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:30,919 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:30]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 11:15:30,922 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:30]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 11:15:30,923 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:30]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 11:15:30,925 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:30]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 11:15:31,153 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:31]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:31,167 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:31]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,618 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:49,621 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,624 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 11:15:49,636 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 11:15:49,662 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,664 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,665 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,667 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,669 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,673 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,675 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,676 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,678 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,679 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,682 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,683 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,685 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,687 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,689 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,690 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,692 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,694 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:49,695 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:49,697 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:49]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:15:50,024 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:50]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:50,031 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:50]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:52,045 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:52]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:52,047 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:52]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:52,295 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:52]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:52,298 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:52]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:57,980 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:57]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:57,981 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:57]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:15:58,186 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:58]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:15:58,187 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:15:58]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:00,630 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:00,632 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:00,634 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:00,635 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 11:16:00,636 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 11:16:00,637 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 11:16:00,638 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 11:16:00,934 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:00,936 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:02,105 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:02]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:02,107 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:02]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:02,314 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:02]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:02,316 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:02]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:36,032 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:36]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:36,034 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:36]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:36,239 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:36]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:36,240 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:36]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:38,271 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:38,272 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:38,274 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:16:38,275 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 11:16:38,276 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 11:16:38,277 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 11:16:38,278 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 11:16:38,382 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:16:38,387 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:16:38]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:09,396 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:17:09,398 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:09,400 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.MessageService.fingConversationCount].
+2020-05-14 11:17:09,418 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.MessageService.findConversations].
+2020-05-14 11:17:09,428 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 11:17:09,446 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.MessageService.findLetterCount].
+2020-05-14 11:17:09,450 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:09,451 INFO [http-nio-15213-exec-4] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 11:17:09,743 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:17:09,745 INFO [http-nio-15213-exec-9] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:09]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:10,316 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:17:10,317 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:10,318 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.MessageService.fingConversationCount].
+2020-05-14 11:17:10,321 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.MessageService.findConversations].
+2020-05-14 11:17:10,326 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 11:17:10,330 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.MessageService.findLetterCount].
+2020-05-14 11:17:10,332 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:10,333 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.MessageService.findUnreadCount].
+2020-05-14 11:17:10,549 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:17:10,550 INFO [http-nio-15213-exec-8] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:10]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:13,765 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:13]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:17:13,766 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:13]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:17:13,835 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:13]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:17:13,837 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:17:13]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:05,213 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:55] Starting CommunityApplication on zt with PID 16124 (D:\Java\nowcoder_project\workspace\community\target\classes started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-14 11:20:05,216 INFO [restartedMain] c.n.c.CommunityApplication [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-14 11:20:05,273 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-14 11:20:05,273 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-14 11:20:06,177 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-14 11:20:06,181 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-14 11:20:06,222 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
+2020-05-14 11:20:09,169 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:92] Tomcat initialized with port(s): 15213 (http)
+2020-05-14 11:20:09,192 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-15213"]
+2020-05-14 11:20:09,192 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
+2020-05-14 11:20:09,193 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-05-14 11:20:09,458 INFO [restartedMain] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
+2020-05-14 11:20:09,459 INFO [restartedMain] o.s.w.c.ContextLoader [ServletWebServerApplicationContext.java:284] Root WebApplicationContext: initialization completed in 4185 ms
+2020-05-14 11:20:11,540 INFO [restartedMain] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 11:20:11,721 INFO [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-14 11:20:12,197 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:58] LiveReload server is running on port 35729
+2020-05-14 11:20:12,240 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-15213"]
+2020-05-14 11:20:12,323 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:204] Tomcat started on port(s): 15213 (http) with context path '/community'
+2020-05-14 11:20:12,332 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:61] Started CommunityApplication in 7.695 seconds (JVM running for 8.478)
+2020-05-14 11:20:15,138 INFO [http-nio-15213-exec-1] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 11:20:15,139 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:525] Initializing Servlet 'dispatcherServlet'
+2020-05-14 11:20:15,162 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 23 ms
+2020-05-14 11:20:15,228 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:15]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:15,513 INFO [http-nio-15213-exec-1] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-14 11:20:15,516 INFO [http-nio-15213-exec-1] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-14 11:20:16,770 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:16]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:16,809 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:16]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 11:20:16,886 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:110] HikariPool-1 - Starting...
+2020-05-14 11:20:17,198 INFO [http-nio-15213-exec-1] c.z.h.HikariDataSource [HikariDataSource.java:123] HikariPool-1 - Start completed.
+2020-05-14 11:20:17,317 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 11:20:17,337 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,340 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,351 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,355 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,357 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,359 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,363 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,365 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,366 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,367 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,370 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,372 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,374 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,375 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,376 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,377 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,378 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,380 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:17,382 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:17,383 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:17]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:20:18,427 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:18]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:18,430 INFO [http-nio-15213-exec-5] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:18]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:20,483 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:20]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:20,485 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:20]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:20,775 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:20]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:20,779 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:20]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:22,724 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:22,726 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:22,730 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:22,743 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.LikeService.findUserLikeCount].
+2020-05-14 11:20:22,745 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.FollowService.findFolloweeCount].
+2020-05-14 11:20:22,758 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.FollowService.fingFollowerCount].
+2020-05-14 11:20:22,760 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.FollowService.hasFollowed].
+2020-05-14 11:20:22,874 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:22,879 INFO [http-nio-15213-exec-3] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:22]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:25,416 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:25]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:25,418 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:25]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:25,648 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:25]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:25,650 INFO [http-nio-15213-exec-10] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:25]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:51,751 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:51]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:20:51,752 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:51]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:20:51,774 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:20:51]，访问了[com.nowcoder.community.service.UserService.updataHeader].
+2020-05-14 11:21:00,809 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:21:00,810 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,873 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPostsRows].
+2020-05-14 11:21:00,886 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.DiscussPostService.findDiscussPosts].
+2020-05-14 11:21:00,906 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,908 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,909 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,911 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,916 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,918 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,919 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,921 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,922 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,924 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,926 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,927 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,930 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,932 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,933 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,934 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,935 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,936 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:21:00,937 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:21:00,939 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:21:00]，访问了[com.nowcoder.community.service.LikeService.findEntityLikeCount].
+2020-05-14 11:23:00,595 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:55] Starting CommunityApplication on zt with PID 6592 (D:\Java\nowcoder_project\workspace\community\target\classes started by zhang in D:\Java\nowcoder_project\workspace\community)
+2020-05-14 11:23:00,601 INFO [restartedMain] c.n.c.CommunityApplication [SpringApplication.java:651] No active profile set, falling back to default profiles: default
+2020-05-14 11:23:00,784 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-14 11:23:00,791 INFO [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor [DeferredLog.java:225] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-14 11:23:01,812 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:249] Multiple Spring Data modules found, entering strict repository configuration mode!
+2020-05-14 11:23:01,816 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:127] Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2020-05-14 11:23:01,860 INFO [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate [RepositoryConfigurationDelegate.java:187] Finished Spring Data repository scanning in 25ms. Found 0 Redis repository interfaces.
+2020-05-14 11:23:03,421 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:92] Tomcat initialized with port(s): 15213 (http)
+2020-05-14 11:23:03,433 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Initializing ProtocolHandler ["http-nio-15213"]
+2020-05-14 11:23:03,434 INFO [restartedMain] o.a.c.c.StandardService [DirectJDKLog.java:173] Starting service [Tomcat]
+2020-05-14 11:23:03,434 INFO [restartedMain] o.a.c.c.StandardEngine [DirectJDKLog.java:173] Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-05-14 11:23:03,625 INFO [restartedMain] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring embedded WebApplicationContext
+2020-05-14 11:23:03,626 INFO [restartedMain] o.s.w.c.ContextLoader [ServletWebServerApplicationContext.java:284] Root WebApplicationContext: initialization completed in 2832 ms
+2020-05-14 11:23:05,220 INFO [restartedMain] o.s.s.c.ThreadPoolTaskExecutor [ExecutorConfigurationSupport.java:181] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-14 11:23:05,350 INFO [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping [WelcomePageHandlerMapping.java:58] Adding welcome page template: index
+2020-05-14 11:23:05,751 INFO [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:58] LiveReload server is running on port 35729
+2020-05-14 11:23:05,788 INFO [restartedMain] o.a.c.h.Http11NioProtocol [DirectJDKLog.java:173] Starting ProtocolHandler ["http-nio-15213"]
+2020-05-14 11:23:05,834 INFO [restartedMain] o.s.b.w.e.t.TomcatWebServer [TomcatWebServer.java:204] Tomcat started on port(s): 15213 (http) with context path '/community'
+2020-05-14 11:23:05,839 INFO [restartedMain] c.n.c.CommunityApplication [StartupInfoLogger.java:61] Started CommunityApplication in 6.074 seconds (JVM running for 6.891)
+2020-05-14 11:23:19,787 INFO [http-nio-15213-exec-1] o.a.c.c.C.[.[.[/community] [DirectJDKLog.java:173] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-14 11:23:19,788 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:525] Initializing Servlet 'dispatcherServlet'
+2020-05-14 11:23:19,804 INFO [http-nio-15213-exec-1] o.s.w.s.DispatcherServlet [FrameworkServlet.java:547] Completed initialization in 16 ms
+2020-05-14 11:23:19,832 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:23:19]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:23:20,025 INFO [http-nio-15213-exec-1] i.l.c.EpollProvider [EpollProvider.java:68] Starting without optional epoll library
+2020-05-14 11:23:20,027 INFO [http-nio-15213-exec-1] i.l.c.KqueueProvider [KqueueProvider.java:70] Starting without optional kqueue library
+2020-05-14 11:23:21,026 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:23:21]，访问了[com.nowcoder.community.service.UserService.findUserById].
+2020-05-14 11:23:21,050 INFO [http-nio-15213-exec-1] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:23:21]，访问了[com.nowcoder.community.service.UserService.logout].
+2020-05-14 11:23:21,122 INFO [http-nio-15213-exec-2] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:23:21]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
+2020-05-14 11:23:21,940 INFO [http-nio-15213-exec-6] c.n.c.a.ServiceAspect [ServiceAspect.java:35] 用户[0:0:0:0:0:0:0:1],在[2020-05-14 11:23:21]，访问了[com.nowcoder.community.service.UserService.findLoginTicket].
