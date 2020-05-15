@@ -71,3 +71,19 @@ class Consumer implements Runnable {
 }
 ```
 
+## Kafka入门
+
+* 分布式的流媒体平台，包括消息系统，日志收集，用户行为追踪，流式处理。
+* 特点：高吞吐量，消息持久化（存在硬盘上）（长久保存）（对硬盘的顺序读写）（速度快），高可靠性（分布式），高扩展性（简单配置可增加服务器）
+* 消息队列实现方式：点对点（每个消息只会消费一次），发布订阅模式
+* 术语：
+  * Broker：服务器
+  * Zookeeper：独立软件，管理集群，Kafka可内置Zookeeper
+  * Topic：空间，相当于文件夹，存放消息
+  * Partition：将Topic分区，可以多线程同时写数据，
+  * Offset，消息在partition中存放位置
+  * Leader Replica：主副本，每个分区都有多个副本，可以提供消息
+  * Leader Replica：从副本，只是备份，不负责相应，主副本挂掉，选择一个从副本变为主副本。
+* 安装过程略
+
+## Spring整合Kafka
