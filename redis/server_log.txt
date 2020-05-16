@@ -125,3 +125,11 @@
 [5956] 14 May 11:23:22.702 * Background saving started by pid 1052
 [5956] 14 May 11:23:23.008 # fork operation complete
 [5956] 14 May 11:23:23.009 * Background saving terminated with success
+[5956] 16 May 11:26:28.186 * 1 changes in 900 seconds. Saving...
+[5956] 16 May 11:26:28.203 * Background saving started by pid 12372
+[5956] 16 May 11:26:28.507 # fork operation complete
+[5956] 16 May 11:26:28.509 * Background saving terminated with success
+[5956] 16 May 11:31:29.000 * 10 changes in 300 seconds. Saving...
+[5956] 16 May 11:31:29.006 * Background saving started by pid 3000
+[5956] 16 May 11:31:29.309 # fork operation complete
+[5956] 16 May 11:31:29.319 * Background saving terminated with success

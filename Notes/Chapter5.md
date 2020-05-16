@@ -156,3 +156,176 @@ class KafkaConsumer {
 }
 ```
 
+## 发布系统通知
+
+点赞/评论/关注后，需要发布通知，系统发布通知是很频繁的功能。
+
+三类不同的topic，封装，事件发生后，生产者产生消息，消费者从队列中读到消息，从message表中写一条数据。
+
+* 封装事件对象，对所需的数据进行封装（消费者可以用多种方式处理）
+* 开发生产者（产生事件）
+* 开发消费者（消费事件，放在message库中）
+
+补充：回复一共有三种：给帖子的回复，EntityType=1，给评论的回复：EntityType=2，给回复的回复：EntityType = 2，并且有targetId
+
+### 封装事件
+
+```java
+public class Event {
+
+    private String topic;
+    private int userId;
+    private int entityType;
+    private int entityId;
+    private int entityUserId;
+    private Map<String, Object> data = new HashMap<>();
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public Event setTopic(String topic) {
+        this.topic = topic;
+        return this;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public Event setUserId(int userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public int getEntityType() {
+        return entityType;
+    }
+
+    public Event setEntityType(int entityType) {
+        this.entityType = entityType;
+        return this;
+    }
+
+    public int getEntityId() {
+        return entityId;
+    }
+
+    public Event setEntityId(int entityId) {
+        this.entityId = entityId;
+        return this;
+    }
+
+    public int getEntityUserId() {
+        return entityUserId;
+    }
+
+    public Event setEntityUserId(int entityUserId) {
+        this.entityUserId = entityUserId;
+        return this;
+    }
+
+    public Map<String, Object> getData() {
+        return data;
+    }
+
+    public Event setData(String key, Object value) {
+        this.data.put(key, value);
+        return this;
+    }
+}
+```
+
+### 定义生产者和消费者
+
+生产者
+
+```java
+@Component
+public class EventProducer {
+
+    @Autowired
+    private KafkaTemplate kafkaTemplate;
+
+    //处理事件
+    public void fireEvent(Event event) {
+        //将之间发送指定主题
+        kafkaTemplate.send(event.getTopic(), JSONObject.toJSONString(event));
+    }
+}
+```
+
+消费者：
+
+```java
+@KafkaListener(topics = {TOPIC_COMMENT, TOPIC_LIKE, TOPIC_FOLLOW})
+public void handleCommentMessage(ConsumerRecord record) {
+    if (record == null || record.value() == null) {
+        logger.error("消息内容为空");
+        return;
+    }
+    Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+    if (event == null) {
+        logger.error("消息格式错误");
+        return;
+    }
+    //构造meaage对象
+    Message message = new Message();
+    message.setFromId(SYSTEM_USER_ID);
+    message.setToId(event.getEntityUserId());
+    message.setConversationId(event.getTopic());
+    message.setCreateTime(new Date());
+    Map<String, Object> content = new HashMap<>();
+    content.put("userId", event.getUserId());
+    content.put("entityType", event.getEntityType());
+    content.put("entityId", event.getEntityId());
+    if (!event.getData().isEmpty()) {
+        for (Map.Entry<String, Object> entry : event.getData().entrySet()) {
+            content.put(entry.getKey(), entry.getValue());
+        }
+    }
+    message.setContent(JSONObject.toJSONString(content));
+    messageService.addMessage(message);
+}
+```
+
+### 在关注/点赞/评论的controller中，生产对应事件
+
+```java
+Event event = new Event()
+    .setTopic(TOPIC_COMMENT)
+    .setEntityType(comment.getEntityType())
+    .setEntityId(comment.getEntityType())
+    .setUserId(hostHolder.getUser().getId())
+    .setData("postId", discussPostId);
+if (comment.getEntityType() == ENTITY_TYPE_POST) {
+    DiscussPost post = discussPostService.findDiscussPostById(comment.getEntityId());
+    event.setEntityUserId(post.getUserId());
+} else {
+    Comment target = commentService.findCommentById(comment.getEntityId());
+    event.setEntityUserId(target.getUserId());
+}
+```
+
+```java
+if (likeStatus == 1) {
+    Event event = new Event()
+        .setTopic(TOPIC_LIKE)
+        .setUserId(hostHolder.getUser().getId())
+        .setEntityType(entityType)
+        .setEntityId(entityId)
+        .setEntityUserId(entityUserId)
+        .setData("postId", postId);
+    eventProducer.fireEvent(event);
+}
+```
+
+```java
+Event event = new Event()
+    .setTopic(TOPIC_FOLLOW)
+    .setEntityType(entityType)
+    .setEntityId(entityId)
+    .setEntityUserId(entityId);
+eventProducer.fireEvent(event);
+```
+
