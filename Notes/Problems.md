@@ -152,3 +152,29 @@ public List<student> selectuser(@Param(value = "page")int pn ,@Param(value = "st
 ```
 
 参考[这里](https://www.cnblogs.com/goloving/p/9241449.html)
+
+## Chapter 5
+
+### 1.kafka报错
+
+>错误：
+>
+>Caused by: java.lang.IllegalStateException: Topic(s) [comment, follow, like] is/are not present and missingTopicsFatal is true
+
+解决办法：修改application.properties
+
+```xml
+spring.kafka.listener.missing-topics-fatal=false
+```
+
+### 2.Aspect报错
+
+aspect默认记录service的日志，并默认一定有request，但是在kafka使用controller时，并没有contoller
+
+>错误：
+>
+>Caused by: java.lang.NullPointerException: null
+>	at com.nowcoder.community.aspect.ServiceAspect.before(ServiceAspect.java:31)
+
+解决办法：考虑空值情况
+

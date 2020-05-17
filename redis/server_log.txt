@@ -133,3 +133,47 @@
 [5956] 16 May 11:31:29.006 * Background saving started by pid 3000
 [5956] 16 May 11:31:29.309 # fork operation complete
 [5956] 16 May 11:31:29.319 * Background saving terminated with success
+[5956] 17 May 10:30:53.871 * 1 changes in 900 seconds. Saving...
+[5956] 17 May 10:30:53.888 * Background saving started by pid 11696
+[5956] 17 May 10:30:54.293 # fork operation complete
+[5956] 17 May 10:30:54.295 * Background saving terminated with success
+[5956] 17 May 10:45:30.731 * 10 changes in 300 seconds. Saving...
+[5956] 17 May 10:45:30.739 * Background saving started by pid 22308
+[5956] 17 May 10:45:31.042 # fork operation complete
+[5956] 17 May 10:45:31.043 * Background saving terminated with success
+[5956] 17 May 10:50:32.067 * 10 changes in 300 seconds. Saving...
+[5956] 17 May 10:50:32.092 * Background saving started by pid 2780
+[5956] 17 May 10:50:32.295 # fork operation complete
+[5956] 17 May 10:50:32.298 * Background saving terminated with success
+[5956] 17 May 10:57:22.137 * 10 changes in 300 seconds. Saving...
+[5956] 17 May 10:57:22.145 * Background saving started by pid 27544
+[5956] 17 May 10:57:22.449 # fork operation complete
+[5956] 17 May 10:57:22.450 * Background saving terminated with success
+[5956] 17 May 11:03:05.744 * 10 changes in 300 seconds. Saving...
+[5956] 17 May 11:03:05.749 * Background saving started by pid 18188
+[5956] 17 May 11:03:06.052 # fork operation complete
+[5956] 17 May 11:03:06.053 * Background saving terminated with success
+[5956] 17 May 11:18:07.007 * 1 changes in 900 seconds. Saving...
+[5956] 17 May 11:18:07.015 * Background saving started by pid 23124
+[5956] 17 May 11:18:07.217 # fork operation complete
+[5956] 17 May 11:18:07.220 * Background saving terminated with success
+[5956] 17 May 13:02:09.535 * 1 changes in 900 seconds. Saving...
+[5956] 17 May 13:02:09.550 * Background saving started by pid 26600
+[5956] 17 May 13:02:09.761 # fork operation complete
+[5956] 17 May 13:02:09.762 * Background saving terminated with success
+[5956] 17 May 13:07:10.044 * 10 changes in 300 seconds. Saving...
+[5956] 17 May 13:07:10.049 * Background saving started by pid 21840
+[5956] 17 May 13:07:10.251 # fork operation complete
+[5956] 17 May 13:07:10.252 * Background saving terminated with success
+[5956] 17 May 13:13:20.487 * 10 changes in 300 seconds. Saving...
+[5956] 17 May 13:13:20.493 * Background saving started by pid 27128
+[5956] 17 May 13:13:20.695 # fork operation complete
+[5956] 17 May 13:13:20.696 * Background saving terminated with success
+[5956] 17 May 13:26:09.662 * 10 changes in 300 seconds. Saving...
+[5956] 17 May 13:26:09.675 * Background saving started by pid 18044
+[5956] 17 May 13:26:09.987 # fork operation complete
+[5956] 17 May 13:26:09.988 * Background saving terminated with success
+[5956] 17 May 13:41:10.074 * 1 changes in 900 seconds. Saving...
+[5956] 17 May 13:41:10.083 * Background saving started by pid 13452
+[5956] 17 May 13:41:10.286 # fork operation complete
+[5956] 17 May 13:41:10.287 * Background saving terminated with success
