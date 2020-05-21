@@ -240,3 +240,162 @@ public class ElasticsearchTest {
 }
 ```
 
+## 开发搜索功能
+
+分为以下三个功能
+
+* 搜索服务
+  * 保存帖子/删除帖子/搜索帖子
+* 发布事件
+  * 发布帖子时，异步的将帖子移交到ES服务器
+  * 增加评论时，异步的将帖子移交到ES服务器
+  * 在消费组件增加一个方法，消费帖子
+* 显示结果
+
+### 服务层
+
+使用之前discussRepository的代码,实现帖子的增加/删除/搜索
+
+```java
+@Service
+public class ElasticsearchService {
+
+    @Autowired
+    private DiscussPostRepository discussRepository;
+
+    @Autowired
+    private ElasticsearchTemplate elasticTemplate;
+
+
+    public void saveDiscussPost(DiscussPost post) {
+        discussRepository.save(post);
+    }
+
+    public void deleteDiscussPost(int id) {
+        discussRepository.deleteById(id);
+    }
+
+    public Page<DiscussPost> searchDiscussPost(String keyword, int current, int limit) {
+        SearchQuery searchQuery = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.multiMatchQuery(keyword, "title", "content"))
+                .withSort(SortBuilders.fieldSort("type").order(SortOrder.DESC))
+                .withSort(SortBuilders.fieldSort("score").order(SortOrder.DESC))
+                .withSort(SortBuilders.fieldSort("createTime").order(SortOrder.DESC))
+                .withPageable(PageRequest.of(current, limit))
+                .withHighlightFields(
+                        new HighlightBuilder.Field("title").preTags("<em>").postTags("</em>"),
+                        new HighlightBuilder.Field("content").preTags("<em>").postTags("</em>")
+                ).build();
+        Page<DiscussPost> page = elasticTemplate.queryForPage(searchQuery, DiscussPost.class, new SearchResultMapper() {
+            @Override
+            public <T> AggregatedPage<T> mapResults(SearchResponse response, Class<T> aClass, Pageable pageable) {
+                SearchHits hits = response.getHits();
+                if (hits.getTotalHits() <= 0) {
+                    return null;
+                }
+
+                List<DiscussPost> list = new ArrayList<>();
+                for (SearchHit hit : hits) {
+                    DiscussPost post = new DiscussPost();
+
+                    String id = hit.getSourceAsMap().get("id").toString();
+                    post.setId(Integer.valueOf(id));
+
+                    String userId = hit.getSourceAsMap().get("userId").toString();
+                    post.setUserId(Integer.valueOf(userId));
+
+                    String title = hit.getSourceAsMap().get("title").toString();
+                    post.setTitle(title);
+
+                    String content = hit.getSourceAsMap().get("content").toString();
+                    post.setContent(content);
+
+                    String status = hit.getSourceAsMap().get("status").toString();
+                    post.setStatus(Integer.valueOf(status));
+
+                    String createTime = hit.getSourceAsMap().get("createTime").toString();
+                    post.setCreateTime(new Date(Long.valueOf(createTime)));
+
+                    String commentCount = hit.getSourceAsMap().get("commentCount").toString();
+                    post.setCommentCount(Integer.valueOf(commentCount));
+
+                    // 处理高亮显示的结果,返回的只是匹配到的一小段
+                    HighlightField titleField = hit.getHighlightFields().get("title");
+                    if (titleField != null) {
+                        post.setTitle(titleField.getFragments()[0].toString());
+                    }
+
+                    HighlightField contentField = hit.getHighlightFields().get("content");
+                    if (contentField != null) {
+                        post.setContent(contentField.getFragments()[0].toString());
+                    }
+
+                    list.add(post);
+                }
+
+                return new AggregatedPageImpl(list, pageable, hits.getTotalHits(), response.getAggregations(), response.getScrollId(), hits.getMaxScore()) {
+                };
+            }
+
+            @Override
+            public <T> T mapSearchHit(SearchHit searchHit, Class<T> aClass) {
+                return null;
+            }
+        });
+        return page;
+    }
+}
+```
+
+### 控制层
+
+在commentController和discussPostController中激活事务，在eventConsumer中统一的更新ES数据库的帖子数据。
+
+```java
+//消费发帖事件
+@KafkaListener(topics = {TOPIC_PUBLISH})
+public void handlePublishMessage(ConsumerRecord record) {
+    if (record == null || record.value() == null) {
+        logger.error("消息内容为空");
+        return;
+    }
+    Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+    if (event == null) {
+        logger.error("消息格式错误");
+        return;
+    }
+    DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());
+    elasticsearchService.saveDiscussPost(post);
+}
+```
+
+新建searchController，对搜索到的帖子进行封装
+
+```java
+    //路径后面带问号传
+    @RequestMapping(path = "/search", method = RequestMethod.GET)
+    public String search(String keyword, Page page, Model model) {
+        //搜索帖子
+        org.springframework.data.domain.Page<DiscussPost> searchResults = elasticsearchService.searchDiscussPost(keyword, page.getCurrent() - 1, page.getLimit());
+        //聚合数据
+        List<Map<String, Object>> discussPosts = new ArrayList<>();
+        if (searchResults != null) {
+            for (DiscussPost post : searchResults) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("post", post);
+                map.put("user", userService.findUserById(post.getUserId()));
+                map.put("likeCount", likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId()));
+                discussPosts.add(map);
+            }
+        }
+        model.addAttribute("discussPosts", discussPosts);
+        model.addAttribute("keyword", keyword);
+
+        //实现分页
+        page.setPath("/search?keyword=" + keyword);
+        page.setRows(searchResults == null ? 0 : (int) searchResults.getTotalElements());
+        return "/site/search";
+    }
+}
+```
+
