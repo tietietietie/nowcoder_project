@@ -178,3 +178,11 @@ aspect默认记录service的日志，并默认一定有request，但是在kafka�
 
 解决办法：考虑空值情况
 
+## Chapter 7
+
+### 1.导入SecurityDemo是报错
+
+解决办法：
+
+不能用Idea导入，直接打开就可以了。。。
+
