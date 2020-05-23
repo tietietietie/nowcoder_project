@@ -71,7 +71,7 @@ public class User implements UserDetails {
                     case 1:
                         return "ADMIN";
                     default:
-                        return "user";
+                        return "USER";
                 }
             }
         });

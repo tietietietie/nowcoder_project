@@ -8,18 +8,21 @@
 
     <h1>登录社区</h1>
 
-    <form method="post" action="#">
-        <p style="color:red;">
+    <form method="post" th:action="@{/login}">
+        <p style="color:red;" th:text="${error}">
             <!--提示信息-->
         </p>
         <p>
-            账号：<input type="text" >
+            账号：<input type="text" name="username" th:value="${param.username}">
         </p>
         <p>
-            密码：<input type="password" >
+            密码：<input type="password" name="password" th:value="${param.password}">
         </p>
         <p>
-            验证码：<input type="text" >
+            验证码：<input type="text" name="verifyCode"> <i>1234</i>
+        </p>
+        <p>
+            <input type="checkbox" name="remember-me"> 记住我
         </p>
         <p>
             <input type="submit" value="登录">

@@ -7,12 +7,24 @@
 <body>
 
     <h1>社区首页</h1>
+    <!--欢迎信息-->
+    <p th:if="${loginUser!=null}">
+        欢迎你，<span th:text="${loginUser.username}"></span>
+    </p>
 
     <ul>
         <li><a th:href="@{/discuss}">帖子详情</a></li>
         <li><a th:href="@{/letter}">私信列表</a></li>
         <li><a th:href="@{/loginpage}">登录</a></li>
-        <li><a th:href="@{/loginpage}">退出</a></li>
+        <!--<li><a th:href="@{/loginpage}">退出</a></li>-->
+        <!--
+        *Security实现的logout必须是post
+        -->
+        <li>
+            <form method="post" th:action="@{/logout}">
+                <a href="javascript:document.forms[0].submit();">退出</a>
+            </form>
+        </li>
     </ul>
 
 </body>
