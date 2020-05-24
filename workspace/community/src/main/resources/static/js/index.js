@@ -2,8 +2,15 @@ $(function(){
 	$("#publishBtn").click(publish);
 });
 
+
 function publish() {
 	$("#publishModal").modal("hide");
+	//发送AJAX请求前，需要带上CSRF令牌
+//    var token = $("mata[name='_csrf']").attr("content");
+//    var header = $("mata[name='_csrf_header']").attr("content");
+//    $(document).ajaxSend(function(e, xhr, options){
+//        xhr.setRequestHeader(header, token);
+//    });
 	//先返回结果再显示
     //获取标题/内容
     var title =  $("#recipient-name").val();

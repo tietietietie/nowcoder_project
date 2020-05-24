@@ -186,3 +186,60 @@ aspect默认记录service的日志，并默认一定有request，但是在kafka�
 
 不能用Idea导入，直接打开就可以了。。。
 
+### 2.在设置异步请求的_csrf令牌时，前端报错
+
+错误：
+
+>jquery-3.3.1.min.js:2 Uncaught TypeError: Cannot read property 'toLowerCase' of undefined
+>at Object.setRequestHeader (jquery-3.3.1.min.js:2)
+>at HTMLDocument.<anonymous> (index.js:12)
+>at HTMLDocument.dispatch (jquery-3.3.1.min.js:2)
+>at HTMLDocument.y.handle (jquery-3.3.1.min.js:2)
+>at Object.trigger (jquery-3.3.1.min.js:2)
+>at Function.ajax (jquery-3.3.1.min.js:2)
+>at Function.w.<computed> [as post] (jquery-3.3.1.min.js:2)
+>at HTMLButtonElement.publish (index.js:19)
+>at HTMLButtonElement.dispatch (jquery-3.3.1.min.js:2)
+>at HTMLButtonElement.y.handle (jquery-3.3.1.min.js:2)
+
+代码：
+
+```javascript
+$(function(){
+	$("#publishBtn").click(publish);
+});
+
+
+function publish() {
+	$("#publishModal").modal("hide");
+	//发送AJAX请求前，需要带上CSRF令牌
+    var token = $("mata[name='_csrf']").attr("content");
+    var header = $("mata[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options){
+        xhr.setRequestHeader(header, token);
+    });
+	//先返回结果再显示
+    //获取标题/内容
+    var title =  $("#recipient-name").val();
+    var content = $("#message-text").val();
+    //发送异步请求
+    $.post(
+        "/community/discuss/add",
+        {"title":title,"content":content},
+        function(data){
+            data = $.parseJSON(data);
+            //提示框显示返回消息
+            $("#hintBody").text(data.msg);
+            //显示提示框/两秒后自动隐藏
+            $("#hintModal").modal("show");
+            setTimeout(function(){
+                $("#hintModal").modal("hide");
+                if(data.code == 0) {
+                    window.location.reload();
+                }
+            }, 2000);
+        }
+    );
+}
+```
+

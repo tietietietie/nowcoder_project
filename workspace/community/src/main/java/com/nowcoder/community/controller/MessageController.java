@@ -200,37 +200,4 @@ public class MessageController implements CommunityConstant {
         model.addAttribute("noticeUnreadCount", noticeUnreadCount);
         return "/site/notice";
     }
-
-    @RequestMapping(path = "/notice/detail/{topic}", method = RequestMethod.GET)
-    public String getNoticeDetail(@PathVariable("topic") String topic, Model model, Page page) {
-        User user = hostHolder.getUser();
-        page.setPath("/notice/detail/" + topic);
-        page.setLimit(5);
-        page.setRows(messageService.findNoticeCount(user.getId(), topic));
-
-        List<Message> noticeList = messageService.findNotices(user.getId(), topic, page.getOffset(), page.getLimit());
-        List<Map<String, Object>> noticeVoList = new ArrayList<>();
-        if (noticeList != null) {
-            for (Message notice : noticeList) {
-                Map<String, Object> map = new HashMap<>();
-                map.put("notice", notice);
-
-                String content = HtmlUtils.htmlUnescape(notice.getContent());
-                Map<String, Object> data = JSONObject.parseObject(content, HashMap.class);
-                map.put("user", userService.findUserById((Integer) data.get("userId")));
-                map.put("entityType", data.get("entityType"));
-                map.put("entityId", data.get("entityId"));
-                map.put("postId", data.get("postId"));
-                map.put("fromUser", userService.findUserById(notice.getFromId()));
-                noticeVoList.add(map);
-            }
-        }
-        model.addAttribute("notices", noticeVoList);
-        //设置为已读
-        List<Integer> ids = getLetterIds(noticeList);
-        if (!ids.isEmpty()) {
-            messageService.readMessage(ids);
-        }
-        return "site/notice-detail";
-    }
 }

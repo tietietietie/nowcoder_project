@@ -257,3 +257,162 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 ```
 
+## 权限控制
+
+* 废弃拦截器，使用SpringSecurity来进行登录检查
+* 授权配置，分配权限：普通用户，版主，管理员
+* 使用原有认证方案：登录退出使用原来的代码
+* CSRF配置：防止CSRF攻击
+
+### 废弃拦截器
+
+在WebMvcConfig中，讲login拦截器注释掉
+
+### 设置权限
+
+对一些路径进行权限设置/
+
+```java
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter implements CommunityConstant {
+    @Override
+    //忽略静态资源
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources/**");
+    }
+
+    @Override
+    //授权
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(
+                        "/user/setting",
+                        "/user/upload",
+                        "/comment/add/**",
+                        "/discuss/add",
+                        "/letter/**",
+                        "/notice/**",
+                        "/like",
+                        "follow",
+                        "unfollow"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_USER,
+                        AUTHORITY_ADMIN,
+                        AUTHORITY_MODERATOR
+                )
+                .anyRequest().permitAll()
+                .and().csrf().disable();
+        //没有权限的异常处理
+        http.exceptionHandling()
+                .accessDeniedHandler(new AccessDeniedHandler() {
+                    @Override
+                    //权限不足处理
+                    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
+                        String xRequestedWith = request.getHeader("x-requested-with");
+                        if (xRequestedWith.equals("XMLHttpRequest")) {
+                            response.setContentType("application/plain; charset=utf-8");
+                            PrintWriter writer = response.getWriter();
+                            writer.write(CommunityUtil.getJSONString(403, "您无权限访问此功能"));
+                        } else {
+                            response.sendRedirect(request.getContextPath() + "/denied");
+                        }
+                    }
+                })
+                .authenticationEntryPoint(new AuthenticationEntryPoint() {
+                    @Override
+                    //没有登录处理
+                    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
+                        String xRequestedWith = request.getHeader("x-requested-with");
+                        if ("XMLHttpRequest".equals(xRequestedWith)) {
+                            response.setContentType("application/plain; charset=utf-8");
+                            PrintWriter writer = response.getWriter();
+                            writer.write(CommunityUtil.getJSONString(403, "您还没有登录，请登录"));
+                        } else {
+                            response.sendRedirect(request.getContextPath() + "/login");
+                        }
+                    }
+                });
+        //默认Logout退出，会用filter拦截
+        //将security中的默认登出路径设置如下，避免覆盖我们自己的登出代码
+        http.logout().logoutUrl("/securityLogout");
+        //Security获得权限需要在SecurityContext里获得
+    }
+}
+```
+
+在LoginTicket拦截器中，对登录的用户配置权限（因为在没有用security处理登录时，SecurityContext没有用户的权限信息，需要我们手动添加）
+
+```java
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        //从cookie中获取ticket
+        String ticket = CookieUtil.getValue(request, "ticket");
+        if (ticket != null) {
+            LoginTicket loginTicket = userService.findLoginTicket(ticket);
+            if (loginTicket != null && loginTicket.getStatus() == 0 && loginTicket.getExpired().after(new Date())) {
+                User user = userService.findUserById(loginTicket.getUserId());
+                //在本此请求中持有用户，考虑多线程并发，多线程隔离
+                hostHolder.setUser(user);
+                //构建用户认证结果，并存入SecurityContext,以便于Security进行权限管理
+                Authentication authentication = new UsernamePasswordAuthenticationToken(
+                        user, user.getPassword(), userService.getAuthorities(user.getId())
+                );
+                SecurityContextHolder.setContext(new SecurityContextImpl(authentication));
+            }
+        }
+        return true;
+    }
+```
+
+
+
+### CSRF原理
+
+某一网站盗取Cookie中的凭证（ticket），从而模拟用户提交表单。
+
+解决办法：引入Security后，用户请求提交表单时，Security会在表单中加一个隐藏的Token，其他网站能够窃取到你的Ticket，但是无法获得你的表单数据（其中的Token），从而会被服务器发现。
+
+问题：异步请求的时候需要自己处理，演示如下：
+
+```java
+<!--<meta name="_csrf" th:content="${_csrf.token}">-->
+<!--<meta name="_csrf_header" th:content="${_csrf.headerName}">-->
+$(function(){
+	$("#publishBtn").click(publish);
+});
+
+
+function publish() {
+	$("#publishModal").modal("hide");
+	//发送AJAX请求前，需要带上CSRF令牌
+//    var token = $("mata[name='_csrf']").attr("content");
+//    var header = $("mata[name='_csrf_header']").attr("content");
+//    $(document).ajaxSend(function(e, xhr, options){
+//        xhr.setRequestHeader(header, token);
+//    });
+	//先返回结果再显示
+    //获取标题/内容
+    var title =  $("#recipient-name").val();
+    var content = $("#message-text").val();
+    //发送异步请求
+    $.post(
+        "/community/discuss/add",
+        {"title":title,"content":content},
+        function(data){
+            data = $.parseJSON(data);
+            //提示框显示返回消息
+            $("#hintBody").text(data.msg);
+            //显示提示框/两秒后自动隐藏
+            $("#hintModal").modal("show");
+            setTimeout(function(){
+                $("#hintModal").modal("hide");
+                if(data.code == 0) {
+                    window.location.reload();
+                }
+            }, 2000);
+        }
+    );
+}
+```
+

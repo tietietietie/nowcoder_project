@@ -100,10 +100,6 @@ bin\windows\kafka-server-start.bat config\server.properties
 
 创建主题（表示一种消息类别）
 
-```
-
-```
-
 
 
 ## Spring整合Kafka
