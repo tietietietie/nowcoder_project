@@ -73,9 +73,15 @@
                 <img src="http://static.nowcoder.com/images/img/icons/ico-discuss.png"/>
                 <span th:utext="${post.title}">备战春招，面试刷题跟他复习，一个月全搞定！</span>
                 <div class="float-right">
-                    <button type="button" class="btn btn-danger btn-sm">置顶</button>
-                    <button type="button" class="btn btn-danger btn-sm">加精</button>
-                    <button type="button" class="btn btn-danger btn-sm">删除</button>
+                    <input type="hidden" id="postId" th:value="${post.id}">
+                    <button type="button" class="btn btn-danger btn-sm" id="topBtn" th:disabled="${post.type==1}">置顶
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" id="wonderfulBtn"
+                            th:disabled="${post.status==1}">加精
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm" id="deleteBtn" th:disabled="${post.status==2}">
+                        删除
+                    </button>
                 </div>
             </h6>
             <!-- 作者 -->

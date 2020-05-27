@@ -416,3 +416,89 @@ function publish() {
 }
 ```
 
+## 置顶，加精，删除
+
+* 功能实现：置顶--->修改帖子类型，加精，删除 ---> 修改帖子状态
+* 权限管理：用security设置即可
+* 按钮显示：thymeleaf可以支持Security，但是需要添加包
+
+### 实现置顶，加精，删除
+
+数据层
+
+```java
+int updateType(@Param("id") int id, @Param("type") int type);
+
+int updateStatus(@Param("id") int id, @Param("status") int status);
+```
+
+服务层
+
+```java
+public int updateType(int id, int type) {
+    return discussPostMapper.updateType(id, type);
+}
+
+public int updateStatus(int id, int status) {
+    return discussPostMapper.updateStatus(id, status);
+}
+```
+
+控制层
+
+```java
+//置顶
+@RequestMapping(path = "/top", method = RequestMethod.POST)
+@ResponseBody
+public String setTop(int id) {
+    discussPostService.updateType(id, 1);
+
+    //帖子同步ES
+    //触发发帖事件
+    //触发发帖事件
+    Event event = new Event()
+        .setTopic(TOPIC_PUBLISH)
+        .setUserId(hostHolder.getUser().getId())
+        .setEntityType(ENTITY_TYPE_POST)
+        .setEntityId(id);
+    producer.fireEvent(event);
+    return CommunityUtil.getJSONString(0);
+}
+
+//加精
+@RequestMapping(path = "/wonderful", method = RequestMethod.POST)
+@ResponseBody
+public String setWonderful(int id) {
+    discussPostService.updateStatus(id, 1);
+
+    //帖子同步ES
+    //触发发帖事件
+    //触发发帖事件
+    Event event = new Event()
+        .setTopic(TOPIC_PUBLISH)
+        .setUserId(hostHolder.getUser().getId())
+        .setEntityType(ENTITY_TYPE_POST)
+        .setEntityId(id);
+    producer.fireEvent(event);
+    return CommunityUtil.getJSONString(0);
+}
+
+//删除
+@RequestMapping(path = "/delete", method = RequestMethod.POST)
+@ResponseBody
+public String setDelete(int id) {
+    discussPostService.updateStatus(id, 2);
+
+    //帖子同步ES
+    //触发发帖事件
+    //触发删帖事件
+    Event event = new Event()
+        .setTopic(TOPIC_DELETE)
+        .setUserId(hostHolder.getUser().getId())
+        .setEntityType(ENTITY_TYPE_POST)
+        .setEntityId(id);
+    producer.fireEvent(event);
+    return CommunityUtil.getJSONString(0);
+}
+```
+

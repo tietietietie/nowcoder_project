@@ -243,3 +243,6 @@ function publish() {
 }
 ```
 
+### 3.Kakfa的log报错
+
+windows端的Bug，每次只能手动删除Log文件然后重启

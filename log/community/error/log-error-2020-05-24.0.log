@@ -1,0 +1,74 @@
+2020-05-24 10:07:09,123 ERROR [restartedMain] o.s.d.e.r.s.AbstractElasticsearchRepository [AbstractElasticsearchRepository.java:93] failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{Gcn7nvyFRmqUu_-hWtqTng}{127.0.0.1}{127.0.0.1:9300}]
+2020-05-24 10:19:19,258 ERROR [restartedMain] o.s.d.e.r.s.AbstractElasticsearchRepository [AbstractElasticsearchRepository.java:93] failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{HVLrPiPjQoqH-nkwcob2_w}{127.0.0.1}{127.0.0.1:9300}]
+2020-05-24 10:35:06,297 ERROR [restartedMain] o.s.d.e.r.s.AbstractElasticsearchRepository [AbstractElasticsearchRepository.java:93] failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{fistXBa7Q7GmagNJcD9bLQ}{127.0.0.1}{127.0.0.1:9300}]
+2020-05-24 10:52:19,291 ERROR [restartedMain] o.s.d.e.r.s.AbstractElasticsearchRepository [AbstractElasticsearchRepository.java:93] failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{Sg2u-rbHR_q49AVlzKAocw}{127.0.0.1}{127.0.0.1:9300}]
+2020-05-24 11:17:23,989 ERROR [http-nio-15213-exec-4] o.a.c.c.C.[.[.[.[dispatcherServlet] [DirectJDKLog.java:175] Servlet.service() for servlet [dispatcherServlet] in context with path [/community] threw exception
+java.lang.NullPointerException: null
+	at com.nowcoder.community.config.SecurityConfig$1.commence(SecurityConfig.java:71)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.sendStartAuthentication(ExceptionTranslationFilter.java:212)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.handleSpringSecurityException(ExceptionTranslationFilter.java:184)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:140)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1135)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+2020-05-24 11:26:24,858 ERROR [http-nio-15213-exec-9] o.s.k.s.LoggingProducerListener [LogAccessor.java:254] Exception thrown when sending a message with key='null' and payload='{"data":{},"entityId":286,"entityType":1,"entityUserId":0,"topic":"publish","userId":151}' to topic publish:
+org.apache.kafka.common.errors.TimeoutException: Topic publish not present in metadata after 60000 ms.
+2020-05-24 11:26:44,073 ERROR [http-nio-15213-exec-2] o.s.k.s.LoggingProducerListener [LogAccessor.java:254] Exception thrown when sending a message with key='null' and payload='{"data":{},"entityId":287,"entityType":1,"entityUserId":0,"topic":"publish","userId":151}' to topic publish:
+org.apache.kafka.common.errors.TimeoutException: Topic publish not present in metadata after 60000 ms.
+2020-05-24 11:27:16,252 ERROR [http-nio-15213-exec-5] o.s.k.s.LoggingProducerListener [LogAccessor.java:254] Exception thrown when sending a message with key='null' and payload='{"data":{},"entityId":288,"entityType":1,"entityUserId":0,"topic":"publish","userId":151}' to topic publish:
+org.apache.kafka.common.errors.TimeoutException: Topic publish not present in metadata after 60000 ms.
+2020-05-24 11:27:28,739 ERROR [http-nio-15213-exec-10] o.s.k.s.LoggingProducerListener [LogAccessor.java:254] Exception thrown when sending a message with key='null' and payload='{"data":{},"entityId":289,"entityType":1,"entityUserId":0,"topic":"publish","userId":151}' to topic publish:
+org.apache.kafka.common.errors.TimeoutException: Topic publish not present in metadata after 60000 ms.
+2020-05-24 11:27:41,364 ERROR [http-nio-15213-exec-1] o.s.k.s.LoggingProducerListener [LogAccessor.java:254] Exception thrown when sending a message with key='null' and payload='{"data":{},"entityId":290,"entityType":1,"entityUserId":0,"topic":"publish","userId":151}' to topic publish:
+org.apache.kafka.common.errors.TimeoutException: Topic publish not present in metadata after 60000 ms.

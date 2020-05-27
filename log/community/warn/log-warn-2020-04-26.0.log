@@ -1,3 +1,0 @@
-2020-04-26 09:48:47,957 WARN [http-nio-15213-exec-1] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [622] milliseconds.
-2020-04-26 10:07:08,820 WARN [http-nio-15213-exec-5] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/forget.html
-2020-04-27 10:18:55,271 WARN [restartedMain] o.s.b.d.a.OptionalLiveReloadServer [OptionalLiveReloadServer.java:61] Unable to start LiveReload server

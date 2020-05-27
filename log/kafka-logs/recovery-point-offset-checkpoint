@@ -1,5 +1,5 @@
 0
-55
+56
 __consumer_offsets 22 0
 __consumer_offsets 30 0
 __consumer_offsets 8 0
@@ -17,16 +17,17 @@ __consumer_offsets 23 0
 __consumer_offsets 49 0
 __consumer_offsets 47 0
 __consumer_offsets 16 0
-test 0 10
-__consumer_offsets 28 15693
+test 0 0
+__consumer_offsets 28 0
+delete 0 0
 __consumer_offsets 31 0
 __consumer_offsets 36 0
-publish 0 3
+publish 0 0
 __consumer_offsets 42 0
 __consumer_offsets 3 0
 __consumer_offsets 18 0
-like 0 1
-comment 0 9
+like 0 0
+comment 0 0
 __consumer_offsets 37 0
 __consumer_offsets 15 0
 __consumer_offsets 24 0
@@ -40,7 +41,7 @@ __consumer_offsets 2 0
 __consumer_offsets 43 0
 __consumer_offsets 6 0
 __consumer_offsets 14 0
-follow 0 3
+follow 0 0
 __consumer_offsets 20 0
 __consumer_offsets 0 0
 __consumer_offsets 44 0
@@ -54,4 +55,4 @@ __consumer_offsets 29 0
 __consumer_offsets 34 0
 __consumer_offsets 10 0
 __consumer_offsets 32 0
-__consumer_offsets 40 3
+__consumer_offsets 40 0
