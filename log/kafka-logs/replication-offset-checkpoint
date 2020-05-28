@@ -18,11 +18,11 @@ __consumer_offsets 49 0
 __consumer_offsets 47 0
 __consumer_offsets 16 0
 test 0 0
-__consumer_offsets 28 1034
-delete 0 1
+__consumer_offsets 28 13979
+delete 0 2
 __consumer_offsets 31 0
 __consumer_offsets 36 0
-publish 0 4
+publish 0 7
 __consumer_offsets 42 0
 __consumer_offsets 3 0
 __consumer_offsets 18 0

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -74,12 +74,14 @@
                 <span th:utext="${post.title}">备战春招，面试刷题跟他复习，一个月全搞定！</span>
                 <div class="float-right">
                     <input type="hidden" id="postId" th:value="${post.id}">
-                    <button type="button" class="btn btn-danger btn-sm" id="topBtn" th:disabled="${post.type==1}">置顶
+                    <button type="button" class="btn btn-danger btn-sm" id="topBtn" th:disabled="${post.type==1}"
+                            sec:authorize="hasAnyAuthority('moderator')">置顶
                     </button>
                     <button type="button" class="btn btn-danger btn-sm" id="wonderfulBtn"
-                            th:disabled="${post.status==1}">加精
+                            th:disabled="${post.status==1}" sec:authorize="hasAnyAuthority('moderator')">加精
                     </button>
-                    <button type="button" class="btn btn-danger btn-sm" id="deleteBtn" th:disabled="${post.status==2}">
+                    <button type="button" class="btn btn-danger btn-sm" id="deleteBtn"
+                            th:disabled="${post.status==2}" sec:authorize="hasAnyAuthority('admin')">
                         删除
                     </button>
                 </div>

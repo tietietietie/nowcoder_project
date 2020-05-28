@@ -246,3 +246,9 @@ function publish() {
 ### 3.Kakfa的log报错
 
 windows端的Bug，每次只能手动删除Log文件然后重启
+
+### 4.redis无法连接
+
+>[Could not connect to Redis at 127.0.0.1:6379: ](https://stackoverflow.com/questions/42857551/could-not-connect-to-redis-at-127-0-0-16379-connection-refused-with-homebrew)
+
+解决办法：需要先启动redis-server

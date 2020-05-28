@@ -502,3 +502,41 @@ public String setDelete(int id) {
 }
 ```
 
+### 设置权限
+
+```java
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(
+                        "/user/setting",
+                        "/user/upload",
+                        "/comment/add/**",
+                        "/discuss/add",
+                        "/letter/**",
+                        "/notice/**",
+                        "/like",
+                        "follow",
+                        "unfollow"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_USER,
+                        AUTHORITY_ADMIN,
+                        AUTHORITY_MODERATOR
+                )
+                .antMatchers(
+                        "/discuss/top",
+                        "/discuss/wonderful"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_MODERATOR
+                )
+                .antMatchers(
+                        "/discuss/delete"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_ADMIN
+                )
+                .anyRequest().permitAll()
+                .and().csrf().disable();
+```
+

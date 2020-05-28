@@ -1,5 +1,0 @@
-2020-04-27 10:19:45,037 WARN [http-nio-15213-exec-2] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/site/profile.html
-2020-04-27 10:19:54,769 WARN [http-nio-15213-exec-3] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/site/letter.html
-2020-04-27 10:28:59,142 WARN [http-nio-15213-exec-9] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [659] milliseconds.
-2020-04-27 19:26:14,753 WARN [http-nio-15213-exec-6] o.a.c.u.SessionIdGeneratorBase [DirectJDKLog.java:173] Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [867] milliseconds.
-2020-04-27 19:39:17,585 WARN [http-nio-15213-exec-3] o.s.w.s.PageNotFound [DispatcherServlet.java:1251] No mapping for GET /community/site/login.html
