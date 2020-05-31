@@ -652,3 +652,170 @@ public String setDelete(int id) {
 }
 ```
 
+## 网站数据统计
+
+* UV：独立访客，通过IP地址统计，希望把匿名用户（游客）也统计起来。每次访问都要统计，因为不确定此次访问的IP是否已经记录过。用HyperLogLog进行统计。
+* DAU：日活跃用户，访问过一次则认为其是活跃或用。与UV的区别是：通过userId进行排重（已注册用户），而且是比较精确的结果，故使用bitmap。可以用UserId为Index,在redis中存储，（key为日期），所以每天需要大概几十万位。
+
+### 定义RedisKey
+
+分别定义UA和DAU的rediskey
+
+```java
+    //单日UV
+    public static String getUVKey(String date) {
+        return PREFIX_UV + SPLIT + date;
+    }
+
+    //区间UV
+    public static String getUVKey(String startDate, String endDate) {
+        return PREFIX_UV + SPLIT + startDate + SPLIT + endDate;
+    }
+
+    //单日DAU
+    public static String getDAUKey(String date) {
+        return PREFIX_DAU + SPLIT + date;
+    }
+
+    //区间DAU
+    public static String getDAUKey(String startDate, String endDate) {
+        return PREFIX_DAU + SPLIT + startDate + SPLIT + endDate;
+    }
+```
+
+### DataService
+
+```java
+@Service
+public class DataService {
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+
+    //记录UV数据，记录指定IP
+    public void recordIV(String ip) {
+        String redisKey = RedisKeyUtil.getUVKey(dateFormat.format(new Date()));
+        redisTemplate.opsForHyperLogLog().add(redisKey, ip);
+    }
+
+    //统计指定范围内的UV
+    public long calculateUV(Date start, Date end) {
+        if (end == null || start == null) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+        //整理key
+        List<String> keyList = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(start);
+        while (!calendar.getTime().after(end)) {
+            String key = RedisKeyUtil.getUVKey(dateFormat.format(calendar.getTime()));
+            keyList.add(key);
+            calendar.add(Calendar.DATE, 1);
+        }
+        String redisKey = RedisKeyUtil.getUVKey(dateFormat.format(start), dateFormat.format(end));
+        redisTemplate.opsForHyperLogLog().union(redisKey, keyList.toArray());
+        return redisTemplate.opsForHyperLogLog().size(redisKey);
+    }
+
+    //记录指定用户到DAU
+    public void recordDAU(int userId) {
+        String redisKey = RedisKeyUtil.getDAUKey(dateFormat.format(new Date()));
+        redisTemplate.opsForValue().setBit(redisKey, userId, true);
+    }
+
+    //统计指定范围内的DAU
+    public long calculateDAU(Date start, Date end) {
+        if (end == null || start == null) {
+            throw new IllegalArgumentException("参数不能为空");
+        }
+        //整理key
+        List<byte[]> keyList = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(start);
+        while (!calendar.getTime().after(end)) {
+            String key = RedisKeyUtil.getDAUKey(dateFormat.format(calendar.getTime()));
+            keyList.add(key.getBytes());
+            calendar.add(Calendar.DATE, 1);
+        }
+        String redisKey = RedisKeyUtil.getDAUKey(dateFormat.format(start), dateFormat.format(end));
+        return (long) redisTemplate.execute(new RedisCallback() {
+            @Override
+            public Object doInRedis(RedisConnection connection) throws DataAccessException {
+                String redisKey = RedisKeyUtil.getDAUKey(dateFormat.format(start), dateFormat.format(end));
+                connection.bitOp(RedisStringCommands.BitOperation.OR, redisKey.getBytes(), keyList.toArray(new byte[0][0]));
+                return connection.bitCount(redisKey.getBytes());
+            }
+        });
+    }
+}
+```
+
+### 拦截器
+
+每次请求需要判断Ip和用户
+
+```java
+@Component
+public class Datainteceptor implements HandlerInterceptor {
+    @Autowired
+    private DataService dataService;
+    @Autowired
+    private HostHolder hostHolder;
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        //记录UV
+        String ip = request.getRemoteHost();
+        dataService.recordIV(ip);
+
+        //记录DAU
+        User user = hostHolder.getUser();
+        if (user != null) {
+            dataService.recordDAU(user.getId());
+        }
+        return true;
+    }
+}
+```
+
+### Controller
+
+实现访问数据页/查询UV/查询dau的功能
+
+```java
+@Controller
+public class DataController {
+    @Autowired
+    private DataService dataService;
+
+    @RequestMapping(path = "/data", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getDataPage() {
+        return "/site/admin/data";
+    }
+
+    @RequestMapping(path = "/data/uv", method = RequestMethod.POST)
+    public String getUV(@DateTimeFormat(pattern = "yyyy-MM-dd") Date start,
+                        @DateTimeFormat(pattern = "yyyy-MM-dd") Date end, Model model) {
+        long uv = dataService.calculateUV(start, end);
+        model.addAttribute("uvResult", uv);
+        model.addAttribute("uvStartDate", start);
+        model.addAttribute("uvEndDate", end);
+        return "forward:/data";
+    }
+
+    @RequestMapping(path = "/data/dau", method = RequestMethod.POST)
+    public String getDAU(@DateTimeFormat(pattern = "yyyy-MM-dd") Date start,
+                         @DateTimeFormat(pattern = "yyyy-MM-dd") Date end, Model model) {
+        long uv = dataService.calculateDAU(start, end);
+        model.addAttribute("dauResult", uv);
+        model.addAttribute("dauStartDate", start);
+        model.addAttribute("dauEndDate", end);
+        return "forward:/data";
+    }
+}
+```
+
+### 配置权限
+
+在SecurityConfig下添加路径即可

@@ -1,6 +1,7 @@
 package com.nowcoder.community.config;
 
 import com.nowcoder.community.controller.interceptor.Alphainteceptor;
+import com.nowcoder.community.controller.interceptor.Datainteceptor;
 import com.nowcoder.community.controller.interceptor.LoginTicketiterceptor;
 import com.nowcoder.community.controller.interceptor.MessageInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //    private LoginRequiredinteceptor loginRequiredinteceptor;
     @Autowired
     private MessageInterceptor messageInterceptor;
+    @Autowired
+    private Datainteceptor datainteceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -32,6 +35,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //                .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");
 
         registry.addInterceptor(messageInterceptor)
+                .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");
+        registry.addInterceptor(datainteceptor)
                 .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");
     }
 }
