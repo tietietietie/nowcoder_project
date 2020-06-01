@@ -1056,3 +1056,22 @@ public class QuartzTest {
 时间增加，分数减小，评论/收藏/点赞越多，分数越高。
 
 分数计算方式：定时算一次，从而能保证帖子的分数一段时间是不变的。
+
+只算分数变化的帖子 ---> 把分数变化的帖子放在Redis中。
+
+### 统计帖子分数
+
+#### RedisKey
+
+```java
+public static String getPostScore() {
+    return PREFIX_POSt + SPLIT + "socre";
+}
+```
+
+#### 能修改帖子分数的地方，存入Redis
+
+包括点赞/评论/发帖/加精
+
+#### 定义定时任务
+
