@@ -819,3 +819,240 @@ public class DataController {
 ### 配置权限
 
 在SecurityConfig下添加路径即可
+
+## 任务执行和调度
+
+* JDK线程池
+  * ExecutorService
+  * ScheduledExecutorService
+* Spring线程池
+  * ThreadPoolTaskExecutor
+  * ThreadPoolTaskScheduler
+* 分布式定时任务
+  * Spring Quartz
+
+在分布式部署中，使用JDK或者Spring的线程池调度，会有问题。在分布式服务器中，请求会通过Nginx来分配，从而可以实现负载均衡，但是Scheduler不能被Nigix管理，所以同一的Scheduler请求，可能会在多服务器执行多次。
+
+使用Quartz，不同服务器的Scheduler运行时，会在数据库服务器访问运行数据，通过排队（加锁），可以使得程序只运行一次。
+
+### JDK线程池演示
+
+```java
+@SpringBootTest
+@ContextConfiguration(classes = CommunityApplication.class)
+public class ThreadPoolTest {
+    private static final Logger logger = LoggerFactory.getLogger(ThreadPoolTest.class);
+
+    //演示JDK普通线程池
+    //包含5个线程
+    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+
+    //定时执行任务的线程池
+    private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
+
+    //使用test方法，让当前线程sleep，以避免线程自动结束
+    private void sleep(long m) {
+        try {
+            Thread.sleep(m);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //演示JDK普通线程池
+    @Test
+    public void testExecutorService() {
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                logger.debug("hello, executorService");
+            }
+        };
+        for (int i = 0; i < 10; i++) {
+            executorService.submit(task);
+        }
+        sleep(10000);
+    }
+
+    //JDK定时任务线程池
+    @Test
+    public void testScheduledExecutorService() {
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                logger.debug("hello, scheduledExecutorService");
+            }
+        };
+        scheduledExecutorService.scheduleAtFixedRate(task, 10000, 1000, TimeUnit.MILLISECONDS);
+        sleep(30000);
+    }
+}
+```
+
+### Spring线程池
+
+配置：
+
+```
+#TaskExecutionProperties
+spring.task.execution.pool.core-size=5
+spring.task.execution.pool.max-size=15
+spring.task.execution.pool.queue-capacity=100
+#TaskSchedulingProperties
+spring.task.scheduling.pool.size=5
+```
+
+演示：
+
+```java
+    //演示Spring普通线程池
+    @Test
+    public void testThreadPoolTaskExecutor() {
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                logger.debug("hello, ThreadPoolTaskExecutor");
+            }
+        };
+        for (int i = 0; i < 10; i++)
+            taskExecutor.submit(task);
+        sleep(10000);
+    }
+
+    //演示Spring定时线程
+    @Test
+    public void testThreadPoolTaskScheduler() {
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                logger.debug("hello, ThreadPoolTaskScheduler");
+            }
+        };
+        Date startTime = new Date(System.currentTimeMillis() + 10000);
+        taskScheduler.scheduleAtFixedRate(task, startTime, 1000);
+        sleep(30000);
+    }
+```
+
+### Spring使用多线程的简单方法
+
+通过注解即可
+
+```java
+    @Async
+    public void execute1() {
+        System.out.println("当前执行线程为" + Thread.currentThread().getName());
+    }
+
+    @Scheduled(initialDelay = 10000, fixedDelay = 1000)
+    public void scheduled1() {
+        System.out.println("当前执行定时任务，执行线程为 --->" + Thread.currentThread().getName());
+    }
+```
+
+```java
+    //Spring多线程简便方法
+    @Test
+    public void testThreadPoolTaskExecutorSimple() {
+        for (int i = 0; i < 10; i++)
+            alphaService.execute1();
+        sleep(10000);
+    }
+
+    //Spring定时任务简化
+    @Test
+    public void testThreadPoolTaskSchedulerSimple() {
+        sleep(30000);
+    }
+```
+
+### Quartz演示
+
+需要提前创建Database，其中存放运行定时任务，所需要的信息
+
+默认读取内存中数据，所以需要配置
+
+```
+# QuartzProperties
+spring.quartz.job-store-type=jdbc
+spring.quartz.scheduler-name=communityScheduler
+spring.quartz.properties.org.quartz.scheduler.instanceId=AUTO
+spring.quartz.properties.org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX
+spring.quartz.properties.org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+spring.quartz.properties.org.quartz.jobStore.isClustered=true
+spring.quartz.properties.org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool
+spring.quartz.properties.org.quartz.threadPool.threadCount=5
+```
+
+定义QuarzJob
+
+```java
+public class AlphaJob implements Job {
+
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        System.out.println(Thread.currentThread().getName() + ": execute quartz job");
+    }
+}
+```
+
+配置Quartz
+
+```java
+@Configuration
+public class QuartzConfig {
+    //FactoryBean，可以简化Bean的实例化过程
+    //1.通过factoryBean封装Bean的实例化过程
+    //2.将FactorBean装配到容器里
+    //3.FactoryBean注入给其他的Bean，
+    //4.其他的Bean得到了FactoryBean所管理的实例对象
+
+    @Bean
+    public JobDetailFactoryBean alphaJobDetail() {
+        JobDetailFactoryBean factoryBean = new JobDetailFactoryBean();
+        factoryBean.setJobClass(AlphaJob.class);
+        factoryBean.setName("alphaJob");
+        factoryBean.setGroup("alphaGroup");
+        //长久保存
+        factoryBean.setDurability(true);
+        factoryBean.setRequestsRecovery(true);
+        return factoryBean;
+    }
+
+    @Bean
+    public SimpleTriggerFactoryBean simpleTrigger(JobDetail alphaJobDetail) {
+        SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
+        factoryBean.setJobDetail(alphaJobDetail);
+        factoryBean.setName("alphaTrigger");
+        factoryBean.setGroup("alphaTriggerGroup");
+        factoryBean.setRepeatInterval(3000);
+        factoryBean.setJobDataMap(new JobDataMap());
+        return factoryBean;
+    }
+}
+```
+
+此时上述Job就能在项目启动后，自动运行，如果需要删除，可执行如下代码
+
+```java
+public class QuartzTest {
+    @Autowired
+    private Scheduler scheduler;
+
+    @Test
+    public void testDeleteJob() {
+        try {
+            boolean result = scheduler.deleteJob(new JobKey("alphaJob", "alphaGroup"));
+            System.out.println(result);
+        } catch (SchedulerException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## 热帖排名
+
+时间增加，分数减小，评论/收藏/点赞越多，分数越高。
+
+分数计算方式：定时算一次，从而能保证帖子的分数一段时间是不变的。
