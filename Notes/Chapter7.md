@@ -1214,3 +1214,34 @@ orderMode通过路径传过来
 ```
 
 Idea查看方法调用的快捷键：alt + F7
+
+## 生成长图
+
+* 将模板文件转换为PDF（在服务端）
+* 使用wkhtmltopdf
+  * 1，wkhtmltopdf url file
+  * 2，wkhtmltoimage url file
+
+* 通过java
+  * Runtime.getRuntime().exec();
+* [官网](https://wkhtmltopdf.org/)
+* 配置环境变量
+
+通过命令访问工具
+
+```
+wkhtmltoimage --quality 75 https://www.nowcoder.com d:/Java/nowcoder_project/wk_image/1.png
+```
+
+### 模拟分享功能
+
+将命令行设置为可配置，将图片位置设置为可配，检查路径是否存在（wk不能生成路径）
+
+创建配置文件：
+
+```
+#wk
+wk.image.command=d:/Java/nowcoder_project/wkhtmltopdf/bin/wkhtmltoimage
+wk.image.storage=d:/Java/nowcoder_project/wk_image
+```
+
