@@ -8,7 +8,6 @@ import com.nowcoder.community.entity.User;
 import com.nowcoder.community.util.CommunityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -119,8 +118,8 @@ public class AlphaService {
         System.out.println("当前执行线程为" + Thread.currentThread().getName());
     }
 
-    @Scheduled(initialDelay = 10000, fixedDelay = 1000)
-    public void scheduled1() {
-        System.out.println("当前执行定时任务，执行线程为 --->" + Thread.currentThread().getName());
-    }
+//    @Scheduled(initialDelay = 10000, fixedDelay = 1000)
+//    public void scheduled1() {
+//        System.out.println("当前执行定时任务，执行线程为 --->" + Thread.currentThread().getName());
+//    }
 }

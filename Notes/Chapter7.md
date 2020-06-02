@@ -1075,3 +1075,142 @@ public static String getPostScore() {
 
 #### 定义定时任务
 
+每隔5分钟运行一次
+
+```java
+    @Bean
+    public JobDetailFactoryBean postScoreRefreshJobDetail() {
+        JobDetailFactoryBean factoryBean = new JobDetailFactoryBean();
+        factoryBean.setJobClass(PostScoreReferenceJob.class);
+        factoryBean.setName("postScoreReferenceJob");
+        factoryBean.setGroup("communityJobGroup");
+        //长久保存
+        factoryBean.setDurability(true);
+        factoryBean.setRequestsRecovery(true);
+        return factoryBean;
+    }
+
+    //刷新帖子分数
+    @Bean
+    public SimpleTriggerFactoryBean postScoreRefreshTrigger(JobDetail postScoreRefreshJobDetail) {
+        SimpleTriggerFactoryBean factoryBean = new SimpleTriggerFactoryBean();
+        factoryBean.setJobDetail(postScoreRefreshJobDetail);
+        factoryBean.setName("postScoreRefreshTrigger");
+        factoryBean.setGroup("communityTriggerGroup");
+        factoryBean.setRepeatInterval(1000 * 60 * 5);
+        factoryBean.setJobDataMap(new JobDataMap());
+        return factoryBean;
+    }
+```
+
+计算分数（job)
+
+```java
+public class PostScoreReferenceJob implements Job, CommunityConstant {
+
+    private static final Logger logger = LoggerFactory.getLogger(PostScoreReferenceJob.class);
+    //牛客纪元
+    private static final Date epoch;
+
+    static {
+        try {
+            epoch = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2014-08-01 00:00:00");
+        } catch (ParseException e) {
+            throw new RuntimeException("初始化牛客网纪元失败" + e);
+        }
+    }
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
+    private DiscussPostService discussPostService;
+    @Autowired
+    private LikeService likeService;
+    @Autowired
+    private ElasticsearchService elasticsearchService;
+
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        String redisKey = RedisKeyUtil.getPostScore();
+        BoundSetOperations operations = redisTemplate.boundSetOps(redisKey);
+        if (operations.size() == 0) {
+            logger.info("任务取消，没有需要重新计分的帖子");
+        }
+        logger.info("任务开始，正在计算帖子分数： " + operations.size());
+        while (operations.size() > 0) {
+            this.refresh((Integer) operations.pop());
+        }
+        logger.info("帖子分数计算结束！");
+    }
+
+    private void refresh(int postId) {
+        DiscussPost post = discussPostService.findDiscussPostById(postId);
+        if (post == null) {
+            logger.error("帖子不存在，postId :" + postId);
+            return;
+        }
+        //计算是否加精，评论数，点赞数
+        boolean wonderful = post.getStatus() == 1;
+        int commentCount = post.getCommentCount();
+        long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, postId);
+        //计算权重
+        double w = (wonderful ? 75 : 0) + commentCount * 10 + likeCount * 2;
+        double score = Math.log10(Math.max(w, 1))
+                + (post.getCreateTime().getTime() - epoch.getTime()) / (1000 * 3600 * 24);
+        //更新帖子的分数
+        discussPostService.updateScore(postId, score);
+        //同步service
+        post.setScore(score);
+        elasticsearchService.saveDiscussPost(post);
+    }
+}
+```
+
+### 修改排序方式
+
+#### 数据访问层
+
+```java
+@Mapper
+public interface DiscussPostMapper {
+
+    List<DiscussPost> selectDiscussPosts(@Param("userId") int userId, @Param("offset") int offset, @Param("limit") int limit, @Param("orderMode") int orderMode);
+```
+
+#### 服务层
+
+```java
+public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit, int orderMode) {
+        return discussPostMapper.selectDiscussPosts(userId, offset, limit, orderMode);
+    }
+```
+
+#### 控制层
+
+orderMode通过路径传过来
+
+```java
+    @RequestMapping(path = "/index", method = RequestMethod.GET)
+    public String getIndexPage(Model model, Page page, @RequestParam(name = "orderMode", defaultValue = "0") int orderMode) {
+        page.setRows(discussPostService.findDiscussPostsRows(0));
+        page.setPath("/index?orderMode=" + orderMode);
+        //在方法调用前，SpringMVC会自动实例化Page和Model，并且将Page注入Model
+        //所以可以在thymeleaf中直接访问Page对象中的数据。
+        List<DiscussPost> list = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit(), orderMode);
+        List<Map<String, Object>> discussPosts = new ArrayList<>();
+        for (DiscussPost post : list) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("post", post);
+            User user = userService.findUserById(post.getUserId());
+            map.put("user", user);
+            long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId());
+            map.put("likeCount", likeCount);
+            discussPosts.add(map);
+        }
+        model.addAttribute("discussPosts", discussPosts);
+        model.addAttribute("orderMode", orderMode);
+        return "/index";
+    }
+```
+
+Idea查看方法调用的快捷键：alt + F7
