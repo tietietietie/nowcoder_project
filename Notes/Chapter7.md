@@ -1245,3 +1245,99 @@ wk.image.command=d:/Java/nowcoder_project/wkhtmltopdf/bin/wkhtmltoimage
 wk.image.storage=d:/Java/nowcoder_project/wk_image
 ```
 
+#### ShareController
+
+使用Kafka，并且异步驱动，可以节省时间
+
+```java
+@Controller
+public class ShareController implements CommunityConstant {
+
+    private static final Logger logger = LoggerFactory.getLogger(ShareController.class);
+
+    @Autowired
+    private EventProducer eventProducer;
+
+    @Value("${community.path.domain}")
+    private String domain;
+    @Value("${server.servlet.context-path}")
+    private String contextPath;
+    @Value("${wk.image.storage}")
+    private String wkImageStorage;
+
+    //生成图片：异步驱动
+    //处理为事件，因为生成的时间可能比较长，用户不需要在页面等待。
+    @RequestMapping(path = "/share", method = RequestMethod.GET)
+    @ResponseBody
+    public String share(String htmlUrl) {
+        //文件名随机
+        String fileName = CommunityUtil.generateUUID();
+        Event event = new Event()
+                .setTopic(TOPIC_SHARE)
+                .setData("htmlUrl", htmlUrl)
+                .setData("fileName", fileName)
+                .setData("suffix", ".png");
+        eventProducer.fireEvent(event);
+        //返回访问路径
+        Map<String, Object> map = new HashMap<>();
+        map.put("shareUrl", domain + contextPath + "/share/image/" + fileName);
+        return CommunityUtil.getJSONString(0, null, map);
+    }
+
+    //获取长图
+    @RequestMapping(path = "/share/image/{fileName}", method = RequestMethod.GET)
+    public void getShareImage(@PathVariable("fileName") String fileName, HttpServletResponse response) {
+        if (StringUtils.isBlank(fileName)) {
+            throw new IllegalArgumentException("文件名不能为空");
+        }
+        response.setContentType("image/png");
+        File file = new File(wkImageStorage + "/" + fileName + ".png");
+        try {
+            OutputStream os = response.getOutputStream();
+            FileInputStream fis = new FileInputStream(file);
+            byte[] buffer = new byte[1024];
+            int b = 0;
+            while (b != -1) {
+                b = fis.read(buffer);
+                os.write(buffer, 0, b);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error("获取长图失败" + e.getMessage());
+        }
+    }
+}
+```
+
+#### EventConsumer
+
+处理分享事件
+
+```java
+    //消费分享时间
+    @KafkaListener(topics = {TOPIC_SHARE})
+    public void handleShareMessage(ConsumerRecord record) {
+        if (record == null || record.value() == null) {
+            logger.error("消息内容为空");
+            return;
+        }
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+        if (event == null) {
+            logger.error("消息格式错误");
+            return;
+        }
+        String htmlUrl = (String) event.getData().get("htmlUrl");
+        String fileName = (String) event.getData().get("fileName");
+        String suffix = (String) event.getData().get("suffix");
+
+        String cmd = wkImageCommand + " --quality 75 " + htmlUrl + " " + wkImageStorage + "/" + fileName + suffix;
+        try {
+            Runtime.getRuntime().exec(cmd);
+            logger.info("生成图片成功" + cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.info("生成图片失败" + e.getMessage() + "  " + cmd);
+        }
+    }
+```
+
