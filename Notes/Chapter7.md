@@ -1341,3 +1341,96 @@ public class ShareController implements CommunityConstant {
     }
 ```
 
+## 文件上传云服务器
+
+* 客户端上传
+* 服务器直传
+
+需要注册[七牛云](https://www.qiniu.com/)，并且创建两个空间，用于存储用户头像和用户share图片
+
+设置七牛云的配置参数
+
+```
+#qiniu
+qiniu.key.access=LeG24jUYDhS6YFSxe2d6EEC1rksz3MmZ0yeYu7F3
+qiniu.key.secret=H-BUVFxvB1QoqKzv6abOCMT_NEzAPvz3pPodJo3Q
+qiniu.bucket.header.name=zt-community-header
+qiniu.bucket.header.url=qbbxkqk6q.bkt.clouddn.com
+qiniu.bucket.share.name=zt-community-share
+qiniu.bucket.share.url=qbbx267e5.bkt.clouddn.com
+```
+
+在进入设置页面后，为此次设置（上传图片），生成一个uploadToken，和fileName，传给页面。
+
+```java
+    @LoginRequired
+    @RequestMapping(path = "/setting", method = RequestMethod.GET)
+    public String getSettingPage(Model model) {
+        //生成上传文件名称
+        String fileName = CommunityUtil.generateUUID();
+        //设置响应信息
+        StringMap policy = new StringMap();
+        policy.put("returnBody", CommunityUtil.getJSONString(0));
+        //生成上传凭证
+        Auth auth = Auth.create(accessKey, secretKey);
+        String uploadToken = auth.uploadToken(headerBucketName, fileName, 3600, policy);
+        model.addAttribute("uploadToken", uploadToken);
+        model.addAttribute("fileName", fileName);
+        return "/site/setting";
+    }
+```
+
+页面根据得到的token和filename，异步的使用post命令，将文件上传到云服务器
+
+```js
+$(function(){
+    $("#uploadForm").submit(upload);
+});
+
+function upload() {
+    $.ajax({
+        url: "http://upload-z2.qiniup.com",
+        method: "post",
+        processData: false,
+        contentType: false,
+        data: new FormData($("#uploadForm")[0]),
+        success: function(data) {
+            if(data && data.code == 0) {
+                // 更新头像访问路径
+                $.post(
+                    CONTEXT_PATH + "/user/header/url",
+                    {"fileName":$("input[name='key']").val()},
+                    function(data) {
+                        data = $.parseJSON(data);
+                        if(data.code == 0) {
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                );
+            } else {
+                alert("上传失败!");
+            }
+        }
+    });
+    return false;
+}
+```
+
+由上面js代码可以，如果上传成功，则访问更改用户头像的路径来更改header_url。
+
+```java
+//User表中的headerUrl需要更新
+@RequestMapping(path = "/header/url", method = RequestMethod.POST)
+@ResponseBody
+public String updateHeaderUrl(String fileName) {
+    if (StringUtils.isBlank(fileName)) {
+        return CommunityUtil.getJSONString(1, "文件名不能为空");
+    }
+    String url = "http://" + headerBucketUrl + "/" + fileName;
+    userService.updataHeader(hostHolder.getUser().getId(), url);
+    return CommunityUtil.getJSONString(0);
+}
+```
+

@@ -252,3 +252,7 @@ windows端的Bug，每次只能手动删除Log文件然后重启
 >[Could not connect to Redis at 127.0.0.1:6379: ](https://stackoverflow.com/questions/42857551/could-not-connect-to-redis-at-127-0-0-16379-connection-refused-with-homebrew)
 
 解决办法：需要先启动redis-server
+
+### 5.无法访问云服务器的头像
+
+因为拼路径时，忘记在前面添加http://，导致模板会默认的把当前路径加在前面。localhost:15213XXXXXXXXXX真正的路径

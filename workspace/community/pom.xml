@@ -133,6 +133,12 @@
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.2.29</version>
+        </dependency>
+
 
     </dependencies>
 
