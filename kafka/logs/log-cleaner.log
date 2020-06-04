@@ -11,3 +11,7 @@
 [2020-06-04 08:36:01,352] INFO Cleaner 0: Building offset map for __consumer_offsets-28... (kafka.log.LogCleaner)
 [2020-06-04 08:46:17,024] INFO Starting the log cleaner (kafka.log.LogCleaner)
 [2020-06-04 08:46:17,113] INFO [kafka-log-cleaner-thread-0]: Starting (kafka.log.LogCleaner)
+[2020-06-04 13:02:15,519] INFO Shutting down the log cleaner. (kafka.log.LogCleaner)
+[2020-06-04 13:02:15,544] INFO [kafka-log-cleaner-thread-0]: Shutting down (kafka.log.LogCleaner)
+[2020-06-04 13:02:15,544] INFO [kafka-log-cleaner-thread-0]: Stopped (kafka.log.LogCleaner)
+[2020-06-04 13:02:15,544] INFO [kafka-log-cleaner-thread-0]: Shutdown completed (kafka.log.LogCleaner)

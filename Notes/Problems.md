@@ -256,3 +256,11 @@ windows端的Bug，每次只能手动删除Log文件然后重启
 ### 5.无法访问云服务器的头像
 
 因为拼路径时，忘记在前面添加http://，导致模板会默认的把当前路径加在前面。localhost:15213XXXXXXXXXX真正的路径
+
+### 6.插入30W个数据Mysql无法显示数量
+
+要过一段时间数据才能更新。。
+
+### 7.查询首页帖子报错
+
+原因，对DiscusspostServer.class初始化函数忘记加上@PostConstruct注解，导致Caffeine缓存无法初始化。

@@ -1437,3 +1437,267 @@ public String updateHeaderUrl(String fileName) {
 ```
 
 ### 从服务器分享到云服务器
+
+生成七牛云的服务器路径，返回给浏览器
+
+```java
+    @RequestMapping(path = "/share", method = RequestMethod.GET)
+    @ResponseBody
+    public String share(String htmlUrl) {
+        //文件名随机
+        String fileName = CommunityUtil.generateUUID();
+        Event event = new Event()
+                .setTopic(TOPIC_SHARE)
+                .setData("htmlUrl", htmlUrl)
+                .setData("fileName", fileName)
+                .setData("suffix", ".png");
+        eventProducer.fireEvent(event);
+        //返回访问路径
+        Map<String, Object> map = new HashMap<>();
+        map.put("shareUrl", shareBucketUrl + "/" + fileName);
+        return CommunityUtil.getJSONString(0, null, map);
+    }
+```
+
+处理分享（上传）事件
+
+```java
+@KafkaListener(topics = {TOPIC_SHARE})
+    public void handleShareMessage(ConsumerRecord record) {
+        if (record == null || record.value() == null) {
+            logger.error("消息内容为空");
+            return;
+        }
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);
+        if (event == null) {
+            logger.error("消息格式错误");
+            return;
+        }
+        String htmlUrl = (String) event.getData().get("htmlUrl");
+        String fileName = (String) event.getData().get("fileName");
+        String suffix = (String) event.getData().get("suffix");
+
+        String cmd = wkImageCommand + " --quality 75 " + htmlUrl + " " + wkImageStorage + "/" + fileName + suffix;
+        try {
+            //Runtime的线程执行时间可能很长。需要经常检查是否生成了图片。
+            Runtime.getRuntime().exec(cmd);
+            logger.info("生成图片成功" + cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.info("生成图片失败" + e.getMessage() + "  " + cmd);
+        }
+
+        //eventConsummer有天然的抢占机制，只会有一个服务器执行
+        UploadTask uploadTask = new UploadTask(fileName, suffix);
+        Future future = taskScheduler.scheduleAtFixedRate(uploadTask, 500);
+        uploadTask.setFuture(future);
+    }
+
+    class UploadTask implements Runnable {
+        //文件名称
+        private String fileName;
+        //文件后缀
+        private String suffix;
+        //开始时间
+        private long startTime;
+        //上传次数
+        private int uploadTimes;
+
+        public void setFuture(Future future) {
+            this.future = future;
+        }
+
+        //启动任务的返回值
+        private Future future;
+
+        public UploadTask(String fileName, String suffix) {
+            this.fileName = fileName;
+            this.suffix = suffix;
+            this.startTime = System.currentTimeMillis();
+        }
+
+        @Override
+        public void run() {
+            //图片生成失败
+            if (System.currentTimeMillis() - startTime > 30000) {
+                logger.error("执行时间过长 ：" + fileName);
+                future.cancel(true);
+                return;
+            }
+            //无法上传到七牛云
+            if (uploadTimes >= 3) {
+                logger.error("无法上传到七牛云" + fileName);
+                future.cancel(true);
+                return;
+            }
+            String path = wkImageStorage + "/" + fileName + suffix;
+            File file = new File(path);
+            if (file.exists()) {
+                logger.info(String.format("开始第%d次上传[%s]", ++uploadTimes, fileName));
+                //设置响应信息
+                StringMap policy = new StringMap();
+                policy.put("returnBody", CommunityUtil.getJSONString(0));
+                //上传凭证
+                Auth auth = Auth.create(accessKey, secretKey);
+                String uploadToken = auth.uploadToken(shareBucketName, fileName, 3600, policy);
+                //指定机房
+                UploadManager manager = new UploadManager(new Configuration(Zone.zone2()));
+                try {
+                    Response response = manager.put(path, fileName, uploadToken, null, "/image" + suffix, false);
+                    //处理响应结果
+                    JSONObject json = JSONObject.parseObject(response.bodyString());
+                    if (json == null || json.get("code") == null || !json.get("code").toString().equals("0")) {
+                        logger.info(String.format("第%d次上传失败[%s]", uploadTimes, fileName));
+                    } else {
+                        logger.info(String.format("第%d次上传成功[%s]", uploadTimes, fileName));
+                        future.cancel(true);
+                        return;
+                    }
+                } catch (QiniuException e) {
+                    logger.info(String.format("第%d次上传失败[%s]", uploadTimes, fileName));
+                }
+            } else {
+                logger.info("等待图片生成[%s]", fileName);
+            }
+        }
+```
+
+## 优化网站性能
+
+加缓存，并使用压力测试工具，展示性能变化情况。
+
+* 本地缓存
+  * 数据存到应用服务器上
+  * 常用工具：Ehchche,Guava,Caffeine
+* 分布式缓存
+  * 缓存数据存到NoSQL服务器上（有一些数据必须放在分布式服务器上）
+  * 比本地缓存差（有网络开销）
+  * Redistribution，MenCache
+* 多级缓存
+  * 一级缓存：本地，二级缓存：分布式
+  * 总之尽力避免缓存雪崩，尽力避免访问database
+
+目标：优化热门帖子列表（对它缓存）（按时间帖子列表经常变，所以要经常更新缓存，性能下降）
+
+本地缓存：Caffeine（可以用Spring整合，但是不建议，因为Spring只用一个缓存管理器来管理所有缓存，所以缓存的大小/过期时间都是一样的，不便于自定义）
+
+### 使用Caffeine
+
+#### 导入包后，配置Caffeine
+
+```
+#Caffeine
+caffeine.posts.max-size=15
+caffeine.posts.expire-seconds=180
+```
+
+#### 通常优化Service
+
+```java
+    @Value("${caffeine.posts.max-size}")
+    private int maxSize;
+    @Value("${caffeine.posts.expire-seconds}")
+    private int expireSeconds;
+
+    //Caffeine核心接口：Cache, LoadingCache, AsyncLoadingCache(支持并发）
+    //声明两个缓存：帖子列表
+    //按照key缓存value
+    private LoadingCache<String, List<DiscussPost>> postListCache;
+    //缓存帖子总数
+    private LoadingCache<Integer, Integer> postRowsCache;
+
+    //初始化的时候缓存
+    @PostConstruct
+    public void init() {
+        //初始化帖子列表
+        postListCache = Caffeine.newBuilder()
+                .maximumSize(maxSize)
+                .expireAfterWrite(expireSeconds, TimeUnit.SECONDS)
+                .build(new CacheLoader<String, List<DiscussPost>>() {
+                    @Nullable
+                    @Override
+                    public List<DiscussPost> load(@NonNull String key) throws Exception {
+                        //缓存中没有数据时，调用一下代码来查数据
+                        if (key == null || key.length() == 0) {
+                            throw new IllegalArgumentException("参数错误");
+                        }
+                        String[] params = key.split(":");
+                        if (params == null || params.length != 2) {
+                            throw new IllegalArgumentException("参数错误");
+                        }
+                        int offset = Integer.valueOf(params[0]);
+                        int limit = Integer.valueOf(params[1]);
+
+                        //可以加二级缓存
+                        logger.debug("load list from DB");
+                        return discussPostMapper.selectDiscussPosts(0, offset, limit, 1);
+                    }
+                });
+        //初始化帖子总数
+        postRowsCache = Caffeine.newBuilder()
+                .maximumSize(maxSize)
+                .expireAfterWrite(expireSeconds, TimeUnit.SECONDS)
+                .build(new CacheLoader<Integer, Integer>() {
+                    @Nullable
+                    @Override
+                    public Integer load(@NonNull Integer key) throws Exception {
+                        logger.debug("load post rows from DB");
+                        return discussPostMapper.selectDiscussPostRows(key);
+                    }
+                });
+    }
+
+    public List<DiscussPost> findDiscussPosts(int userId, int offset, int limit, int orderMode) {
+        //只缓存首页数据，并且每次只缓存一页，并且只缓存热门帖子
+        if (userId == 0 && orderMode == 1) {
+            return postListCache.get(offset + ":" + limit);
+        }
+        logger.debug("load list from DB");
+        return discussPostMapper.selectDiscussPosts(userId, offset, limit, orderMode);
+    }
+
+    public int findDiscussPostsRows(int userId) {
+        if (userId == 0) {
+            return postRowsCache.get(userId);
+        }
+        logger.debug("load post rows from DB");
+        return discussPostMapper.selectDiscussPostRows(userId);
+    }
+```
+
+插入30W条数据，用于压力测试
+
+```java
+    @Test
+    public void initDataForTest() {
+        for (int i = 0; i < 300000; i++) {
+            DiscussPost post = new DiscussPost();
+            post.setUserId(111);
+            post.setTitle("互联网求职暖春计划");
+            post.setContent("今年的就业形势，确实不容乐观。过了个年，仿佛跳水一般，整个讨论区哀鸿遍野！19届真的没人要了吗？！18届被优化真的没有出路了吗？！大家的“哀嚎”与“悲惨遭遇”牵动了每日潜伏于讨论区的牛客小哥哥小姐姐们的心，于是牛客决定：是时候为大家做点什么了！为了帮助大家度过“寒冬”，牛客网特别联合60+家企业，开启互联网求职暖春计划，面向18届&19届，拯救0 offer！");
+            post.setCreateTime(new Date());
+            post.setScore(Math.random() * 2000);
+            postService.addDiscussPost(post);
+        }
+    }
+
+    @Test
+    public void testCache() {
+        System.out.println(postService.findDiscussPosts(0, 0, 10, 1));
+        System.out.println(postService.findDiscussPosts(0, 0, 10, 1));
+        System.out.println(postService.findDiscussPosts(0, 0, 10, 1));
+        System.out.println(postService.findDiscussPosts(0, 0, 10, 0));
+    }
+```
+
+#### 使用Jmeter进行压力测试
+
+优化前和优化后，吞吐量对比：速度大概增加了10倍
+
+优化前：
+
+![image-20200604152433152](Chapter7.assets/image-20200604152433152.png)
+
+优化后：
+
+![image-20200604153147243](Chapter7.assets/image-20200604153147243.png)
