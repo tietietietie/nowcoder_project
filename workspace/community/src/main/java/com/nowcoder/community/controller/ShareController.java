@@ -38,6 +38,9 @@ public class ShareController implements CommunityConstant {
     @Value("${wk.image.storage}")
     private String wkImageStorage;
 
+    @Value("${qiniu.bucket.share.url}")
+    private String shareBucketUrl;
+
     //生成图片：异步驱动
     //处理为事件，因为生成的时间可能比较长，用户不需要在页面等待。
     @RequestMapping(path = "/share", method = RequestMethod.GET)
@@ -53,10 +56,11 @@ public class ShareController implements CommunityConstant {
         eventProducer.fireEvent(event);
         //返回访问路径
         Map<String, Object> map = new HashMap<>();
-        map.put("shareUrl", domain + contextPath + "/share/image/" + fileName);
+        map.put("shareUrl", shareBucketUrl + "/" + fileName);
         return CommunityUtil.getJSONString(0, null, map);
     }
 
+    //废弃
     //获取长图
     @RequestMapping(path = "/share/image/{fileName}", method = RequestMethod.GET)
     public void getShareImage(@PathVariable("fileName") String fileName, HttpServletResponse response) {

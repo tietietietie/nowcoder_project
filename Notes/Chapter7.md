@@ -1360,6 +1360,8 @@ qiniu.bucket.share.name=zt-community-share
 qiniu.bucket.share.url=qbbx267e5.bkt.clouddn.com
 ```
 
+### 从客户端分享到云服务器
+
 在进入设置页面后，为此次设置（上传图片），生成一个uploadToken，和fileName，传给页面。
 
 ```java
@@ -1434,3 +1436,4 @@ public String updateHeaderUrl(String fileName) {
 }
 ```
 
+### 从服务器分享到云服务器
