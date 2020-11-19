@@ -26,7 +26,7 @@ Kafka:消息队列(进行消息发布)
 
 Elasticsearch:流行的搜索引擎
 
-上三者都能提高性能,都可以用Spring整数.
+上三者都能提高性能,都可以用Spring整合.
 
 Spring Security, Spring Actuator:安全和系统状态统计.
 
@@ -92,6 +92,8 @@ mvn test：在target中包含了test文件夹，test包含了compile。
 ### IntelliJ IDEA
 
 #### 在IDEA中连接Maven
+
+因为使用mvn来构建编译项目
 
 1. 找不到build tool里面的maven选项，因为没有安装maven插件。
 2. 修改maven工作路径
@@ -237,7 +239,9 @@ More：IDEA注释快捷键：ctrl+shift+/
 
 #### 怎样才能被容器扫描
 
-容器会自动创建，但是哪些Bean会被扫描呢？在main函数中，我们传入SpringApplication的其实是一个配置文件：
+**容器会自动创建**(项目启动时），但是哪些Bean会被扫描呢？在mian函数的子包的所有类，都可能被扫描（取决于注解）
+
+在main函数中，我们传入SpringApplication的其实是一个配置文件：
 
 ```java
 import org.springframework.boot.SpringApplication;
@@ -256,7 +260,7 @@ public class CommunityApplication {
 其中，SpringBootApplication下存放着配置文件，可以放入IoC容器的Bean，哪些函数（Bean)会被放入IoC文件呢，前面有四种注解的函数，会被扫描：
 
 * @Controller(处理请求)
-* @Service（提供服务）
+* @Service（提供服务/业务）
 * @Repository(处理数据库)
 * @Conponent(通用)
 
@@ -266,10 +270,11 @@ public class CommunityApplication {
 
 ```java
 @SpringBootTest
-@ContextConfiguration(classes = CommunityApplication.class)
-public class CommunityApplicationTests implements ApplicationContextAware {
-    private ApplicationContext applicationContext;
+@ContextConfiguration(classes = CommunityApplication.class)  //用正式项目的配置类来配置test
+public class CommunityApplicationTests implements ApplicationContextAware //必须要这个接口{
+    private ApplicationContext applicationContext; //这个其实就是容器
 
+	//需要重载这个方法
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -282,7 +287,7 @@ public class CommunityApplicationTests implements ApplicationContextAware {
 }
 ```
 
-* ApplicationContextAware接口可以帮助我们实现容器的传递，在实现了serApplicationContext方法后，我们便可以通过其参数applicationcontext访问容器的
+* ApplicationContextAware接口可以帮助我们实现**容器的传递**，在实现了serApplicationContext方法后，我们便可以通过其参数applicationcontext访问容器的
 * 将容器的内容打印出来
 
 #### 使用容器降低耦合度（生成bean）
@@ -361,7 +366,7 @@ public class AlphaService {
 
 配置类+注解（把所有的配置类都放在config包下）
 
-如何装配一个外部bean：使用@Configuration + @Bean， 代码如下所示：
+如何装配一个外部、bean：使用@Configuration + @Bean， 代码如下所示：
 
 ```java
 @Configuration  //表明这是一个配置类
